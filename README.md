@@ -1,2 +1,2 @@
-# Computacion_Grafica_Proyectos
- Material a utilizar en el curso de computacion Grafica
+# Proyecto_Final_Computacion_Grafica_
+ Material a utilizar en el proyecto final  de computacion Grafica
