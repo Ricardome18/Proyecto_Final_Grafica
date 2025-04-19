@@ -1,6 +1,5 @@
 ﻿
-//Practica 10 Animacion Basica                      	Mendoza Espinosa Ricardo
-//Fecha de entrega : 11 - 04 - 2025    	 	                    319018370 
+//Proyecto Final Animacio es profesor 
 
 
 #include <iostream>
@@ -119,8 +118,31 @@ float animationSpeed = 0.06f;  // Controla la velocidad global de la animación.
 GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
 GLfloat lastFrame = 0.0f;  	// Time of last frame
 
+struct BoneTransformationValues {
+	glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+};
+
+struct HumanoidModelInstance {
+	BoneTransformationValues head;
+	BoneTransformationValues torso;
+	BoneTransformationValues rightArm;
+	BoneTransformationValues subRightArm;
+	BoneTransformationValues rightLeg;
+	BoneTransformationValues subRightLeg;
+	BoneTransformationValues leftArm;
+	BoneTransformationValues subLeftArm;
+	BoneTransformationValues leftLeg;
+	BoneTransformationValues subLeftLeg;
+};
+
+HumanoidModelInstance profesor;
+
+
+
 int main()
 {
+		
 	// Init GLFW
 	glfwInit();
 	// Set all the required options for GLFW
@@ -170,9 +192,22 @@ int main()
 	Shader lampShader("Shader/lamp.vs", "Shader/lamp.frag");
 	
 	//models
-	Model Dog((char*)"Models/RedDog/Perr4/Perro4.obj");
+	Model ProfesorTorso((char*)"Models/Profesor/ProfesorTorso.obj");
+	Model ProfesorHead((char*)"Models/Profesor/ProfesorHead.obj");
+	Model ProfesorRightArm((char*)"Models/Profesor/ProfesorRightArm.obj");
+	Model ProfesorSubRightArm((char*)"Models/Profesor/ProfesorSubRightArm.obj");
+	Model ProfesorLeftArm((char*)"Models/Profesor/ProfesorLeftArm.obj");
+	Model ProfesorSubLeftArm((char*)"Models/Profesor/ProfesorSubLeftArm.obj");
+	Model ProfesorRightLeg((char*)"Models/Profesor/ProfesorRightLeg.obj");
+	Model ProfesorSubRightLeg((char*)"Models/Profesor/ProfesorSubRightLeg.obj");
+	Model ProfesorLeftLeg((char*)"Models/Profesor/ProfesorLeftLeg.obj");
+	Model ProfesorSubLeftLeg((char*)"Models/Profesor/ProfesorSubLeftLeg.obj");
+
+
+	
+
 	Model Piso((char*)"Models/piso.obj");
-	Model Ball((char*)"Models/ball.obj");
+	
 
 
 
@@ -298,31 +333,132 @@ int main()
 		Piso.Draw(lightingShader);
 
 
-		//Modelo perro
-		model = glm::mat4(1);
-		modelTemp = model = glm::translate(model, glm::vec3(0.0f, salto / 2, 0.0f));modelTemp = model;// Aquí se hace una asignación para guardar temporalmente la transformación aplicada en modelTemp, para usarla en la siguiente operación.
-		modelTemp = glm::rotate(modelTemp, glm::radians(rotBall), glm::vec3(0.0f, -1.0f, 0.0f));//Rotacion en sentido horario del perro por el -1
-		model = glm::translate(modelTemp, glm::vec3(2.0f, 0.0f, 0.0f));//Traslacion inicial en el plano X del perro
-		model = glm::rotate(model, glm::radians((-23*salto)-rot*2), glm::vec3(1.0f, 0.0f, 0.0f));//Movimiento de golpeo de pelota en el plano X del perro
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		Dog.Draw(lightingShader);
-		glBindVertexArray(0);
+		
+
+		//Profesor Torso
 
 
-		//Modelo de la pelota
+		
 
 		model = glm::mat4(1);
-		//glEnable(GL_BLEND);//Activa la funcionalidad para trabajar el canal alfa
-		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 1);
-		modelTemp = model = glm::translate(model, glm::vec3(0.0f, (-salto*0.7f) + 1.5f, 0.0f));//La pelota baja en el plano Y
-		modelTemp = glm::rotate(modelTemp, glm::radians(rotBall), glm::vec3(0.0f, 1.0f, 0.0f));//Rotacion en sentido antihorario de la pelota por el 1
-		model = glm::translate(modelTemp, glm::vec3(2.5f, 0.0f, 0.0f));//Traslacion inicial en el plano X 
+		model = glm::translate(modelTemp, profesor.torso.position);
+		modelTemp = model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
+		model = glm::rotate(model, glm::radians(profesor.torso.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(profesor.torso.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(profesor.torso.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-	    Ball.Draw(lightingShader); 
+		ProfesorTorso.Draw(lightingShader);
+
+
+
+
+		//Profesor Head
+
+		
+
+		model = glm::mat4(1);
+		model = glm::translate(modelTemp, glm::vec3(0.0f, 148.54f, 0.0f)+profesor.head.position);
+		model = glm::rotate(model, glm::radians(profesor.head.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(profesor.head.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(profesor.head.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ProfesorHead.Draw(lightingShader);
+
+		//Profesor Right Arm
+
+		model = glm::mat4(1);
+		model = glm::translate(modelTemp, glm::vec3(-20.02f, 140.164f, 0.0f)+profesor.rightArm.position);
+		modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+		modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+		modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ProfesorRightArm.Draw(lightingShader);
+
+		//Profesor Sub Right Arm
+
+		model = glm::mat4(1);
+		model = glm::translate(modelTemp1, glm::vec3(-15.137, -16.795f, -0.456f)+profesor.subRightArm.position);
+		model = glm::rotate(model, glm::radians(profesor.subRightArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(profesor.subRightArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(profesor.subRightArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ProfesorSubRightArm.Draw(lightingShader);
+
+		
+
+
+		////Profesor Left Arm
+		model = glm::mat4(1);
+		model = glm::translate(modelTemp, glm::vec3(19.794f, 140.059f, -0.159f)+profesor.leftArm.position);
+		modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+		modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+		modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ProfesorLeftArm.Draw(lightingShader);
+
+		//Profesor Sub Left Arm
+
+		model = glm::mat4(1);
+		model = glm::translate(modelTemp1, glm::vec3(15.123f, -16.78f, -0.781f)+profesor.subLeftArm.position);
+		model = glm::rotate(model, glm::radians(profesor.subLeftArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(profesor.subLeftArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(profesor.subLeftArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ProfesorSubLeftArm.Draw(lightingShader);
+		
+		
+
+		//Profesor Right Leg
+		model = glm::mat4(1);
+		model = glm::translate(modelTemp, glm::vec3(0.0f, 87.83f, -9.225f)+profesor.rightLeg.position);
+		modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+		modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+		modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ProfesorRightLeg.Draw(lightingShader);
+
+		//Profesor Sub Right Leg
+
+		model = glm::mat4(1);
+		model = glm::translate(modelTemp1, glm::vec3(-10.713f, -34.908f, 14.468f)+profesor.subRightLeg.position);
+		model = glm::rotate(model, glm::radians(profesor.subRightLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(profesor.subRightLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(profesor.subRightLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ProfesorSubRightLeg.Draw(lightingShader);
+
+		
+		//Profesor Left Leg
+		model = glm::mat4(1);
+		model = glm::translate(modelTemp, glm::vec3(9.817f, 87.906f, -9.521f)+profesor.leftLeg.position);
+		modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+		modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+		modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ProfesorLeftLeg.Draw(lightingShader);
+
+		//Profesor Sub Left Leg
+
+		model = glm::mat4(1);
+		model = glm::translate(modelTemp1, glm::vec3(0.272f, -36.701f, 17.087f)+profesor.subLeftLeg.position);
+		model = glm::rotate(model, glm::radians(profesor.subLeftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(profesor.subLeftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(profesor.subLeftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ProfesorSubLeftLeg.Draw(lightingShader);
+
+
+		
+
+
+		
+
+
+		
+
+
+
+		 
 		//glDisable(GL_BLEND);  //Desactiva el canal alfa 
 		glBindVertexArray(0);
 	
@@ -453,7 +589,7 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 		active = !active;
 		if (active)
 		{
-			Light1 = glm::vec3(1.0f, 1.0f, 0.0f);
+			Light1 = glm::vec3(1.0f, 0.0f, 0.0f);
 			
 		}
 		else
@@ -469,50 +605,24 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 }
 
 
+
+
 void Animation() {
 	if (AnimBall)
 	{
-		rotBall += 0.5f * animationSpeed;  // Ralentiza la rotación de la pelota
-		printf("Angulo de rotacion:%f\n", rotBall);
+		rotBall += 100.0*deltaTime;
+		profesor.rightArm.rotation.x =15.0f + sin(glm::radians(rotBall) )*30;
+		profesor.leftArm.rotation.x = 15.0f  - sin(glm::radians(rotBall)) * 30;
+		profesor.subRightArm.rotation.x = -15.0f + sin(glm::radians(rotBall)) * 15;
+		profesor.subLeftArm.rotation.x =- 15.0f - sin(glm::radians(rotBall)) * 15;
+		profesor.rightLeg.rotation.x = -15.0f + sin(glm::radians(rotBall)) * 15;
+		profesor.leftLeg.rotation.x = -15.0f - sin(glm::radians(rotBall)) * 15;
 
-		//Resetear las rotaciónes de la pelota y el perro
-		if (rotBall >= 360) {
-			rotBall = 0;
-		}
+		profesor.subRightLeg.rotation.x = 30.0f + sin(glm::radians(rotBall)-0.5) * 30;
+		profesor.subLeftLeg.rotation.x = 30.0f - sin(glm::radians(rotBall)-0.5) * 30;
 
-		// Control de rotación de la pelota
-		if (rotBall >= 120 && rotBall < 150) {
-			rot -= 0.1 * animationSpeed;  // Ralentiza el movimiento de rotación del perro
-		}
-		else if (rotBall >= 150 && rotBall < 165) {
-			rot += 0.2 * animationSpeed;
-		}
-		else if (rotBall >= 300 && rotBall < 330) {//cambio
-			rot -= 0.1 * animationSpeed;
-		}
-		else if (rotBall >= 330 && rotBall < 345) {
-			rot += 0.2 * animationSpeed;
-		}
-		else {
-			rot = 0;
-		}
-
-		// Control de salto (más lento o rápido dependiendo de animationSpeed)
-		if (rotBall >= 160 && rotBall <= 180) {
-			salto += 0.03 * animationSpeed;  // Ajusta la altura del salto
-		}
-		else if (rotBall > 180 && rotBall <= 200) {
-			salto -= 0.03 * animationSpeed;  // Ajusta la altura del descenso del salto
-		}
-		else if (rotBall > 340) {
-			salto += 0.03 * animationSpeed;  // Ajusta la altura del salto
-		}
-		else if (rotBall >= 0 && rotBall <= 20) {
-			salto -= 0.03 * animationSpeed;  // Ajusta la altura del descenso
-		}
-		else {
-			salto = 0;
-		}
+		profesor.leftArm.rotation.z = -30.0f;
+		profesor.rightArm.rotation.z = 30.0f;
 	}
 	else
 	{
