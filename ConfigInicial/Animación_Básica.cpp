@@ -163,9 +163,28 @@ int main()
 	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
-
+	// CARGA DE SHADERS
 	Shader lightingShader("Shader/lighting.vs", "Shader/lighting.frag");
 	Shader lampShader("Shader/lamp.vs", "Shader/lamp.frag");
+	
+
+	// ------------------- CARGA DE MODELOS ------------------------------------------
+
+	// -------------------------------------------------------------------------------
+	// ------------------- MODELOS LAB VIEJO -----------------------------------------
+
+	Model cuartoOld((char*)"Models/CuartoViejo/salonViejo.obj");		// LAB VIEJO
+	Model mesaOld((char*)"Models/mesaOLD/mesaOLD.obj");					// MESA VIEJA
+	Model sillaOld((char*)"Models/sillaOLD/sillaOLD.obj");				// SILLA VIEJA
+	Model oldCPU((char*)"Models/oldCPU/oldCPU.obj");					// CPU VIEJO
+	Model monitorOld((char*)"Models/monitorViejo/monitorViejo.obj");	// MONITOR VIEJO
+	Model tecladoOld((char*)"Models/tecladoViejo/teclado.obj");			// TECLADO VIEJO
+	Model mouseOld((char*)"Models/mouseViejo/mouseViejo.obj");			// MOUSE VIEJO
+	Model puertaOld((char*)"Models/puertaOLD/puertaOLD.obj");			// PUERTA VIEJA
+
+	
+	// -------------------------------------------------------------------------------
+	// ------------------- MODELOS LAB NUEVO -----------------------------------------
 	
 	Model Cuarto((char*)"Models/CuartoV2/Cuartov2.obj");
 	Model Mesa((char*)"Models/Mesa/Mesa.obj");
@@ -341,379 +360,437 @@ int main()
 		// =========================================================================================
 		// ===================== MODELADO LABORATORIO VIEJO ========================================
 		// =========================================================================================
+		
+		// ------------- Modelado salón viejo ----------------------------------------------
+		glm::mat4 modelCuartoOld(1.0f);
+		modelCuartoOld = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		modelCuartoOld = glm::translate(modelCuartoOld, glm::vec3(0.0f, 0.0f, 0.0f));
+		//modelCuartoOld = glm::rotate(modelCuartoOld, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCuartoOld));
+		cuartoOld.Draw(lightingShader);
+		// ---------------------------------------------------------------------------------
 
+		// ------------- Modelado escritorio Profesor ----------------------------------------------
+		// Escritorio 1 (profesor)
+		glm::mat4 modelMesa1(1.0f);
+		//modelMesa1 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
+		modelMesa1 = glm::translate(modelMesa1, glm::vec3(38.224f, 6.758f, -59.289f));
+		//modelMesa1 = glm::rotate(modelMesa1, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa1));
+		mesaOld.Draw(lightingShader);
 
+		// CPU profesor
+		glm::mat4 modeloldCPU1(1.0f);
+		//modeloldCPU1 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
+		modeloldCPU1 = glm::translate(modeloldCPU1, glm::vec3(42.13f, 14.443f, -59.904f));
+		//modeloldCPU1 = glm::rotate(modeloldCPU1, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU1));
+		oldCPU.Draw(lightingShader);
 
+		// monitor Profesor
+		glm::mat4 modeloldMonitor1(1.0f);
+		//modeloldMonitor1 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
+		modeloldMonitor1 = glm::translate(modeloldMonitor1, glm::vec3(37.701f, 14.434f, -60.837f));
+		//modeloldMonitor1 = glm::rotate(modeloldMonitor1, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor1));
+		monitorOld.Draw(lightingShader);
 
+		// teclado Profesor
+		glm::mat4 modeloldTeclado1(1.0f);
+		//modeloldTeclado1 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
+		modeloldTeclado1 = glm::translate(modeloldTeclado1, glm::vec3(37.659f, 12.327f, -57.878f));
+		//modeloldTeclado1 = glm::rotate(modeloldTeclado1, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado1));
+		tecladoOld.Draw(lightingShader);
+
+		// mouse Profesor
+		glm::mat4 modeloldMouse1(1.0f);
+		//modeloldMouse1 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
+		modeloldMouse1 = glm::translate(modeloldMouse1, glm::vec3(38.811f, 12.405f, -59.408f));
+		//modeloldMouse1 = glm::rotate(modeloldMouse1, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse1));
+		mouseOld.Draw(lightingShader);
+		// ---------------------------------------------------------------------------------
+
+		
+		
+		
+		
+		
+		
 		// =========================================================================================
+		// ================================ FIN MODELADO LAB VIEJO =================================
 		// =========================================================================================
 
-
-
+		// -----------------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------------
 
 		// =========================================================================================
 		// ===================== MODELADO NUEVO LABORATORIO ========================================
 		// =========================================================================================
 		//Modelo cuarto
 		
-		glm::mat4 modelCuarto(1.0f);
-		modelCuarto = glm::scale(model, glm::vec3(1.0f, 1.0f, 0.9f));
-		modelCuarto = glm::translate(modelCuarto, glm::vec3(0.351f, 17.922f, 1.5f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCuarto));
-		Cuarto.Draw(lightingShader);
-
-		//Modelo Profesor
-		glm::mat4 modelProfesor(1.0f);
-		modelProfesor = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-		modelProfesor = glm::translate(modelProfesor, glm::vec3(3.868f, 11.692f,-54.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelProfesor));
-		Profesor.Draw(lightingShader);
-
-
-
-
-		////Modelos de accesorios profesor
-		glm::mat4 modelMonitorProf(1.0f);
-		modelMonitorProf = glm::translate(modelMonitorProf, glm::vec3(45.0f, 10.1f, -49.0f));
-		modelMonitorProf = glm::rotate(modelMonitorProf, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMonitorProf));
-		MonitorProf.Draw(lightingShader);
-
-
-		glm::mat4 modelMesaProf(1.0f);
-		modelMesaProf = glm::translate(modelMesaProf, glm::vec3(45.0f, 5.31f, -48.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesaProf));
-		MesaProf.Draw(lightingShader);
-
-
-		glm::mat4 modelSillaProf(1.0f);
-		modelSillaProf = glm::translate(modelSillaProf, glm::vec3(47.0f, 0.12f, -57.0));
-		modelSillaProf = glm::rotate(modelSillaProf, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		modelSillaProf = glm::scale(modelSillaProf, glm::vec3(1.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelSillaProf));
-		Silla.Draw(lightingShader);
-
-
-		glm::mat4 modelCPU1_Prof(1.0f);
-		modelCPU1_Prof = glm::translate(modelCPU1_Prof, glm::vec3(47.0f,12.8f,-46.5f));
-		modelCPU1_Prof = glm::scale(modelCPU1_Prof, glm::vec3(1.0f));
-		modelCPU1_Prof = glm::rotate(modelCPU1_Prof, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCPU1_Prof));
-		CPU_1.Draw(lightingShader);
-
-
-		glm::mat4 modelTecladoProfe(1.0f);
-		modelTecladoProfe = glm::translate(modelTecladoProfe, glm::vec3(46.0f, 10.0f, -51.0f));
-		modelTecladoProfe = glm::rotate(modelTecladoProfe, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		modelTecladoProfe = glm::scale(modelTecladoProfe, glm::vec3(1.1f, 1.1f, 1.1f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTecladoProfe));
-		Teclado.Draw(lightingShader); // Mismo modelo "Teclado"
-		
-		
-		glm::mat4 modelMouseProfe(1.0f);
-		modelMouseProfe = glm::translate(modelMouseProfe, glm::vec3(41.0f, 9.9f, -51.0f));
-		modelMouseProfe = glm::rotate(modelMouseProfe, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		modelMouseProfe = glm::scale(modelMouseProfe, glm::vec3(1.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMouseProfe));
-		Mouse.Draw(lightingShader);
-
-		
-		
-
-
-
-		//Modelos de mesas
-		///Columna 1
-		glm::mat4 modelMesa1(1.0f);
-		//modelMesa1 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
-		modelMesa1 = glm::translate(modelMesa1, glm::vec3(-31.0f, 5.31f, -33.176f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa1));
-		Mesa.Draw(lightingShader);
-
-		glm::mat4 modelMesa2(1.0f);
-		//modelMesa2 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
-		modelMesa2 = glm::translate(modelMesa2, glm::vec3(-31.0f, 5.31f, -8.044f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa2));
-		Mesa.Draw(lightingShader);
-
-
-		
-		glm::mat4 modelMesa3(1.0f);
-		//modelMesa3 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f));
-		modelMesa3 = glm::translate(modelMesa3, glm::vec3(-31.0f, 5.31f, 17.088f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa3));
-		Mesa.Draw(lightingShader);
-
-
-		glm::mat4 modelMesa4(1.0f);
-		//modelMesa4 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f));
-		modelMesa4 = glm::translate(modelMesa4, glm::vec3(-31.0f, 5.31f, 42.22f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa4));
-		Mesa.Draw(lightingShader);
-
-
-
-		///Columna 2
-		glm::mat4 modelMesa5(1.0f);
-		modelMesa5 = glm::scale(model, glm::vec3(1.12f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
-		modelMesa5 = glm::translate(modelMesa5, glm::vec3(27.8f, 5.31f, -33.176f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa5));
-		Mesa.Draw(lightingShader);
-		
-
-
-		glm::mat4 modelMesa6(1.0f);
-		modelMesa6 = glm::scale(model, glm::vec3(1.12f, 1.0f, 1.0f)); // ajusta según tamaño real del modelo
-		modelMesa6 = glm::translate(modelMesa6, glm::vec3(27.8f, 5.31f, -8.044f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa6));
-		Mesa.Draw(lightingShader);
-
-
-
-		glm::mat4 modelMesa7(1.0f);
-		modelMesa7 = glm::scale(model, glm::vec3(1.12f, 1.0f, 1.0f)); // ajusta según tamaño real del modelo
-		modelMesa7 = glm::translate(modelMesa7, glm::vec3(27.8f, 5.31f, 17.088f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa7));
-		Mesa.Draw(lightingShader);
-
-		glm::mat4 modelMesa8(1.0f);
-		modelMesa8 = glm::scale(model, glm::vec3(1.12f, 1.0f, 1.0f));  // ajusta según tamaño real del modelo
-		modelMesa8 = glm::translate(modelMesa8, glm::vec3(27.8f, 5.31f, 42.22f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa8));
-		Mesa.Draw(lightingShader);
-
-
-		//Modelos de sillas 
-		//FILA 1
-		int numFilas = 4;         // Número de filas de sillas
-		int sillasPorFila = 4;    // Número de sillas en cada fila
-
-		float xBase = -47.529f;         // X de la primera silla de cada fila
-		float yBase = 0.12f;          // Y (altura fija)
-		float zBase = -23.176f;         // Z de la primera fila
-		float separacionX = 10.0f;      // Separación entre sillas (en X)
-		float separacionZ = 25.273f;       // Separación entre filas (en Z)
-
-		for (int fila = 0; fila < numFilas; ++fila) {
-			float zActual = zBase + fila * separacionZ;
-			for (int i = 0; i < sillasPorFila; ++i) {
-				glm::mat4 modelSilla(1.0f);
-				modelSilla = glm::translate(modelSilla, glm::vec3(xBase + i * separacionX, yBase, zActual));
-				modelSilla = glm::scale(modelSilla, glm::vec3(1.0f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelSilla));
-				Silla.Draw(lightingShader);
-			}
-		}
-
-		
-
-
-		
-
-		//Modelos de sillas 
-		//FILA 2
-		int numFilas_2 = 4;         // Número de filas de sillas
-		int sillasPorFila_2 = 5;    // Número de sillas en cada fila
-
-		float xBase_2 = 12.0f;         // X de la primera silla de cada fila
-		float yBase_2 = 0.12f;          // Y (altura fija)
-		float zBase_2 = -22.176f;         // Z de la primera fila
-		float separacionX_2 = 9.028f;      // Separación entre sillas (en X)
-		float separacionZ_2 = 25.0f;       // Separación entre filas (en Z)
-
-		for (int fila_2 = 0; fila_2 < numFilas_2; ++fila_2) {
-			float zActual_2 = zBase_2 + fila_2 * separacionZ_2;
-			for (int i = 0; i < sillasPorFila_2; ++i) {
-				glm::mat4 modelSilla(1.0f);
-				modelSilla = glm::translate(modelSilla, glm::vec3(xBase_2 + i * separacionX_2, yBase_2, zActual_2));
-				modelSilla = glm::scale(modelSilla, glm::vec3(1.0f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelSilla));
-				Silla.Draw(lightingShader);
-			}
-		}
-
-		
-
-		//Modelos de CPU
-		//Columna 1
-		int numFilas_CPU1 = 4;         // Número de filas de CPU's
-		int CPU_PorFila = 4;    // Número de cpu's en cada fila
-
-		float xBase_CPU1 = -47.25f;         // X del primer CPU  de cada fila
-		float yBase_CPU1 = 12.8f;          // Y (altura fija)
-		float zBase_CPU1 = -35.6f;         // Z de la primera fila
-		float separacionX_CPU1 = 10.0F;      // Separación entre cpus (en X)
-		float separacionZ_CPU1 = 25.112f;       // Separación entre cpus (en Z)
-
-		for (int fila = 0; fila < numFilas_CPU1; ++fila) {
-			float zActual = zBase_CPU1 + fila * separacionZ_CPU1;
-			for (int i = 0; i < CPU_PorFila; ++i) {
-				glm::mat4 modelCPU1(1.0f);
-				modelCPU1 = glm::translate(modelCPU1, glm::vec3(xBase_CPU1 + i * separacionX_CPU1, yBase_CPU1, zActual));
-				modelCPU1 = glm::scale(modelCPU1, glm::vec3(1.0f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCPU1));
-				CPU_1.Draw(lightingShader);
-			}
-		}
-
-		//Columna 2
-		int numFilas_CPU2 = 4;         // Número de filas de CPU's
-		int CPU2_PorFila = 5;    // Número de cpu's en cada fila
-
-		float xBase_CPU2 = 13.25f;         // X del primer CPU  de cada fila
-		float yBase_CPU2 = 12.8f;          // Y (altura fija)
-		float zBase_CPU2 = -35.6f;         // Z de la primera fila
-		float separacionX_CPU2 = 9.017f;      // Separación entre cpus (en X)
-		float separacionZ_CPU2 = 25.112f;       // Separación entre cpus (en Z)
-
-		for (int fila = 0; fila < numFilas_CPU2; ++fila) {
-			float zActual = zBase_CPU2 + fila * separacionZ_CPU2;
-			for (int i = 0; i < CPU2_PorFila; ++i) {
-				glm::mat4 modelCPU2(1.0f);
-				modelCPU2 = glm::translate(modelCPU2, glm::vec3(xBase_CPU2 + i * separacionX_CPU2, yBase_CPU2, zActual));
-				modelCPU2 = glm::scale(modelCPU2, glm::vec3(1.0f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCPU2));
-				CPU_1.Draw(lightingShader);
-			}
-		}
-		
-
-
-		 
-		// --- Modelos de Monitores ---
-
-// Columna 1 (4 monitores por fila, 4 filas)
-		int numFilas_Mon1 = 4;
-		int Mon1_PorFila = 4;
-
-		float xBase_Mon1 = -46.529f;         // X del primer monitor de la primera columna
-		float yBase_Mon1 = 10.1f;           // Y (altura fija)
-		float zBase_Mon1 = -33.676f;         // Z inicial de la primera fila
-		float separacionX_Mon1 = 10.0f;      // Separación entre monitores (X)
-		float separacionZ_Mon1 = 25.0f;      // Separación entre filas (Z)
-
-		for (int fila = 0; fila < numFilas_Mon1; ++fila) {
-			float zActual = zBase_Mon1 + fila * separacionZ_Mon1;
-			for (int i = 0; i < Mon1_PorFila; ++i) {
-				glm::mat4 modelMon1(1.0f);
-				modelMon1 = glm::translate(modelMon1, glm::vec3(xBase_Mon1 + i * separacionX_Mon1, yBase_Mon1, zActual));
-				modelMon1 = glm::scale(modelMon1, glm::vec3(1.0f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMon1));
-				Mon1.Draw(lightingShader);
-			}
-		}
-
-		// Columna 2 (5 monitores por fila, 4 filas)
-		int numFilas_Mon2 = 4;
-		int Mon2_PorFila = 5;
-
-		float xBase_Mon2 = xBase_Mon1 + Mon1_PorFila * separacionX_Mon1 + 19.0f; // separación entre columna 1 y columna 2
-		float yBase_Mon2 = 10.1f;           // Misma altura
-		float zBase_Mon2 = -33.676f;         // Misma Z inicial
-		float separacionX_Mon2 = 9.2f;      // Separación entre monitores (X)
-		float separacionZ_Mon2 = 25.0f;      // Separación entre filas (Z)
-
-		for (int fila = 0; fila < numFilas_Mon2; ++fila) {
-			float zActual = zBase_Mon2 + fila * separacionZ_Mon2;
-			for (int i = 0; i < Mon2_PorFila; ++i) {
-				glm::mat4 modelMon2(1.0f);
-				modelMon2 = glm::translate(modelMon2, glm::vec3(xBase_Mon2 + i * separacionX_Mon2, yBase_Mon2, zActual));
-				modelMon2 = glm::scale(modelMon2, glm::vec3(1.0f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMon2));
-				Mon1.Draw(lightingShader);
-			}
-		}
-
-
-
-		// --- Modelos de Teclados ---
-
-		// Columna 1 (4 teclados por fila)
-		int numFilas_Teclado1 = 4;
-		int Teclados1_PorFila = 4;
-
-		float xBase_Teclado1 = -46.529f;         // X inicial de la primera columna
-		float yBase_Teclado1 = 10.0f;             // Altura (ajústala si quieres que esté sobre la mesa)
-		float zBase_Teclado1 = -31.0f;         // Z inicial
-		float separacionX_Teclado1 = 10.0f;      // Separación entre teclados (X)
-		float separacionZ_Teclado1 = 25.0f;      // Separación entre filas (Z)
-
-		for (int fila = 0; fila < numFilas_Teclado1; ++fila) {
-			float zActual = zBase_Teclado1 + fila * separacionZ_Teclado1;
-			for (int i = 0; i < Teclados1_PorFila; ++i) {
-				glm::mat4 modelTeclado1(1.0f);
-				modelTeclado1 = glm::translate(modelTeclado1, glm::vec3(xBase_Teclado1 + i * separacionX_Teclado1, yBase_Teclado1, zActual));
-				modelTeclado1 = glm::scale(modelTeclado1, glm::vec3(1.1f, 1.1f, 1.1f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTeclado1));
-				Teclado.Draw(lightingShader); // Asegúrate que tu modelo de teclado se llame "Teclado"
-			}
-		}
-
-		// Columna 2 (5 teclados por fila)
-		int numFilas_Teclado2 = 4;
-		int Teclados2_PorFila = 5;
-
-		float xBase_Teclado2 = xBase_Teclado1 + Teclados1_PorFila * separacionX_Teclado1 + 19.0f; // separación extra entre columnas
-		float yBase_Teclado2 = 10.0f;           // Misma altura
-		float zBase_Teclado2 = -31.0f;       // Misma Z inicial
-		float separacionX_Teclado2 = 9.0f;    // Separación entre teclados (X)
-		float separacionZ_Teclado2 = 25.0f;    // Separación entre filas (Z)
-
-		for (int fila = 0; fila < numFilas_Teclado2; ++fila) {
-			float zActual = zBase_Teclado2 + fila * separacionZ_Teclado2;
-			for (int i = 0; i < Teclados2_PorFila; ++i) {
-				glm::mat4 modelTeclado2(1.0f);
-				modelTeclado2 = glm::translate(modelTeclado2, glm::vec3(xBase_Teclado2 + i * separacionX_Teclado2, yBase_Teclado2, zActual));
-				modelTeclado2 = glm::scale(modelTeclado2, glm::vec3(1.1f, 1.1f, 1.1f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTeclado2));
-				Teclado.Draw(lightingShader); // Mismo modelo "Teclado"
-			}
-		}
-
-		// --- Modelos de Mouse ---
-
-		// Columna 1 (4 mouses por fila)
-		int numFilas_Mouse1 = 4;
-		int Mouses1_PorFila = 4;
-
-		float xBase_Mouse1 = -42.0f;
-		float yBase_Mouse1 = 10.0f;
-		float zBase_Mouse1 = -31.0f;
-		float separacionX_Mouse1 = 10.0f;
-		float separacionZ_Mouse1 = 25.0f;
-
-		for (int fila = 0; fila < numFilas_Mouse1; ++fila) {
-			float zActual = zBase_Mouse1 + fila * separacionZ_Mouse1;
-			for (int i = 0; i < Mouses1_PorFila; ++i) {
-				glm::mat4 modelMouse1(1.0f);
-				modelMouse1 = glm::translate(modelMouse1, glm::vec3(xBase_Mouse1 + i * separacionX_Mouse1, yBase_Mouse1, zActual));
-				//modelMouse1 = glm::scale(modelMouse1, glm::vec3(5.0f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMouse1));
-				Mouse.Draw(lightingShader); // Modelo de Mouse
-			}
-		}
-
-		// Columna 2 (5 mouses por fila)
-		int numFilas_Mouse2 = 4;
-		int Mouses2_PorFila = 5;
-
-		float xBase_Mouse2 = xBase_Mouse1 + Mouses1_PorFila * separacionX_Mouse1 + 19.0f;
-		float yBase_Mouse2 = 10.0f;
-		float zBase_Mouse2 = -31.0f;
-		float separacionX_Mouse2 = 8.9f;
-		float separacionZ_Mouse2 = 25.0f;
-
-		for (int fila = 0; fila < numFilas_Mouse2; ++fila) {
-			float zActual = zBase_Mouse2 + fila * separacionZ_Mouse2;
-			for (int i = 0; i < Mouses2_PorFila; ++i) {
-				glm::mat4 modelMouse2(1.0f);
-				modelMouse2 = glm::translate(modelMouse2, glm::vec3(xBase_Mouse2 + i * separacionX_Mouse2, yBase_Mouse2, zActual));
-				modelMouse2 = glm::scale(modelMouse2, glm::vec3(1.0f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMouse2));
-				Mouse.Draw(lightingShader);
-			}
-		}
-
+//		glm::mat4 modelCuarto(1.0f);
+//		modelCuarto = glm::scale(model, glm::vec3(1.0f, 1.0f, 0.9f));
+//		modelCuarto = glm::translate(modelCuarto, glm::vec3(0.351f, 17.922f, 1.5f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCuarto));
+//		Cuarto.Draw(lightingShader);
+//
+//		//Modelo Profesor
+//		glm::mat4 modelProfesor(1.0f);
+//		modelProfesor = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+//		modelProfesor = glm::translate(modelProfesor, glm::vec3(3.868f, 11.692f,-54.0f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelProfesor));
+//		Profesor.Draw(lightingShader);
+//
+//
+//
+//
+//		////Modelos de accesorios profesor
+//		glm::mat4 modelMonitorProf(1.0f);
+//		modelMonitorProf = glm::translate(modelMonitorProf, glm::vec3(45.0f, 10.1f, -49.0f));
+//		modelMonitorProf = glm::rotate(modelMonitorProf, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMonitorProf));
+//		MonitorProf.Draw(lightingShader);
+//
+//
+//		glm::mat4 modelMesaProf(1.0f);
+//		modelMesaProf = glm::translate(modelMesaProf, glm::vec3(45.0f, 5.31f, -48.0f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesaProf));
+//		MesaProf.Draw(lightingShader);
+//
+//
+//		glm::mat4 modelSillaProf(1.0f);
+//		modelSillaProf = glm::translate(modelSillaProf, glm::vec3(47.0f, 0.12f, -57.0));
+//		modelSillaProf = glm::rotate(modelSillaProf, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+//		modelSillaProf = glm::scale(modelSillaProf, glm::vec3(1.0f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelSillaProf));
+//		Silla.Draw(lightingShader);
+//
+//
+//		glm::mat4 modelCPU1_Prof(1.0f);
+//		modelCPU1_Prof = glm::translate(modelCPU1_Prof, glm::vec3(47.0f,12.8f,-46.5f));
+//		modelCPU1_Prof = glm::scale(modelCPU1_Prof, glm::vec3(1.0f));
+//		modelCPU1_Prof = glm::rotate(modelCPU1_Prof, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCPU1_Prof));
+//		CPU_1.Draw(lightingShader);
+//
+//
+//		glm::mat4 modelTecladoProfe(1.0f);
+//		modelTecladoProfe = glm::translate(modelTecladoProfe, glm::vec3(46.0f, 10.0f, -51.0f));
+//		modelTecladoProfe = glm::rotate(modelTecladoProfe, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+//		modelTecladoProfe = glm::scale(modelTecladoProfe, glm::vec3(1.1f, 1.1f, 1.1f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTecladoProfe));
+//		Teclado.Draw(lightingShader); // Mismo modelo "Teclado"
+//		
+//		
+//		glm::mat4 modelMouseProfe(1.0f);
+//		modelMouseProfe = glm::translate(modelMouseProfe, glm::vec3(41.0f, 9.9f, -51.0f));
+//		modelMouseProfe = glm::rotate(modelMouseProfe, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+//		modelMouseProfe = glm::scale(modelMouseProfe, glm::vec3(1.0f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMouseProfe));
+//		Mouse.Draw(lightingShader);
+//
+//		
+//		
+//
+//
+//
+//		//Modelos de mesas
+//		///Columna 1
+//		glm::mat4 modelMesa1(1.0f);
+//		//modelMesa1 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
+//		modelMesa1 = glm::translate(modelMesa1, glm::vec3(-31.0f, 5.31f, -33.176f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa1));
+//		Mesa.Draw(lightingShader);
+//
+//		glm::mat4 modelMesa2(1.0f);
+//		//modelMesa2 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
+//		modelMesa2 = glm::translate(modelMesa2, glm::vec3(-31.0f, 5.31f, -8.044f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa2));
+//		Mesa.Draw(lightingShader);
+//
+//
+//		
+//		glm::mat4 modelMesa3(1.0f);
+//		//modelMesa3 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f));
+//		modelMesa3 = glm::translate(modelMesa3, glm::vec3(-31.0f, 5.31f, 17.088f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa3));
+//		Mesa.Draw(lightingShader);
+//
+//
+//		glm::mat4 modelMesa4(1.0f);
+//		//modelMesa4 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f));
+//		modelMesa4 = glm::translate(modelMesa4, glm::vec3(-31.0f, 5.31f, 42.22f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa4));
+//		Mesa.Draw(lightingShader);
+//
+//
+//
+//		///Columna 2
+//		glm::mat4 modelMesa5(1.0f);
+//		modelMesa5 = glm::scale(model, glm::vec3(1.12f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
+//		modelMesa5 = glm::translate(modelMesa5, glm::vec3(27.8f, 5.31f, -33.176f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa5));
+//		Mesa.Draw(lightingShader);
+//		
+//
+//
+//		glm::mat4 modelMesa6(1.0f);
+//		modelMesa6 = glm::scale(model, glm::vec3(1.12f, 1.0f, 1.0f)); // ajusta según tamaño real del modelo
+//		modelMesa6 = glm::translate(modelMesa6, glm::vec3(27.8f, 5.31f, -8.044f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa6));
+//		Mesa.Draw(lightingShader);
+//
+//
+//
+//		glm::mat4 modelMesa7(1.0f);
+//		modelMesa7 = glm::scale(model, glm::vec3(1.12f, 1.0f, 1.0f)); // ajusta según tamaño real del modelo
+//		modelMesa7 = glm::translate(modelMesa7, glm::vec3(27.8f, 5.31f, 17.088f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa7));
+//		Mesa.Draw(lightingShader);
+//
+//		glm::mat4 modelMesa8(1.0f);
+//		modelMesa8 = glm::scale(model, glm::vec3(1.12f, 1.0f, 1.0f));  // ajusta según tamaño real del modelo
+//		modelMesa8 = glm::translate(modelMesa8, glm::vec3(27.8f, 5.31f, 42.22f));
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa8));
+//		Mesa.Draw(lightingShader);
+//
+//
+//		//Modelos de sillas 
+//		//FILA 1
+//		int numFilas = 4;         // Número de filas de sillas
+//		int sillasPorFila = 4;    // Número de sillas en cada fila
+//
+//		float xBase = -47.529f;         // X de la primera silla de cada fila
+//		float yBase = 0.12f;          // Y (altura fija)
+//		float zBase = -23.176f;         // Z de la primera fila
+//		float separacionX = 10.0f;      // Separación entre sillas (en X)
+//		float separacionZ = 25.273f;       // Separación entre filas (en Z)
+//
+//		for (int fila = 0; fila < numFilas; ++fila) {
+//			float zActual = zBase + fila * separacionZ;
+//			for (int i = 0; i < sillasPorFila; ++i) {
+//				glm::mat4 modelSilla(1.0f);
+//				modelSilla = glm::translate(modelSilla, glm::vec3(xBase + i * separacionX, yBase, zActual));
+//				modelSilla = glm::scale(modelSilla, glm::vec3(1.0f));
+//				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelSilla));
+//				Silla.Draw(lightingShader);
+//			}
+//		}
+//
+//		
+//
+//
+//		
+//
+//		//Modelos de sillas 
+//		//FILA 2
+//		int numFilas_2 = 4;         // Número de filas de sillas
+//		int sillasPorFila_2 = 5;    // Número de sillas en cada fila
+//
+//		float xBase_2 = 12.0f;         // X de la primera silla de cada fila
+//		float yBase_2 = 0.12f;          // Y (altura fija)
+//		float zBase_2 = -22.176f;         // Z de la primera fila
+//		float separacionX_2 = 9.028f;      // Separación entre sillas (en X)
+//		float separacionZ_2 = 25.0f;       // Separación entre filas (en Z)
+//
+//		for (int fila_2 = 0; fila_2 < numFilas_2; ++fila_2) {
+//			float zActual_2 = zBase_2 + fila_2 * separacionZ_2;
+//			for (int i = 0; i < sillasPorFila_2; ++i) {
+//				glm::mat4 modelSilla(1.0f);
+//				modelSilla = glm::translate(modelSilla, glm::vec3(xBase_2 + i * separacionX_2, yBase_2, zActual_2));
+//				modelSilla = glm::scale(modelSilla, glm::vec3(1.0f));
+//				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelSilla));
+//				Silla.Draw(lightingShader);
+//			}
+//		}
+//
+//		
+//
+//		//Modelos de CPU
+//		//Columna 1
+//		int numFilas_CPU1 = 4;         // Número de filas de CPU's
+//		int CPU_PorFila = 4;    // Número de cpu's en cada fila
+//
+//		float xBase_CPU1 = -47.25f;         // X del primer CPU  de cada fila
+//		float yBase_CPU1 = 12.8f;          // Y (altura fija)
+//		float zBase_CPU1 = -35.6f;         // Z de la primera fila
+//		float separacionX_CPU1 = 10.0F;      // Separación entre cpus (en X)
+//		float separacionZ_CPU1 = 25.112f;       // Separación entre cpus (en Z)
+//
+//		for (int fila = 0; fila < numFilas_CPU1; ++fila) {
+//			float zActual = zBase_CPU1 + fila * separacionZ_CPU1;
+//			for (int i = 0; i < CPU_PorFila; ++i) {
+//				glm::mat4 modelCPU1(1.0f);
+//				modelCPU1 = glm::translate(modelCPU1, glm::vec3(xBase_CPU1 + i * separacionX_CPU1, yBase_CPU1, zActual));
+//				modelCPU1 = glm::scale(modelCPU1, glm::vec3(1.0f));
+//				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCPU1));
+//				CPU_1.Draw(lightingShader);
+//			}
+//		}
+//
+//		//Columna 2
+//		int numFilas_CPU2 = 4;         // Número de filas de CPU's
+//		int CPU2_PorFila = 5;    // Número de cpu's en cada fila
+//
+//		float xBase_CPU2 = 13.25f;         // X del primer CPU  de cada fila
+//		float yBase_CPU2 = 12.8f;          // Y (altura fija)
+//		float zBase_CPU2 = -35.6f;         // Z de la primera fila
+//		float separacionX_CPU2 = 9.017f;      // Separación entre cpus (en X)
+//		float separacionZ_CPU2 = 25.112f;       // Separación entre cpus (en Z)
+//
+//		for (int fila = 0; fila < numFilas_CPU2; ++fila) {
+//			float zActual = zBase_CPU2 + fila * separacionZ_CPU2;
+//			for (int i = 0; i < CPU2_PorFila; ++i) {
+//				glm::mat4 modelCPU2(1.0f);
+//				modelCPU2 = glm::translate(modelCPU2, glm::vec3(xBase_CPU2 + i * separacionX_CPU2, yBase_CPU2, zActual));
+//				modelCPU2 = glm::scale(modelCPU2, glm::vec3(1.0f));
+//				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCPU2));
+//				CPU_1.Draw(lightingShader);
+//			}
+//		}
+//		
+//
+//
+//		 
+//		// --- Modelos de Monitores ---
+//
+//// Columna 1 (4 monitores por fila, 4 filas)
+//		int numFilas_Mon1 = 4;
+//		int Mon1_PorFila = 4;
+//
+//		float xBase_Mon1 = -46.529f;         // X del primer monitor de la primera columna
+//		float yBase_Mon1 = 10.1f;           // Y (altura fija)
+//		float zBase_Mon1 = -33.676f;         // Z inicial de la primera fila
+//		float separacionX_Mon1 = 10.0f;      // Separación entre monitores (X)
+//		float separacionZ_Mon1 = 25.0f;      // Separación entre filas (Z)
+//
+//		for (int fila = 0; fila < numFilas_Mon1; ++fila) {
+//			float zActual = zBase_Mon1 + fila * separacionZ_Mon1;
+//			for (int i = 0; i < Mon1_PorFila; ++i) {
+//				glm::mat4 modelMon1(1.0f);
+//				modelMon1 = glm::translate(modelMon1, glm::vec3(xBase_Mon1 + i * separacionX_Mon1, yBase_Mon1, zActual));
+//				modelMon1 = glm::scale(modelMon1, glm::vec3(1.0f));
+//				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMon1));
+//				Mon1.Draw(lightingShader);
+//			}
+//		}
+//
+//		// Columna 2 (5 monitores por fila, 4 filas)
+//		int numFilas_Mon2 = 4;
+//		int Mon2_PorFila = 5;
+//
+//		float xBase_Mon2 = xBase_Mon1 + Mon1_PorFila * separacionX_Mon1 + 19.0f; // separación entre columna 1 y columna 2
+//		float yBase_Mon2 = 10.1f;           // Misma altura
+//		float zBase_Mon2 = -33.676f;         // Misma Z inicial
+//		float separacionX_Mon2 = 9.2f;      // Separación entre monitores (X)
+//		float separacionZ_Mon2 = 25.0f;      // Separación entre filas (Z)
+//
+//		for (int fila = 0; fila < numFilas_Mon2; ++fila) {
+//			float zActual = zBase_Mon2 + fila * separacionZ_Mon2;
+//			for (int i = 0; i < Mon2_PorFila; ++i) {
+//				glm::mat4 modelMon2(1.0f);
+//				modelMon2 = glm::translate(modelMon2, glm::vec3(xBase_Mon2 + i * separacionX_Mon2, yBase_Mon2, zActual));
+//				modelMon2 = glm::scale(modelMon2, glm::vec3(1.0f));
+//				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMon2));
+//				Mon1.Draw(lightingShader);
+//			}
+//		}
+//
+//
+//
+//		// --- Modelos de Teclados ---
+//
+//		// Columna 1 (4 teclados por fila)
+//		int numFilas_Teclado1 = 4;
+//		int Teclados1_PorFila = 4;
+//
+//		float xBase_Teclado1 = -46.529f;         // X inicial de la primera columna
+//		float yBase_Teclado1 = 10.0f;             // Altura (ajústala si quieres que esté sobre la mesa)
+//		float zBase_Teclado1 = -31.0f;         // Z inicial
+//		float separacionX_Teclado1 = 10.0f;      // Separación entre teclados (X)
+//		float separacionZ_Teclado1 = 25.0f;      // Separación entre filas (Z)
+//
+//		for (int fila = 0; fila < numFilas_Teclado1; ++fila) {
+//			float zActual = zBase_Teclado1 + fila * separacionZ_Teclado1;
+//			for (int i = 0; i < Teclados1_PorFila; ++i) {
+//				glm::mat4 modelTeclado1(1.0f);
+//				modelTeclado1 = glm::translate(modelTeclado1, glm::vec3(xBase_Teclado1 + i * separacionX_Teclado1, yBase_Teclado1, zActual));
+//				modelTeclado1 = glm::scale(modelTeclado1, glm::vec3(1.1f, 1.1f, 1.1f));
+//				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTeclado1));
+//				Teclado.Draw(lightingShader); // Asegúrate que tu modelo de teclado se llame "Teclado"
+//			}
+//		}
+//
+//		// Columna 2 (5 teclados por fila)
+//		int numFilas_Teclado2 = 4;
+//		int Teclados2_PorFila = 5;
+//
+//		float xBase_Teclado2 = xBase_Teclado1 + Teclados1_PorFila * separacionX_Teclado1 + 19.0f; // separación extra entre columnas
+//		float yBase_Teclado2 = 10.0f;           // Misma altura
+//		float zBase_Teclado2 = -31.0f;       // Misma Z inicial
+//		float separacionX_Teclado2 = 9.0f;    // Separación entre teclados (X)
+//		float separacionZ_Teclado2 = 25.0f;    // Separación entre filas (Z)
+//
+//		for (int fila = 0; fila < numFilas_Teclado2; ++fila) {
+//			float zActual = zBase_Teclado2 + fila * separacionZ_Teclado2;
+//			for (int i = 0; i < Teclados2_PorFila; ++i) {
+//				glm::mat4 modelTeclado2(1.0f);
+//				modelTeclado2 = glm::translate(modelTeclado2, glm::vec3(xBase_Teclado2 + i * separacionX_Teclado2, yBase_Teclado2, zActual));
+//				modelTeclado2 = glm::scale(modelTeclado2, glm::vec3(1.1f, 1.1f, 1.1f));
+//				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTeclado2));
+//				Teclado.Draw(lightingShader); // Mismo modelo "Teclado"
+//			}
+//		}
+//
+//		// --- Modelos de Mouse ---
+//
+//		// Columna 1 (4 mouses por fila)
+//		int numFilas_Mouse1 = 4;
+//		int Mouses1_PorFila = 4;
+//
+//		float xBase_Mouse1 = -42.0f;
+//		float yBase_Mouse1 = 10.0f;
+//		float zBase_Mouse1 = -31.0f;
+//		float separacionX_Mouse1 = 10.0f;
+//		float separacionZ_Mouse1 = 25.0f;
+//
+//		for (int fila = 0; fila < numFilas_Mouse1; ++fila) {
+//			float zActual = zBase_Mouse1 + fila * separacionZ_Mouse1;
+//			for (int i = 0; i < Mouses1_PorFila; ++i) {
+//				glm::mat4 modelMouse1(1.0f);
+//				modelMouse1 = glm::translate(modelMouse1, glm::vec3(xBase_Mouse1 + i * separacionX_Mouse1, yBase_Mouse1, zActual));
+//				//modelMouse1 = glm::scale(modelMouse1, glm::vec3(5.0f));
+//				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMouse1));
+//				Mouse.Draw(lightingShader); // Modelo de Mouse
+//			}
+//		}
+//
+//		// Columna 2 (5 mouses por fila)
+//		int numFilas_Mouse2 = 4;
+//		int Mouses2_PorFila = 5;
+//
+//		float xBase_Mouse2 = xBase_Mouse1 + Mouses1_PorFila * separacionX_Mouse1 + 19.0f;
+//		float yBase_Mouse2 = 10.0f;
+//		float zBase_Mouse2 = -31.0f;
+//		float separacionX_Mouse2 = 8.9f;
+//		float separacionZ_Mouse2 = 25.0f;
+//
+//		for (int fila = 0; fila < numFilas_Mouse2; ++fila) {
+//			float zActual = zBase_Mouse2 + fila * separacionZ_Mouse2;
+//			for (int i = 0; i < Mouses2_PorFila; ++i) {
+//				glm::mat4 modelMouse2(1.0f);
+//				modelMouse2 = glm::translate(modelMouse2, glm::vec3(xBase_Mouse2 + i * separacionX_Mouse2, yBase_Mouse2, zActual));
+//				modelMouse2 = glm::scale(modelMouse2, glm::vec3(1.0f));
+//				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMouse2));
+//				Mouse.Draw(lightingShader);
+//			}
+//		}
+
+		// ================================================================================================
+		// ================================ FIN MODELADO LAB NUEVO ========================================
+		// ================================================================================================
 
 
 		// Also draw the lamp object, again binding the appropriate shader
