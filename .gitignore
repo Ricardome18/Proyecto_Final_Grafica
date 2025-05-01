@@ -396,3 +396,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Permitir bin y lib dentro de GLEW
+!External\ Libraries/GLEW/bin/
+!External\ Libraries/GLEW/lib/
+
+
