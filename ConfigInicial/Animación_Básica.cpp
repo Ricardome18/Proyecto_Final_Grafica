@@ -368,15 +368,32 @@ int main()
 		//modelCuartoOld = glm::rotate(modelCuartoOld, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCuartoOld));
 		cuartoOld.Draw(lightingShader);
+
+		// Puerta del salón
+		glm::mat4 modelPuertaOld(1.0f);
+		glEnable(GL_BLEND);//Activa la funcionalidad para trabajar el canal alfa
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelPuertaOld));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 1);
+		modelPuertaOld = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		modelPuertaOld = glm::translate(modelCuartoOld, glm::vec3(-51.728f, 12.277f, -67.497f));
+		//modelPuertaOld = glm::rotate(modelPuertaOld, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelPuertaOld));
+		puertaOld.Draw(lightingShader);
+		glDisable(GL_BLEND);
+		glBindVertexArray(0);
 		// ---------------------------------------------------------------------------------
 
 		// ------------- Modelado escritorio Profesor ----------------------------------------------
 		// Escritorio 1 (profesor)
-		glm::mat4 modelMesa1(1.0f);
-		//modelMesa1 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
-		modelMesa1 = glm::translate(modelMesa1, glm::vec3(38.224f, 6.758f, -59.289f));
-		//modelMesa1 = glm::rotate(modelMesa1, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa1));
+		glm::mat4 modelOldMesa1(1.0f);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa1));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa1));
+		//modelOldMesa1 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
+		modelOldMesa1 = glm::translate(modelOldMesa1, glm::vec3(38.224f, 6.758f, -59.289f));
+		//modelOldMesa1 = glm::rotate(modelOldMesa1, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa1));
 		mesaOld.Draw(lightingShader);
 
 		// CPU profesor
@@ -410,9 +427,1068 @@ int main()
 		//modeloldMouse1 = glm::rotate(modeloldMouse1, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse1));
 		mouseOld.Draw(lightingShader);
+
+		// silla Profesor
+		glm::mat4 modeloldSilla1(1.0f);
+		//modeloldSilla1 = glm::scale(model, glm::vec3(1.1f, 1.0f, 1.0f)); // Aumenta el tamaño en X, deja Y y Z igual
+		modeloldSilla1 = glm::translate(modeloldSilla1, glm::vec3(37.575f, 6.377f, -49.771f));
+		//modeloldSilla1 = glm::rotate(modeloldSilla1, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla1));
+		sillaOld.Draw(lightingShader);
+		// ---------------------------------------------------------------------------------
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// ------------- Modelado fila 1 columna 1 ----------------------------------------------
+		// Escritorio 2
+		glm::mat4 modelOldMesa2(1.0f);
+		modelOldMesa2 = glm::translate(modelOldMesa2, glm::vec3(-40.424f, 6.758f, -28.937f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa2));
+		mesaOld.Draw(lightingShader);
+		// Escritorio 3
+		glm::mat4 modelOldMesa3(1.0f);
+		modelOldMesa3 = glm::translate(modelOldMesa3, glm::vec3(-20.105f, 6.758f, -28.937f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa3));
+		mesaOld.Draw(lightingShader);
+		// ----------- CPUs --------------------
+		// CPU 2
+		glm::mat4 modeloldCPU2(1.0f);
+		modeloldCPU2 = glm::translate(modeloldCPU2, glm::vec3(-49.072f, 14.443f, -30.699f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU2));
+		oldCPU.Draw(lightingShader);
+		// CPU 3
+		glm::mat4 modeloldCPU3(1.0f);
+		modeloldCPU3 = glm::translate(modeloldCPU3, glm::vec3(-39.384f, 14.443f, -30.699f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU3));
+		oldCPU.Draw(lightingShader);
+		// CPU 4
+		glm::mat4 modeloldCPU4(1.0f);
+		modeloldCPU4 = glm::translate(modeloldCPU4, glm::vec3(-28.76f, 14.443f, -30.699f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU4));
+		oldCPU.Draw(lightingShader);
+		// CPU 5
+		glm::mat4 modeloldCPU5(1.0f);
+		modeloldCPU5 = glm::translate(modeloldCPU5, glm::vec3(-19.072f, 14.443f, -30.699f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU5));
+		oldCPU.Draw(lightingShader);
+		// ------------ monitores ------------
+		// monitor 2
+		glm::mat4 modeloldMonitor2(1.0f);
+		modeloldMonitor2 = glm::translate(modeloldMonitor2, glm::vec3(-44.764f, 14.434f, -31.492f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor2));
+		monitorOld.Draw(lightingShader);
+		// monitor 3
+		glm::mat4 modeloldMonitor3(1.0f);
+		modeloldMonitor3 = glm::translate(modeloldMonitor3, glm::vec3(-34.541f, 14.434f, -31.492f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor3));
+		monitorOld.Draw(lightingShader);
+		// monitor 4
+		glm::mat4 modeloldMonitor4(1.0f);
+		modeloldMonitor4 = glm::translate(modeloldMonitor4, glm::vec3(-24.452f, 14.434f, -31.492f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor4));
+		monitorOld.Draw(lightingShader);
+		// monitor 5
+		glm::mat4 modeloldMonitor5(1.0f);
+		modeloldMonitor5 = glm::translate(modeloldMonitor5, glm::vec3(-14.616f, 14.434f, -31.492f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor5));
+		monitorOld.Draw(lightingShader);
+		// -------- teclados -----------------
+		// teclado 2
+		glm::mat4 modeloldTeclado2(1.0f);
+		modeloldTeclado2 = glm::translate(modeloldTeclado2, glm::vec3(-45.233f, 12.299f, -28.673f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado2));
+		tecladoOld.Draw(lightingShader);
+		// teclado 3
+		glm::mat4 modeloldTeclado3(1.0f);
+		modeloldTeclado3 = glm::translate(modeloldTeclado3, glm::vec3(-35.143f, 12.299f, -28.896f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado3));
+		tecladoOld.Draw(lightingShader);
+		// teclado 4
+		glm::mat4 modeloldTeclado4(1.0f);
+		modeloldTeclado4 = glm::translate(modeloldTeclado4, glm::vec3(-24.92f, 12.299f, -28.673f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado4));
+		tecladoOld.Draw(lightingShader);
+		// teclado 5
+		glm::mat4 modeloldTeclado5(1.0f);
+		modeloldTeclado5 = glm::translate(modeloldTeclado5, glm::vec3(-14.831f, 12.299f, -28.896f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado5));
+		tecladoOld.Draw(lightingShader);
+		// ---------- mouses -------------------
+		// mouse 2
+		glm::mat4 modeloldMouse2(1.0f);
+		modeloldMouse2 = glm::translate(modeloldMouse2, glm::vec3(-43.789f, 12.405f, -30.203f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse2));
+		mouseOld.Draw(lightingShader);
+		// mouse 3
+		glm::mat4 modeloldMouse3(1.0f);
+		modeloldMouse3 = glm::translate(modeloldMouse3, glm::vec3(-33.594f, 12.405f, -30.203f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse3));
+		mouseOld.Draw(lightingShader);
+		// mouse 4
+		glm::mat4 modeloldMouse4(1.0f);
+		modeloldMouse4 = glm::translate(modeloldMouse4, glm::vec3(-23.476f, 12.405f, -30.203f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse4));
+		mouseOld.Draw(lightingShader);
+		// mouse 5
+		glm::mat4 modeloldMouse5(1.0f);
+		modeloldMouse5 = glm::translate(modeloldMouse5, glm::vec3(-13.281f, 12.405f, -30.203f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse5));
+		mouseOld.Draw(lightingShader);
+		// -------------- sillas ------------------------------
+		// silla 2
+		glm::mat4 modeloldSilla2(1.0f);
+		modeloldSilla2 = glm::translate(modeloldSilla2, glm::vec3(-45.472f, 6.377f, -23.339f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla2));
+		sillaOld.Draw(lightingShader);
+		// silla 3
+		glm::mat4 modeloldSilla3(1.0f);
+		modeloldSilla3 = glm::translate(modeloldSilla3, glm::vec3(-35.524f, 6.377f, -23.339f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla3));
+		sillaOld.Draw(lightingShader);
+		// silla 4
+		glm::mat4 modeloldSilla4(1.0f);
+		modeloldSilla4 = glm::translate(modeloldSilla4, glm::vec3(-25.261f, 6.377f, -23.339f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla4));
+		sillaOld.Draw(lightingShader);
+		// silla 5
+		glm::mat4 modeloldSilla5(1.0f);
+		modeloldSilla5 = glm::translate(modeloldSilla5, glm::vec3(-15.112f, 6.377f, -23.339f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla5));
+		sillaOld.Draw(lightingShader);
+		// ---------------------------------------------------------------------------------
+		// ---------------------------------------------------------------------------------
+		// 
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// ------------- Modelado fila 2 columna 1 ----------------------------------------------
+		// Escritorio 4
+		glm::mat4 modelOldMesa4(1.0f);
+		modelOldMesa4 = glm::translate(modelOldMesa4, glm::vec3(-40.424f, 6.758f, -2.779f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa4));
+		mesaOld.Draw(lightingShader);
+		// Escritorio 5
+		glm::mat4 modelOldMesa5(1.0f);
+		modelOldMesa5 = glm::translate(modelOldMesa5, glm::vec3(-20.105f, 6.758f, -2.779f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa5));
+		mesaOld.Draw(lightingShader);
+		// ----------- CPUs --------------------
+		// CPU 6
+		glm::mat4 modeloldCPU6(1.0f);
+		modeloldCPU6 = glm::translate(modeloldCPU6, glm::vec3(-49.072f, 14.443f, -3.594f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU6));
+		oldCPU.Draw(lightingShader);
+		// CPU 7
+		glm::mat4 modeloldCPU7(1.0f);
+		modeloldCPU7 = glm::translate(modeloldCPU7, glm::vec3(-39.384f, 14.443f, -3.594f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU7));
+		oldCPU.Draw(lightingShader);
+		// CPU 8
+		glm::mat4 modeloldCPU8(1.0f);
+		modeloldCPU8 = glm::translate(modeloldCPU8, glm::vec3(-28.76f, 14.443f, -3.594f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU8));
+		oldCPU.Draw(lightingShader);
+		// CPU 9
+		glm::mat4 modeloldCPU9(1.0f);
+		modeloldCPU9 = glm::translate(modeloldCPU9, glm::vec3(-19.072f, 14.443f, -3.594f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU9));
+		oldCPU.Draw(lightingShader);
+		// ------------ monitores ------------
+		// monitor 6
+		glm::mat4 modeloldMonitor6(1.0f);
+		modeloldMonitor6 = glm::translate(modeloldMonitor6, glm::vec3(-44.764f, 14.434f, -4.386f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor6));
+		monitorOld.Draw(lightingShader);
+		// monitor 7
+		glm::mat4 modeloldMonitor7(1.0f);
+		modeloldMonitor7 = glm::translate(modeloldMonitor7, glm::vec3(-34.541f, 14.434f, -4.386f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor7));
+		monitorOld.Draw(lightingShader);
+		// monitor 8
+		glm::mat4 modeloldMonitor8(1.0f);
+		modeloldMonitor8 = glm::translate(modeloldMonitor8, glm::vec3(-24.452f, 14.434f, -4.386f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor8));
+		monitorOld.Draw(lightingShader);
+		// monitor 9
+		glm::mat4 modeloldMonitor9(1.0f);
+		modeloldMonitor9 = glm::translate(modeloldMonitor9, glm::vec3(-14.616f, 14.434f, -4.386f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor9));
+		monitorOld.Draw(lightingShader);
+		// -------- teclados -----------------
+		// teclado 6
+		glm::mat4 modeloldTeclado6(1.0f);
+		modeloldTeclado6 = glm::translate(modeloldTeclado6, glm::vec3(-45.233f, 12.299f, -1.568f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado6));
+		tecladoOld.Draw(lightingShader);
+		// teclado 7
+		glm::mat4 modeloldTeclado7(1.0f);
+		modeloldTeclado7 = glm::translate(modeloldTeclado7, glm::vec3(-35.143f, 12.299f, -1.568f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado7));
+		tecladoOld.Draw(lightingShader);
+		// teclado 8
+		glm::mat4 modeloldTeclado8(1.0f);
+		modeloldTeclado8 = glm::translate(modeloldTeclado8, glm::vec3(-24.92f, 12.299f, -1.568f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado8));
+		tecladoOld.Draw(lightingShader);
+		// teclado 9
+		glm::mat4 modeloldTeclado9(1.0f);
+		modeloldTeclado9 = glm::translate(modeloldTeclado9, glm::vec3(-14.831f, 12.299f, -1.568f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado9));
+		tecladoOld.Draw(lightingShader);
+		// ---------- mouses -------------------
+		// mouse 6
+		glm::mat4 modeloldMouse6(1.0f);
+		modeloldMouse6 = glm::translate(modeloldMouse6, glm::vec3(-43.789f, 12.405f, -3.098f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse6));
+		mouseOld.Draw(lightingShader);
+		// mouse 7
+		glm::mat4 modeloldMouse7(1.0f);
+		modeloldMouse7 = glm::translate(modeloldMouse7, glm::vec3(-33.594f, 12.405f, -3.098f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse7));
+		mouseOld.Draw(lightingShader);
+		// mouse 4
+		glm::mat4 modeloldMouse8(1.0f);
+		modeloldMouse8 = glm::translate(modeloldMouse8, glm::vec3(-23.476f, 12.405f, -3.098f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse8));
+		mouseOld.Draw(lightingShader);
+		// mouse 9
+		glm::mat4 modeloldMouse9(1.0f);
+		modeloldMouse9 = glm::translate(modeloldMouse9, glm::vec3(-13.281f, 12.405f, -3.098f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse9));
+		mouseOld.Draw(lightingShader);
+		// ----------- sillas ----------------------------
+		// silla 6
+		glm::mat4 modeloldSilla6(1.0f);
+		modeloldSilla6 = glm::translate(modeloldSilla6, glm::vec3(-45.472f, 6.377f, 5.122f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla6));
+		sillaOld.Draw(lightingShader);
+		// silla 7
+		glm::mat4 modeloldSilla7(1.0f);
+		modeloldSilla7 = glm::translate(modeloldSilla7, glm::vec3(-35.524f, 6.377f, 5.122f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla7));
+		sillaOld.Draw(lightingShader);
+		// silla 8
+		glm::mat4 modeloldSilla8(1.0f);
+		modeloldSilla8 = glm::translate(modeloldSilla8, glm::vec3(-25.261f, 6.377f, 5.122f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla8));
+		sillaOld.Draw(lightingShader);
+		// silla 9
+		glm::mat4 modeloldSilla9(1.0f);
+		modeloldSilla9 = glm::translate(modeloldSilla9, glm::vec3(-15.112f, 6.377f, 5.122f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla9));
+		sillaOld.Draw(lightingShader);
 		// ---------------------------------------------------------------------------------
 
-		
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// ------------- Modelado fila 3 columna 1 ----------------------------------------------
+		// Escritorio 6
+		glm::mat4 modelOldMesa6(1.0f);
+		modelOldMesa6 = glm::translate(modelOldMesa6, glm::vec3(-40.424f, 6.758f, 22.489f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa6));
+		mesaOld.Draw(lightingShader);
+		// Escritorio 7
+		glm::mat4 modelOldMesa7(1.0f);
+		modelOldMesa7 = glm::translate(modelOldMesa7, glm::vec3(-20.105f, 6.758f, 22.489f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa7));
+		mesaOld.Draw(lightingShader);
+		// ----------- CPUs --------------------
+		// CPU 10
+		glm::mat4 modeloldCPU10(1.0f);
+		modeloldCPU10 = glm::translate(modeloldCPU10, glm::vec3(-49.072f, 14.443f, 21.984f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU10));
+		oldCPU.Draw(lightingShader);
+		// CPU 11
+		glm::mat4 modeloldCPU11(1.0f);
+		modeloldCPU11 = glm::translate(modeloldCPU11, glm::vec3(-39.384f, 14.443f, 21.984f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU11));
+		oldCPU.Draw(lightingShader);
+		// CPU 12
+		glm::mat4 modeloldCPU12(1.0f);
+		modeloldCPU12 = glm::translate(modeloldCPU12, glm::vec3(-28.76f, 14.443f, 21.984f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU12));
+		oldCPU.Draw(lightingShader);
+		// CPU 13
+		glm::mat4 modeloldCPU13(1.0f);
+		modeloldCPU13 = glm::translate(modeloldCPU13, glm::vec3(-19.072f, 14.443f, 21.984f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU13));
+		oldCPU.Draw(lightingShader);
+		// ------------ monitores ------------
+		// monitor 10
+		glm::mat4 modeloldMonitor10(1.0f);
+		modeloldMonitor10 = glm::translate(modeloldMonitor10, glm::vec3(-44.764f, 14.434f, 21.191f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor10));
+		monitorOld.Draw(lightingShader);
+		// monitor 11
+		glm::mat4 modeloldMonitor11(1.0f);
+		modeloldMonitor11 = glm::translate(modeloldMonitor11, glm::vec3(-34.541f, 14.434f, 21.191f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor11));
+		monitorOld.Draw(lightingShader);
+		// monitor 12
+		glm::mat4 modeloldMonitor12(1.0f);
+		modeloldMonitor12 = glm::translate(modeloldMonitor12, glm::vec3(-24.452f, 14.434f, 21.191f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor12));
+		monitorOld.Draw(lightingShader);
+		// monitor 13
+		glm::mat4 modeloldMonitor13(1.0f);
+		modeloldMonitor13 = glm::translate(modeloldMonitor13, glm::vec3(-14.616f, 14.434f, 21.191f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor13));
+		monitorOld.Draw(lightingShader);
+		// -------- teclados -----------------
+		// teclado 10
+		glm::mat4 modeloldTeclado10(1.0f);
+		modeloldTeclado10 = glm::translate(modeloldTeclado10, glm::vec3(-45.233f, 12.299f, 24.009f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado10));
+		tecladoOld.Draw(lightingShader);
+		// teclado 11
+		glm::mat4 modeloldTeclado11(1.0f);
+		modeloldTeclado11 = glm::translate(modeloldTeclado11, glm::vec3(-35.143f, 12.299f, 23.786f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado11));
+		tecladoOld.Draw(lightingShader);
+		// teclado 12
+		glm::mat4 modeloldTeclado12(1.0f);
+		modeloldTeclado12 = glm::translate(modeloldTeclado12, glm::vec3(-24.92f, 12.299f, 23.786f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado12));
+		tecladoOld.Draw(lightingShader);
+		// teclado 13
+		glm::mat4 modeloldTeclado13(1.0f);
+		modeloldTeclado13 = glm::translate(modeloldTeclado13, glm::vec3(-14.831f, 12.299f, 24.009f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado13));
+		tecladoOld.Draw(lightingShader);
+		// ---------- mouses -------------------
+		// mouse 10
+		glm::mat4 modeloldMouse10(1.0f);
+		modeloldMouse10 = glm::translate(modeloldMouse10, glm::vec3(-43.789f, 12.405f, 22.479f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse10));
+		mouseOld.Draw(lightingShader);
+		// mouse 11
+		glm::mat4 modeloldMouse11(1.0f);
+		modeloldMouse11 = glm::translate(modeloldMouse11, glm::vec3(-33.594f, 12.405f, 22.254f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse11));
+		mouseOld.Draw(lightingShader);
+		// mouse 12
+		glm::mat4 modeloldMouse12(1.0f);
+		modeloldMouse12 = glm::translate(modeloldMouse12, glm::vec3(-23.476f, 12.405f, 22.479f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse12));
+		mouseOld.Draw(lightingShader);
+		// mouse 13
+		glm::mat4 modeloldMouse13(1.0f);
+		modeloldMouse13 = glm::translate(modeloldMouse13, glm::vec3(-13.281f, 12.405f, 22.254f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse13));
+		mouseOld.Draw(lightingShader);
+		// ----------- sillas ----------------------------
+		// silla 10
+		glm::mat4 modeloldSilla10(1.0f);
+		modeloldSilla10 = glm::translate(modeloldSilla10, glm::vec3(-45.472f, 6.377f, 29.252f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla10));
+		sillaOld.Draw(lightingShader);
+		// silla 11
+		glm::mat4 modeloldSilla11(1.0f);
+		modeloldSilla11 = glm::translate(modeloldSilla11, glm::vec3(-35.524f, 6.377f, 29.252f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla11));
+		sillaOld.Draw(lightingShader);
+		// silla 12
+		glm::mat4 modeloldSilla12(1.0f);
+		modeloldSilla12 = glm::translate(modeloldSilla12, glm::vec3(-25.261f, 6.377f, 29.252f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla12));
+		sillaOld.Draw(lightingShader);
+		// silla 13
+		glm::mat4 modeloldSilla13(1.0f);
+		modeloldSilla13 = glm::translate(modeloldSilla13, glm::vec3(-15.112f, 6.377f, 29.252f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla13));
+		sillaOld.Draw(lightingShader);
+		// ---------------------------------------------------------------------------------
+
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// ------------- Modelado fila 4 columna 1 ----------------------------------------------
+		// Escritorio 8
+		glm::mat4 modelOldMesa8(1.0f);
+		modelOldMesa8 = glm::translate(modelOldMesa8, glm::vec3(-40.424f, 6.758f, 48.24f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa8));
+		mesaOld.Draw(lightingShader);
+		// Escritorio 9
+		glm::mat4 modelOldMesa9(1.0f);
+		modelOldMesa9 = glm::translate(modelOldMesa9, glm::vec3(-20.105f, 6.758f, 48.24f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa9));
+		mesaOld.Draw(lightingShader);
+		// ----------- CPUs --------------------
+		// CPU 14
+		glm::mat4 modeloldCPU14(1.0f);
+		modeloldCPU14 = glm::translate(modeloldCPU14, glm::vec3(-49.072f, 14.443f, 47.706f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU14));
+		oldCPU.Draw(lightingShader);
+		// CPU 15
+		glm::mat4 modeloldCPU15(1.0f);
+		modeloldCPU15 = glm::translate(modeloldCPU15, glm::vec3(-39.384f, 14.443f, 47.706f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU15));
+		oldCPU.Draw(lightingShader);
+		// CPU 16
+		glm::mat4 modeloldCPU16(1.0f);
+		modeloldCPU16 = glm::translate(modeloldCPU16, glm::vec3(-28.76f, 14.443f, 47.706f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU16));
+		oldCPU.Draw(lightingShader);
+		// CPU 17
+		glm::mat4 modeloldCPU17(1.0f);
+		modeloldCPU17 = glm::translate(modeloldCPU17, glm::vec3(-19.072f, 14.443f, 47.706f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU17));
+		oldCPU.Draw(lightingShader);
+		// ------------ monitores ------------
+		// monitor 14
+		glm::mat4 modeloldMonitor14(1.0f);
+		modeloldMonitor14 = glm::translate(modeloldMonitor14, glm::vec3(-44.764f, 14.434f, 46.913f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor14));
+		monitorOld.Draw(lightingShader);
+		// monitor 15
+		glm::mat4 modeloldMonitor15(1.0f);
+		modeloldMonitor15 = glm::translate(modeloldMonitor15, glm::vec3(-34.541f, 14.434f, 46.913f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor15));
+		monitorOld.Draw(lightingShader);
+		// monitor 16
+		glm::mat4 modeloldMonitor16(1.0f);
+		modeloldMonitor16 = glm::translate(modeloldMonitor16, glm::vec3(-24.452f, 14.434f, 46.913f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor16));
+		monitorOld.Draw(lightingShader);
+		// monitor 17
+		glm::mat4 modeloldMonitor17(1.0f);
+		modeloldMonitor17 = glm::translate(modeloldMonitor17, glm::vec3(-14.616f, 14.434f, 46.913f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor17));
+		monitorOld.Draw(lightingShader);
+		// -------- teclados -----------------
+		// teclado 14
+		glm::mat4 modeloldTeclado14(1.0f);
+		modeloldTeclado14 = glm::translate(modeloldTeclado14, glm::vec3(-45.233f, 12.299f, 49.709f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado14));
+		tecladoOld.Draw(lightingShader);
+		// teclado 15
+		glm::mat4 modeloldTeclado15(1.0f);
+		modeloldTeclado15 = glm::translate(modeloldTeclado15, glm::vec3(-35.143f, 12.299f, 49.532f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado15));
+		tecladoOld.Draw(lightingShader);
+		// teclado 16
+		glm::mat4 modeloldTeclado16(1.0f);
+		modeloldTeclado16 = glm::translate(modeloldTeclado16, glm::vec3(-24.92f, 12.299f, 49.532f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado16));
+		tecladoOld.Draw(lightingShader);
+		// teclado 17
+		glm::mat4 modeloldTeclado17(1.0f);
+		modeloldTeclado17 = glm::translate(modeloldTeclado17, glm::vec3(-14.831f, 12.299f, 49.709f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado17));
+		tecladoOld.Draw(lightingShader);
+		// ---------- mouses -------------------
+		// mouse 14
+		glm::mat4 modeloldMouse14(1.0f);
+		modeloldMouse14 = glm::translate(modeloldMouse14, glm::vec3(-43.789f, 12.405f, 48.202f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse14));
+		mouseOld.Draw(lightingShader);
+		// mouse 15
+		glm::mat4 modeloldMouse15(1.0f);
+		modeloldMouse15 = glm::translate(modeloldMouse15, glm::vec3(-33.594f, 12.405f, 48.202f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse15));
+		mouseOld.Draw(lightingShader);
+		// mouse 16
+		glm::mat4 modeloldMouse16(1.0f);
+		modeloldMouse16 = glm::translate(modeloldMouse16, glm::vec3(-23.476f, 12.405f, 48.202f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse16));
+		mouseOld.Draw(lightingShader);
+		// mouse 17
+		glm::mat4 modeloldMouse17(1.0f);
+		modeloldMouse17 = glm::translate(modeloldMouse17, glm::vec3(-13.281f, 12.405f, 48.202f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse17));
+		mouseOld.Draw(lightingShader);
+		// ----------- sillas ----------------------------
+		// silla 14
+		glm::mat4 modeloldSilla14(1.0f);
+		modeloldSilla14 = glm::translate(modeloldSilla14, glm::vec3(-45.472f, 6.377f, 56.301f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla14));
+		sillaOld.Draw(lightingShader);
+		// silla 15
+		glm::mat4 modeloldSilla15(1.0f);
+		modeloldSilla15 = glm::translate(modeloldSilla15, glm::vec3(-35.524f, 6.377f, 56.301f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla15));
+		sillaOld.Draw(lightingShader);
+		// silla 16
+		glm::mat4 modeloldSilla16(1.0f);
+		modeloldSilla16 = glm::translate(modeloldSilla16, glm::vec3(-25.261f, 6.377f, 56.301f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla16));
+		sillaOld.Draw(lightingShader);
+		// silla 17
+		glm::mat4 modeloldSilla17(1.0f);
+		modeloldSilla17 = glm::translate(modeloldSilla17, glm::vec3(-15.112f, 6.377f, 56.301f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla17));
+		sillaOld.Draw(lightingShader);
+		// ---------------------------------------------------------------------------------
+
+		// ---------------------------------------------------------------------------------
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// ------------- Modelado fila 1 columna 2 ----------------------------------------------
+		// Escritorio 10
+		glm::mat4 modelOldMesa10(1.0f);
+		modelOldMesa10 = glm::translate(modelOldMesa10, glm::vec3(18.113f, 6.758f, -28.937f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa10));
+		mesaOld.Draw(lightingShader);
+		// Escritorio 11
+		glm::mat4 modelOldMesa11(1.0f);
+		modelOldMesa11 = glm::translate(modelOldMesa11, glm::vec3(38.431f, 6.758f, -28.937f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa11));
+		mesaOld.Draw(lightingShader);
+		// ----------- CPUs --------------------
+		// CPU 18
+		glm::mat4 modeloldCPU18(1.0f);
+		modeloldCPU18 = glm::translate(modeloldCPU18, glm::vec3(15.345f, 14.443f, -29.801f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU18));
+		oldCPU.Draw(lightingShader);
+		// CPU 19
+		glm::mat4 modeloldCPU19(1.0f);
+		modeloldCPU19 = glm::translate(modeloldCPU19, glm::vec3(24.0f, 14.443f, -29.801f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU19));
+		oldCPU.Draw(lightingShader);
+		// CPU 20
+		glm::mat4 modeloldCPU20(1.0f);
+		modeloldCPU20 = glm::translate(modeloldCPU20, glm::vec3(32.721f, 14.443f, -29.801f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU20));
+		oldCPU.Draw(lightingShader);
+		// CPU 21
+		glm::mat4 modeloldCPU21(1.0f);
+		modeloldCPU21 = glm::translate(modeloldCPU21, glm::vec3(41.355f, 14.443f, -29.801f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU21));
+		oldCPU.Draw(lightingShader);
+		// CPU 22
+		glm::mat4 modeloldCPU22(1.0f);
+		modeloldCPU22 = glm::translate(modeloldCPU22, glm::vec3(49.108f, 3.487f, -29.801f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU22));
+		oldCPU.Draw(lightingShader);
+		// ------------ monitores ------------
+		// monitor 18
+		glm::mat4 modeloldMonitor18(1.0f);
+		modeloldMonitor18 = glm::translate(modeloldMonitor18, glm::vec3(10.916f, 14.434f, -30.734f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor18));
+		monitorOld.Draw(lightingShader);
+		// monitor 19
+		glm::mat4 modeloldMonitor19(1.0f);
+		modeloldMonitor19 = glm::translate(modeloldMonitor19, glm::vec3(19.539f, 14.434f, -30.734f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor19));
+		monitorOld.Draw(lightingShader);
+		// monitor 20
+		glm::mat4 modeloldMonitor20(1.0f);
+		modeloldMonitor20 = glm::translate(modeloldMonitor20, glm::vec3(28.307f, 14.434f, -30.734f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor20));
+		monitorOld.Draw(lightingShader);
+		// monitor 21
+		glm::mat4 modeloldMonitor21(1.0f);
+		modeloldMonitor21 = glm::translate(modeloldMonitor21, glm::vec3(36.955f, 14.434f, -30.734f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor21));
+		monitorOld.Draw(lightingShader);
+		// monitor 22
+		glm::mat4 modeloldMonitor22(1.0f);
+		modeloldMonitor22 = glm::translate(modeloldMonitor22, glm::vec3(45.651f, 14.434f, -31.018f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor22));
+		monitorOld.Draw(lightingShader);
+		// -------- teclados -----------------
+		// teclado 18
+		glm::mat4 modeloldTeclado18(1.0f);
+		modeloldTeclado18 = glm::translate(modeloldTeclado18, glm::vec3(10.874f, 12.299f, -27.775f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado18));
+		tecladoOld.Draw(lightingShader);
+		// teclado 19
+		glm::mat4 modeloldTeclado19(1.0f);
+		modeloldTeclado19 = glm::translate(modeloldTeclado19, glm::vec3(19.207f, 12.299f, -27.775f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado19));
+		tecladoOld.Draw(lightingShader);
+		// teclado 20
+		glm::mat4 modeloldTeclado20(1.0f);
+		modeloldTeclado20 = glm::translate(modeloldTeclado20, glm::vec3(27.908f, 12.299f, -27.775f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado20));
+		tecladoOld.Draw(lightingShader);
+		// teclado 21
+		glm::mat4 modeloldTeclado21(1.0f);
+		modeloldTeclado21 = glm::translate(modeloldTeclado21, glm::vec3(36.87f, 12.299f, -27.775f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado21));
+		tecladoOld.Draw(lightingShader);
+		// teclado 22
+		glm::mat4 modeloldTeclado22(1.0f);
+		modeloldTeclado22 = glm::translate(modeloldTeclado22, glm::vec3(45.076f, 12.299f, -28.491f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado22));
+		tecladoOld.Draw(lightingShader);
+		// ---------- mouses -------------------
+		// mouse 18
+		glm::mat4 modeloldMouse18(1.0f);
+		modeloldMouse18 = glm::translate(modeloldMouse18, glm::vec3(12.026f, 12.405f, -29.305f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse18));
+		mouseOld.Draw(lightingShader);
+		// mouse 19
+		glm::mat4 modeloldMouse19(1.0f);
+		modeloldMouse19 = glm::translate(modeloldMouse19, glm::vec3(20.356f, 12.405f, -29.305f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse19));
+		mouseOld.Draw(lightingShader);
+		// mouse 20
+		glm::mat4 modeloldMouse20(1.0f);
+		modeloldMouse20 = glm::translate(modeloldMouse20, glm::vec3(29.09f, 12.405f, -29.619f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse20));
+		mouseOld.Draw(lightingShader);
+		// mouse 21
+		glm::mat4 modeloldMouse21(1.0f);
+		modeloldMouse21 = glm::translate(modeloldMouse21, glm::vec3(38.015f, 12.405f, -29.619f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse21));
+		mouseOld.Draw(lightingShader);
+		// mouse 22
+		glm::mat4 modeloldMouse22(1.0f);
+		modeloldMouse22 = glm::translate(modeloldMouse22, glm::vec3(46.045f, 12.405f, -29.305f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse22));
+		mouseOld.Draw(lightingShader);
+		// -------------- sillas ------------------------------
+		// silla 18
+		glm::mat4 modeloldSilla18(1.0f);
+		modeloldSilla18 = glm::translate(modeloldSilla18, glm::vec3(11.455, 6.377f, -21.457f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla18));
+		sillaOld.Draw(lightingShader);
+		// silla 19
+		glm::mat4 modeloldSilla19(1.0f);
+		modeloldSilla19 = glm::translate(modeloldSilla19, glm::vec3(19.541f, 6.377f, -21.457f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla19));
+		sillaOld.Draw(lightingShader);
+		// silla 20
+		glm::mat4 modeloldSilla20(1.0f);
+		modeloldSilla20 = glm::translate(modeloldSilla20, glm::vec3(27.603f, 6.377f, -21.457f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla20));
+		sillaOld.Draw(lightingShader);
+		// silla 21
+		glm::mat4 modeloldSilla21(1.0f);
+		modeloldSilla21 = glm::translate(modeloldSilla21, glm::vec3(36.099f, 6.377f, -21.457f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla21));
+		sillaOld.Draw(lightingShader);
+		// silla 22
+		glm::mat4 modeloldSilla22(1.0f);
+		modeloldSilla22 = glm::translate(modeloldSilla22, glm::vec3(44.156f, 6.377f, -21.457f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla22));
+		sillaOld.Draw(lightingShader);
+		// ---------------------------------------------------------------------------------
+
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// ------------- Modelado fila 2 columna 2 ----------------------------------------------
+		// Escritorio 12
+		glm::mat4 modelOldMesa12(1.0f);
+		modelOldMesa12 = glm::translate(modelOldMesa12, glm::vec3(18.113f, 6.758f, -2.779f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa12));
+		mesaOld.Draw(lightingShader);
+		// Escritorio 13
+		glm::mat4 modelOldMesa13(1.0f);
+		modelOldMesa13 = glm::translate(modelOldMesa13, glm::vec3(38.431f, 6.758f, -2.779f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa13));
+		mesaOld.Draw(lightingShader);
+		// ----------- CPUs --------------------
+		// CPU 23
+		glm::mat4 modeloldCPU23(1.0f);
+		modeloldCPU23 = glm::translate(modeloldCPU23, glm::vec3(15.345f, 14.443f, -3.545f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU23));
+		oldCPU.Draw(lightingShader);
+		// CPU 24
+		glm::mat4 modeloldCPU24(1.0f);
+		modeloldCPU24 = glm::translate(modeloldCPU24, glm::vec3(24.0f, 14.443f, -3.545f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU24));
+		oldCPU.Draw(lightingShader);
+		// CPU 25
+		glm::mat4 modeloldCPU25(1.0f);
+		modeloldCPU25 = glm::translate(modeloldCPU25, glm::vec3(32.721f, 14.443f, -3.545f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU25));
+		oldCPU.Draw(lightingShader);
+		// CPU 26
+		glm::mat4 modeloldCPU26(1.0f);
+		modeloldCPU26 = glm::translate(modeloldCPU26, glm::vec3(41.355f, 14.443f, -3.545f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU26));
+		oldCPU.Draw(lightingShader);
+		// CPU 27
+		glm::mat4 modeloldCPU27(1.0f);
+		modeloldCPU27 = glm::translate(modeloldCPU27, glm::vec3(49.108f, 3.487f, -3.545f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU27));
+		oldCPU.Draw(lightingShader);
+		// ------------ monitores ------------
+		// monitor 23
+		glm::mat4 modeloldMonitor23(1.0f);
+		modeloldMonitor23 = glm::translate(modeloldMonitor23, glm::vec3(10.916f, 14.434f, -4.479f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor23));
+		monitorOld.Draw(lightingShader);
+		// monitor 24
+		glm::mat4 modeloldMonitor24(1.0f);
+		modeloldMonitor24 = glm::translate(modeloldMonitor24, glm::vec3(19.539f, 14.434f, -4.479f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor24));
+		monitorOld.Draw(lightingShader);
+		// monitor 25
+		glm::mat4 modeloldMonitor25(1.0f);
+		modeloldMonitor25 = glm::translate(modeloldMonitor25, glm::vec3(28.307f, 14.434f, -4.479f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor25));
+		monitorOld.Draw(lightingShader);
+		// monitor 26
+		glm::mat4 modeloldMonitor26(1.0f);
+		modeloldMonitor26 = glm::translate(modeloldMonitor26, glm::vec3(36.955f, 14.434f, -4.479f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor26));
+		monitorOld.Draw(lightingShader);
+		// monitor 27
+		glm::mat4 modeloldMonitor27(1.0f);
+		modeloldMonitor27 = glm::translate(modeloldMonitor27, glm::vec3(45.651f, 14.434f, -4.763f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor27));
+		monitorOld.Draw(lightingShader);
+		// -------- teclados -----------------
+		// teclado 23
+		glm::mat4 modeloldTeclado23(1.0f);
+		modeloldTeclado23 = glm::translate(modeloldTeclado23, glm::vec3(10.874f, 12.299f, -1.519f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado23));
+		tecladoOld.Draw(lightingShader);
+		// teclado 24
+		glm::mat4 modeloldTeclado24(1.0f);
+		modeloldTeclado24 = glm::translate(modeloldTeclado24, glm::vec3(19.207f, 12.299f, -1.519f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado24));
+		tecladoOld.Draw(lightingShader);
+		// teclado 25
+		glm::mat4 modeloldTeclado25(1.0f);
+		modeloldTeclado25 = glm::translate(modeloldTeclado25, glm::vec3(27.908f, 12.299f, -1.519f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado25));
+		tecladoOld.Draw(lightingShader);
+		// teclado 26
+		glm::mat4 modeloldTeclado26(1.0f);
+		modeloldTeclado26 = glm::translate(modeloldTeclado26, glm::vec3(36.87f, 12.299f, -1.519f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado26));
+		tecladoOld.Draw(lightingShader);
+		// teclado 27
+		glm::mat4 modeloldTeclado27(1.0f);
+		modeloldTeclado27 = glm::translate(modeloldTeclado27, glm::vec3(45.076f, 12.299f, -2.226f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado27));
+		tecladoOld.Draw(lightingShader);
+		// ---------- mouses -------------------
+		// mouse 23
+		glm::mat4 modeloldMouse23(1.0f);
+		modeloldMouse23 = glm::translate(modeloldMouse23, glm::vec3(12.026f, 12.405f, -3.05f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse23));
+		mouseOld.Draw(lightingShader);
+		// mouse 24
+		glm::mat4 modeloldMouse24(1.0f);
+		modeloldMouse24 = glm::translate(modeloldMouse24, glm::vec3(20.356f, 12.405f, -3.05f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse24));
+		mouseOld.Draw(lightingShader);
+		// mouse 25
+		glm::mat4 modeloldMouse25(1.0f);
+		modeloldMouse25 = glm::translate(modeloldMouse25, glm::vec3(29.09f, 12.405f, -3.05f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse25));
+		mouseOld.Draw(lightingShader);
+		// mouse 26
+		glm::mat4 modeloldMouse26(1.0f);
+		modeloldMouse26 = glm::translate(modeloldMouse26, glm::vec3(38.015f, 12.405f, -3.05f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse26));
+		mouseOld.Draw(lightingShader);
+		// mouse 27
+		glm::mat4 modeloldMouse27(1.0f);
+		modeloldMouse27 = glm::translate(modeloldMouse27, glm::vec3(46.045f, 12.405f, -3.05f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse27));
+		mouseOld.Draw(lightingShader);
+		// -------------- sillas ------------------------------
+		// silla 23
+		glm::mat4 modeloldSilla23(1.0f);
+		modeloldSilla23 = glm::translate(modeloldSilla23, glm::vec3(11.455, 6.377f, 5.179f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla23));
+		sillaOld.Draw(lightingShader);
+		// silla 24
+		glm::mat4 modeloldSilla24(1.0f);
+		modeloldSilla24 = glm::translate(modeloldSilla24, glm::vec3(19.541f, 6.377f, 5.179f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla24));
+		sillaOld.Draw(lightingShader);
+		// silla 25
+		glm::mat4 modeloldSilla25(1.0f);
+		modeloldSilla25 = glm::translate(modeloldSilla25, glm::vec3(27.603f, 6.377f, 5.179f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla25));
+		sillaOld.Draw(lightingShader);
+		// silla 26
+		glm::mat4 modeloldSilla26(1.0f);
+		modeloldSilla26 = glm::translate(modeloldSilla26, glm::vec3(36.099f, 6.377f, 5.179f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla26));
+		sillaOld.Draw(lightingShader);
+		// silla 27
+		glm::mat4 modeloldSilla27(1.0f);
+		modeloldSilla27 = glm::translate(modeloldSilla27, glm::vec3(44.156f, 6.377f, 5.179f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla27));
+		sillaOld.Draw(lightingShader);
+		// ---------------------------------------------------------------------------------
+
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// ------------- Modelado fila 3 columna 2 ----------------------------------------------
+		// Escritorio 14
+		glm::mat4 modelOldMesa14(1.0f);
+		modelOldMesa14 = glm::translate(modelOldMesa14, glm::vec3(18.113f, 6.758f, 22.489f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa14));
+		mesaOld.Draw(lightingShader);
+		// Escritorio 15
+		glm::mat4 modelOldMesa15(1.0f);
+		modelOldMesa15 = glm::translate(modelOldMesa15, glm::vec3(38.431f, 6.758f, 22.489f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa15));
+		mesaOld.Draw(lightingShader);
+		// ----------- CPUs --------------------
+		// CPU 28
+		glm::mat4 modeloldCPU28(1.0f);
+		modeloldCPU28 = glm::translate(modeloldCPU28, glm::vec3(15.345f, 14.443f, 21.519f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU28));
+		oldCPU.Draw(lightingShader);
+		// CPU 29
+		glm::mat4 modeloldCPU29(1.0f);
+		modeloldCPU29 = glm::translate(modeloldCPU29, glm::vec3(24.0f, 14.443f, 21.519f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU29));
+		oldCPU.Draw(lightingShader);
+		// CPU 30
+		glm::mat4 modeloldCPU30(1.0f);
+		modeloldCPU30 = glm::translate(modeloldCPU30, glm::vec3(32.721f, 14.443f, 21.519f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU30));
+		oldCPU.Draw(lightingShader);
+		// CPU 31
+		glm::mat4 modeloldCPU31(1.0f);
+		modeloldCPU31 = glm::translate(modeloldCPU31, glm::vec3(41.355f, 14.443f, 21.519f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU31));
+		oldCPU.Draw(lightingShader);
+		// CPU 32
+		glm::mat4 modeloldCPU32(1.0f);
+		modeloldCPU32 = glm::translate(modeloldCPU32, glm::vec3(49.108f, 3.487f, 21.519f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU32));
+		oldCPU.Draw(lightingShader);
+		// ------------ monitores ------------
+		// monitor 28
+		glm::mat4 modeloldMonitor28(1.0f);
+		modeloldMonitor28 = glm::translate(modeloldMonitor28, glm::vec3(10.916f, 14.434f, 20.585f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor28));
+		monitorOld.Draw(lightingShader);
+		// monitor 29
+		glm::mat4 modeloldMonitor29(1.0f);
+		modeloldMonitor29 = glm::translate(modeloldMonitor29, glm::vec3(19.539f, 14.434f, 20.585f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor29));
+		monitorOld.Draw(lightingShader);
+		// monitor 30
+		glm::mat4 modeloldMonitor30(1.0f);
+		modeloldMonitor30 = glm::translate(modeloldMonitor30, glm::vec3(28.307f, 14.434f, 20.585f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor30));
+		monitorOld.Draw(lightingShader);
+		// monitor 31
+		glm::mat4 modeloldMonitor31(1.0f);
+		modeloldMonitor31 = glm::translate(modeloldMonitor31, glm::vec3(36.955f, 14.434f, 20.585f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor31));
+		monitorOld.Draw(lightingShader);
+		// monitor 32
+		glm::mat4 modeloldMonitor32(1.0f);
+		modeloldMonitor32 = glm::translate(modeloldMonitor32, glm::vec3(45.651f, 14.434f, 20.301f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor32));
+		monitorOld.Draw(lightingShader);
+		// -------- teclados -----------------
+		// teclado 28
+		glm::mat4 modeloldTeclado28(1.0f);
+		modeloldTeclado28 = glm::translate(modeloldTeclado28, glm::vec3(10.874f, 12.299f, 23.545f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado28));
+		tecladoOld.Draw(lightingShader);
+		// teclado 24
+		glm::mat4 modeloldTeclado29(1.0f);
+		modeloldTeclado29 = glm::translate(modeloldTeclado29, glm::vec3(19.207f, 12.299f, 23.545f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado29));
+		tecladoOld.Draw(lightingShader);
+		// teclado 30
+		glm::mat4 modeloldTeclado30(1.0f);
+		modeloldTeclado30 = glm::translate(modeloldTeclado30, glm::vec3(27.908f, 12.299f, 23.545f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado30));
+		tecladoOld.Draw(lightingShader);
+		// teclado 31
+		glm::mat4 modeloldTeclado31(1.0f);
+		modeloldTeclado31 = glm::translate(modeloldTeclado31, glm::vec3(36.87f, 12.299f, 23.545f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado31));
+		tecladoOld.Draw(lightingShader);
+		// teclado 32
+		glm::mat4 modeloldTeclado32(1.0f);
+		modeloldTeclado32 = glm::translate(modeloldTeclado32, glm::vec3(45.076f, 12.299f, 22.838f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado32));
+		tecladoOld.Draw(lightingShader);
+		// ---------- mouses -------------------
+		// mouse 28
+		glm::mat4 modeloldMouse28(1.0f);
+		modeloldMouse28 = glm::translate(modeloldMouse28, glm::vec3(12.026f, 12.405f, 22.014f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse28));
+		mouseOld.Draw(lightingShader);
+		// mouse 29
+		glm::mat4 modeloldMouse29(1.0f);
+		modeloldMouse29 = glm::translate(modeloldMouse29, glm::vec3(20.356f, 12.405f, 21.7f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse29));
+		mouseOld.Draw(lightingShader);
+		// mouse 30
+		glm::mat4 modeloldMouse30(1.0f);
+		modeloldMouse30 = glm::translate(modeloldMouse30, glm::vec3(29.09f, 12.405f, 22.014f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse30));
+		mouseOld.Draw(lightingShader);
+		// mouse 31
+		glm::mat4 modeloldMouse31(1.0f);
+		modeloldMouse31 = glm::translate(modeloldMouse31, glm::vec3(38.015f, 12.405f, 21.7f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse31));
+		mouseOld.Draw(lightingShader);
+		// mouse 32
+		glm::mat4 modeloldMouse32(1.0f);
+		modeloldMouse32 = glm::translate(modeloldMouse32, glm::vec3(46.045f, 12.405f, 22.014f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse32));
+		mouseOld.Draw(lightingShader);
+		// -------------- sillas ------------------------------
+		// silla 28
+		glm::mat4 modeloldSilla28(1.0f);
+		modeloldSilla28 = glm::translate(modeloldSilla28, glm::vec3(11.455, 6.377f, 30.964f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla28));
+		sillaOld.Draw(lightingShader);
+		// silla 29
+		glm::mat4 modeloldSilla29(1.0f);
+		modeloldSilla29 = glm::translate(modeloldSilla29, glm::vec3(19.541f, 6.377f, 30.964f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla29));
+		sillaOld.Draw(lightingShader);
+		// silla 30
+		glm::mat4 modeloldSilla30(1.0f);
+		modeloldSilla30 = glm::translate(modeloldSilla30, glm::vec3(27.603f, 6.377f, 30.964f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla30));
+		sillaOld.Draw(lightingShader);
+		// silla 31
+		glm::mat4 modeloldSilla31(1.0f);
+		modeloldSilla31 = glm::translate(modeloldSilla31, glm::vec3(36.099f, 6.377f, 30.964f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla31));
+		sillaOld.Draw(lightingShader);
+		// silla 32
+		glm::mat4 modeloldSilla32(1.0f);
+		modeloldSilla32 = glm::translate(modeloldSilla32, glm::vec3(44.156f, 6.377f, 30.964f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla32));
+		sillaOld.Draw(lightingShader);
+		// ---------------------------------------------------------------------------------
+
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// ------------- Modelado fila 3 columna 2 ----------------------------------------------
+		// Escritorio 16
+		glm::mat4 modelOldMesa16(1.0f);
+		modelOldMesa16 = glm::translate(modelOldMesa16, glm::vec3(18.113f, 6.758f, 48.24f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa16));
+		mesaOld.Draw(lightingShader);
+		// Escritorio 17
+		glm::mat4 modelOldMesa17(1.0f);
+		modelOldMesa17 = glm::translate(modelOldMesa17, glm::vec3(38.431f, 6.758f, 48.24f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa17));
+		mesaOld.Draw(lightingShader);
+		// ----------- CPUs --------------------
+		// CPU 33
+		glm::mat4 modeloldCPU33(1.0f);
+		modeloldCPU33 = glm::translate(modeloldCPU33, glm::vec3(15.345f, 14.443f, 47.706f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU33));
+		oldCPU.Draw(lightingShader);
+		// CPU 34
+		glm::mat4 modeloldCPU34(1.0f);
+		modeloldCPU34 = glm::translate(modeloldCPU34, glm::vec3(24.0f, 14.443f, 47.706f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU34));
+		oldCPU.Draw(lightingShader);
+		// CPU 35
+		glm::mat4 modeloldCPU35(1.0f);
+		modeloldCPU35 = glm::translate(modeloldCPU35, glm::vec3(32.721f, 14.443f, 47.706f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU35));
+		oldCPU.Draw(lightingShader);
+		// CPU 36
+		glm::mat4 modeloldCPU36(1.0f);
+		modeloldCPU36 = glm::translate(modeloldCPU36, glm::vec3(41.355f, 14.443f, 47.006f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU36));
+		oldCPU.Draw(lightingShader);
+		// CPU 37
+		glm::mat4 modeloldCPU37(1.0f);
+		modeloldCPU37 = glm::translate(modeloldCPU37, glm::vec3(49.108f, 3.487f, 47.706f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU37));
+		oldCPU.Draw(lightingShader);
+		// ------------ monitores ------------
+		// monitor 33
+		glm::mat4 modeloldMonitor33(1.0f);
+		modeloldMonitor33 = glm::translate(modeloldMonitor33, glm::vec3(10.916f, 14.434f, 46.773f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor33));
+		monitorOld.Draw(lightingShader);
+		// monitor 34
+		glm::mat4 modeloldMonitor34(1.0f);
+		modeloldMonitor34 = glm::translate(modeloldMonitor34, glm::vec3(19.539f, 14.434f, 46.773f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor34));
+		monitorOld.Draw(lightingShader);
+		// monitor 35
+		glm::mat4 modeloldMonitor35(1.0f);
+		modeloldMonitor35 = glm::translate(modeloldMonitor35, glm::vec3(28.307f, 14.434f, 46.773f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor35));
+		monitorOld.Draw(lightingShader);
+		// monitor 36
+		glm::mat4 modeloldMonitor36(1.0f);
+		modeloldMonitor36 = glm::translate(modeloldMonitor36, glm::vec3(36.955f, 14.434f, 46.773f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor36));
+		monitorOld.Draw(lightingShader);
+		// monitor 37
+		glm::mat4 modeloldMonitor37(1.0f);
+		modeloldMonitor37 = glm::translate(modeloldMonitor37, glm::vec3(45.651f, 14.434f, 46.773f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor37));
+		monitorOld.Draw(lightingShader);
+		// -------- teclados -----------------
+		// teclado 33
+		glm::mat4 modeloldTeclado33(1.0f);
+		modeloldTeclado33 = glm::translate(modeloldTeclado33, glm::vec3(10.874f, 12.299f, 49.732f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado33));
+		tecladoOld.Draw(lightingShader);
+		// teclado 34
+		glm::mat4 modeloldTeclado34(1.0f);
+		modeloldTeclado34 = glm::translate(modeloldTeclado34, glm::vec3(19.207f, 12.299f, 49.732f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado34));
+		tecladoOld.Draw(lightingShader);
+		// teclado 35
+		glm::mat4 modeloldTeclado35(1.0f);
+		modeloldTeclado35 = glm::translate(modeloldTeclado35, glm::vec3(27.908f, 12.299f, 49.732f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado35));
+		tecladoOld.Draw(lightingShader);
+		// teclado 36
+		glm::mat4 modeloldTeclado36(1.0f);
+		modeloldTeclado36 = glm::translate(modeloldTeclado36, glm::vec3(36.87f, 12.299f, 49.732f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado36));
+		tecladoOld.Draw(lightingShader);
+		// teclado 37
+		glm::mat4 modeloldTeclado37(1.0f);
+		modeloldTeclado37 = glm::translate(modeloldTeclado37, glm::vec3(45.076f, 12.299f, 49.025f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado37));
+		tecladoOld.Draw(lightingShader);
+		// ---------- mouses -------------------
+		// mouse 33
+		glm::mat4 modeloldMouse33(1.0f);
+		modeloldMouse33 = glm::translate(modeloldMouse33, glm::vec3(12.026f, 12.405f, 48.202f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse33));
+		mouseOld.Draw(lightingShader);
+		// mouse 34
+		glm::mat4 modeloldMouse34(1.0f);
+		modeloldMouse34 = glm::translate(modeloldMouse34, glm::vec3(20.356f, 12.405f, 47.888f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse34));
+		mouseOld.Draw(lightingShader);
+		// mouse 35
+		glm::mat4 modeloldMouse35(1.0f);
+		modeloldMouse35 = glm::translate(modeloldMouse35, glm::vec3(29.09f, 12.405f, 47.888f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse35));
+		mouseOld.Draw(lightingShader);
+		// mouse 36
+		glm::mat4 modeloldMouse36(1.0f);
+		modeloldMouse36 = glm::translate(modeloldMouse36, glm::vec3(38.015f, 12.405f, 47.888f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse36));
+		mouseOld.Draw(lightingShader);
+		// mouse 37
+		glm::mat4 modeloldMouse37(1.0f);
+		modeloldMouse37 = glm::translate(modeloldMouse37, glm::vec3(46.045f, 12.405f, 48.202f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse37));
+		mouseOld.Draw(lightingShader);
+		// -------------- sillas ------------------------------
+		// silla 33
+		glm::mat4 modeloldSilla33(1.0f);
+		modeloldSilla33 = glm::translate(modeloldSilla33, glm::vec3(11.455, 6.377f, 56.301f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla33));
+		sillaOld.Draw(lightingShader);
+		// silla 34
+		glm::mat4 modeloldSilla34(1.0f);
+		modeloldSilla34 = glm::translate(modeloldSilla34, glm::vec3(19.541f, 6.377f, 56.301f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla34));
+		sillaOld.Draw(lightingShader);
+		// silla 35
+		glm::mat4 modeloldSilla35(1.0f);
+		modeloldSilla35 = glm::translate(modeloldSilla35, glm::vec3(27.603f, 6.377f, 56.301f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla35));
+		sillaOld.Draw(lightingShader);
+		// silla 36
+		glm::mat4 modeloldSilla36(1.0f);
+		modeloldSilla36 = glm::translate(modeloldSilla36, glm::vec3(36.099f, 6.377f, 56.301f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla36));
+		sillaOld.Draw(lightingShader);
+		// silla 37
+		glm::mat4 modeloldSilla37(1.0f);
+		modeloldSilla37 = glm::translate(modeloldSilla37, glm::vec3(44.156f, 6.377f, 56.301f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla37));
+		sillaOld.Draw(lightingShader);
+		// ---------------------------------------------------------------------------------
 		
 		
 		
