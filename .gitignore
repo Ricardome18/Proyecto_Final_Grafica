@@ -396,6 +396,3 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-#Puedes anular la regla de ignorar bin/ y lib/ solo para esa ruta especifica
-!External Libraries/GLEW/bin/
-!External Libraries/GLEW/lib/
