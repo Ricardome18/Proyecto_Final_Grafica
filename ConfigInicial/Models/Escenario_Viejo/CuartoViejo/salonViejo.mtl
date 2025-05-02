@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.99 - (c)2007 guruware
-# File Created: 29.04.2025 14:55:34
+# File Created: 02.05.2025 10:31:17
 
 newmtl Material__306
 	Ns 10.0000
@@ -12,22 +12,8 @@ newmtl Material__306
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\loseta_piso_lab_viejo.png
-	map_Kd textures\loseta_piso_lab_viejo.png
-
-newmtl Material__7823
-	Ns 10.0000
-	Ni 1.5000
-	d 1.0000
-	Tr 0.0000
-	Tf 1.0000 1.0000 1.0000 
-	illum 2
-	Ka 0.5880 0.5880 0.5880
-	Kd 0.5880 0.5880 0.5880
-	Ks 0.0900 0.0900 0.0900
-	Ke 0.0000 0.0000 0.0000
-	map_d textures\vidrio2.png
-	map_refl textures\vidrio2.png
+	map_Ka textures\loseta_piso_lab_viejo.jpg
+	map_Kd textures\loseta_piso_lab_viejo.jpg
 
 newmtl Material__7904
 	Ns 10.0000
@@ -40,8 +26,8 @@ newmtl Material__7904
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\extintor_logo.png
-	map_Kd textures\extintor_logo.png
+	map_Ka textures\extintor_logo.jpg
+	map_Kd textures\extintor_logo.jpg
 
 newmtl Material__265
 	Ns 10.0000
@@ -54,8 +40,8 @@ newmtl Material__265
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\beige_plastic.png
-	map_Kd textures\beige_plastic.png
+	map_Ka textures\beige_plastic.jpg
+	map_Kd textures\beige_plastic.jpg
 
 newmtl Material__7593
 	Ns 10.0000
@@ -68,10 +54,10 @@ newmtl Material__7593
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\Yeso_Blanco.png
-	map_Kd textures\Yeso_Blanco.png
-	map_Ks textures\Yeso_Blanco.png
-	map_bump -bm 0.3000 textures\Yeso_Blanco.png
+	map_Ka textures\Yeso_Blanco.jpg
+	map_Kd textures\Yeso_Blanco.jpg
+	map_Ks textures\Yeso_Blanco.jpg
+	map_bump -bm 0.3000 textures\Yeso_Blanco.jpg
 
 newmtl tripo_mat_ae37811f_77c5_4363_b20c_430654d0d9a6
 	Ns 100.0000
@@ -84,8 +70,8 @@ newmtl tripo_mat_ae37811f_77c5_4363_b20c_430654d0d9a6
 	Kd 0.5500 0.5500 0.5500
 	Ks 0.5000 0.5000 0.5000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\tripo_image_ae37811f-77c5-4363-b20c-430654d0d9a6_0.png
-	map_Kd textures\tripo_image_ae37811f-77c5-4363-b20c-430654d0d9a6_0.png
+	map_Ka textures\tripo_image_ae37811f-77c5-4363-b20c-430654d0d9a6_0.jpg
+	map_Kd textures\tripo_image_ae37811f-77c5-4363-b20c-430654d0d9a6_0.jpg
 
 newmtl Material__7907
 	Ns 10.0000
@@ -98,8 +84,8 @@ newmtl Material__7907
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\AC_diffuse.png
-	map_Kd textures\AC_diffuse.png
+	map_Ka textures\AC_diffuse.jpg
+	map_Kd textures\AC_diffuse.jpg
 
 newmtl Material__102
 	Ns 10.0000
@@ -112,8 +98,8 @@ newmtl Material__102
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\yeso.png
-	map_Kd textures\yeso.png
+	map_Ka textures\yeso.jpg
+	map_Kd textures\yeso.jpg
 
 newmtl tripo_mat_bfaf42a9_92b7_4be2_a8b4_b4c311ef5da4
 	Ns 30.0000
@@ -126,10 +112,10 @@ newmtl tripo_mat_bfaf42a9_92b7_4be2_a8b4_b4c311ef5da4
 	Kd 0.5500 0.5500 0.5500
 	Ks 0.5000 0.5000 0.5000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\tripo_image_bfaf42a9-92b7-4be2-a8b4-b4c311ef5da4_0.png
-	map_Kd textures\tripo_image_bfaf42a9-92b7-4be2-a8b4-b4c311ef5da4_0.png
-	map_bump -bm 0.0200 textures\tripo_image_bfaf42a9-92b7-4be2-a8b4-b4c311ef5da4_2.png
-	map_refl textures\tripo_image_bfaf42a9-92b7-4be2-a8b4-b4c311ef5da4_Metallic.png
+	map_Ka textures\tripo_image_bfaf42a9-92b7-4be2-a8b4-b4c311ef5da4_0.jpg
+	map_Kd textures\tripo_image_bfaf42a9-92b7-4be2-a8b4-b4c311ef5da4_0.jpg
+	map_bump -bm 0.0200 textures\tripo_image_bfaf42a9-92b7-4be2-a8b4-b4c311ef5da4_2.jpg
+	map_refl textures\tripo_image_bfaf42a9-92b7-4be2-a8b4-b4c311ef5da4_Metallic.jpg
 
 newmtl Material__54612
 	Ns 10.0000
@@ -142,8 +128,8 @@ newmtl Material__54612
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\tripo_image_51d9ced0-a529-446e-8181-b9f4892f9c50_0.png
-	map_Kd textures\tripo_image_51d9ced0-a529-446e-8181-b9f4892f9c50_0.png
+	map_Ka textures\tripo_image_51d9ced0-a529-446e-8181-b9f4892f9c50_0.jpg
+	map_Kd textures\tripo_image_51d9ced0-a529-446e-8181-b9f4892f9c50_0.jpg
 
 newmtl Material__370
 	Ns 10.0000
@@ -156,8 +142,8 @@ newmtl Material__370
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\005_Whiteboard_DefaultMaterial_BaseColor.png
-	map_Kd textures\005_Whiteboard_DefaultMaterial_BaseColor.png
+	map_Ka textures\005_Whiteboard_DefaultMaterial_BaseColor.jpg
+	map_Kd textures\005_Whiteboard_DefaultMaterial_BaseColor.jpg
 
 newmtl Material__59
 	Ns 10.0000
@@ -170,8 +156,8 @@ newmtl Material__59
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\ladrillo.png
-	map_Kd textures\ladrillo.png
+	map_Ka textures\ladrillo.jpg
+	map_Kd textures\ladrillo.jpg
 
 newmtl Material__7826
 	Ns 10.0000
@@ -184,8 +170,8 @@ newmtl Material__7826
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\ruta.png
-	map_Kd textures\ruta.png
+	map_Ka textures\ruta.jpg
+	map_Kd textures\ruta.jpg
 
 newmtl Material__7905
 	Ns 10.0000
@@ -198,8 +184,8 @@ newmtl Material__7905
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\ruta2.png
-	map_Kd textures\ruta2.png
+	map_Ka textures\ruta2.jpg
+	map_Kd textures\ruta2.jpg
 
 newmtl metalMesa
 	Ns 10.0000
@@ -212,8 +198,8 @@ newmtl metalMesa
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.9000 0.9000 0.9000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\gray-concrete-textured-wall.png
-	map_Kd textures\gray-concrete-textured-wall.png
+	map_Ka textures\gray-concrete-textured-wall.jpg
+	map_Kd textures\gray-concrete-textured-wall.jpg
 
 newmtl Material__69
 	Ns 10.0000
@@ -226,8 +212,8 @@ newmtl Material__69
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.9000 0.9000 0.9000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\glass-background-with-frosted-pattern.png
-	map_Kd textures\glass-background-with-frosted-pattern.png
+	map_Ka textures\glass-background-with-frosted-pattern.jpg
+	map_Kd textures\glass-background-with-frosted-pattern.jpg
 
 newmtl Material__163
 	Ns 10.0000
@@ -240,8 +226,8 @@ newmtl Material__163
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\aluminio.png
-	map_Kd textures\aluminio.png
+	map_Ka textures\aluminio.jpg
+	map_Kd textures\aluminio.jpg
 
 newmtl Material__224
 	Ns 10.0000
@@ -254,8 +240,8 @@ newmtl Material__224
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\8_aluminium metal texture-seamless.png
-	map_Kd textures\8_aluminium metal texture-seamless.png
+	map_Ka textures\8_aluminium metal texture-seamless.jpg
+	map_Kd textures\8_aluminium metal texture-seamless.jpg
 
 newmtl Material__123
 	Ns 10.0000
@@ -268,8 +254,8 @@ newmtl Material__123
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\tripo_image_ae37811f-77c5-4363-b20c-430654d0d9a6_0.png
-	map_Kd textures\tripo_image_ae37811f-77c5-4363-b20c-430654d0d9a6_0.png
+	map_Ka textures\tripo_image_ae37811f-77c5-4363-b20c-430654d0d9a6_0.jpg
+	map_Kd textures\tripo_image_ae37811f-77c5-4363-b20c-430654d0d9a6_0.jpg
 
 newmtl Material__327
 	Ns 10.0000
@@ -282,5 +268,5 @@ newmtl Material__327
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\AC_diffuse.png
-	map_Kd textures\AC_diffuse.png
+	map_Ka textures\AC_diffuse.jpg
+	map_Kd textures\AC_diffuse.jpg

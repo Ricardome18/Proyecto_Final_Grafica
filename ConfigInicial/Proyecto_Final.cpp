@@ -34,7 +34,7 @@ void DoMovement();
 void Animation();
 
 // Window dimensions
-const GLuint WIDTH = 1300, HEIGHT = 900;
+const GLuint WIDTH = 2110, HEIGHT = 1280;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Camera
@@ -131,6 +131,7 @@ int main()
 	// ------------------- MODELOS LAB VIEJO -----------------------------------------
 
 	Model cuartoOld((char*)"Models/Escenario_Viejo/CuartoViejo/salonViejo.obj");		// LAB VIEJO
+	Model ventanasOld((char*)"Models/Escenario_Viejo/ventanasOLD/ventanasOLD.obj");		// VENTANAS OLD
 	Model mesaOld((char*)"Models/Escenario_Viejo/mesaOLD/mesaOLD.obj");					// MESA VIEJA
 	Model sillaOld((char*)"Models/Escenario_Viejo/sillaOLD/sillaOLD.obj");				// SILLA VIEJA
 	Model oldCPU((char*)"Models/Escenario_Viejo/oldCPU/oldCPU.obj");					// CPU VIEJO
@@ -663,19 +664,8 @@ int main()
 		modelCuartoOld = glm::translate(modelCuartoOld, glm::vec3(0.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCuartoOld));
 		cuartoOld.Draw(lightingShader);
-
-		// Puerta del salón
-		glm::mat4 modelPuertaOld(1.0f);
-		glEnable(GL_BLEND);//Activa la funcionalidad para trabajar el canal alfa
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelPuertaOld));
-		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 1);
-		modelPuertaOld = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-		modelPuertaOld = glm::translate(modelCuartoOld, glm::vec3(-51.728f, 12.277f, -67.497f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelPuertaOld));
-		puertaOld.Draw(lightingShader);
-		glDisable(GL_BLEND);
-		glBindVertexArray(0);
+		 // ventanas y puerta se dibujan al final para activar la transparencia
+		
 		// ---------------------------------------------------------------------------------
 
 		// ------------- Modelado escritorio Profesor ----------------------------------------------
@@ -1809,7 +1799,31 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla37));
 		sillaOld.Draw(lightingShader);
 
-
+		// -----------------------------------------------------------------
+		// ventanas con transparencia
+		glm::mat4 modelVentanasOld(1.0f);
+		glEnable(GL_BLEND);//Activa la funcionalidad para trabajar el canal alfa
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelVentanasOld));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 1);
+		modelCuartoOld = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		modelCuartoOld = glm::translate(modelCuartoOld, glm::vec3(0.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelVentanasOld));
+		ventanasOld.Draw(lightingShader);
+		glDisable(GL_BLEND);
+		glBindVertexArray(0);
+		// Puerta del salón
+		glm::mat4 modelPuertaOld(1.0f);
+		glEnable(GL_BLEND);//Activa la funcionalidad para trabajar el canal alfa
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelPuertaOld));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 1);
+		modelPuertaOld = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		modelPuertaOld = glm::translate(modelCuartoOld, glm::vec3(-51.728f, 12.277f, -67.497f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelPuertaOld));
+		puertaOld.Draw(lightingShader);
+		glDisable(GL_BLEND);
+		glBindVertexArray(0);
 		// =========================================================================================
 		// ================================ FIN MODELADO LAB VIEJO =================================
 		// =========================================================================================

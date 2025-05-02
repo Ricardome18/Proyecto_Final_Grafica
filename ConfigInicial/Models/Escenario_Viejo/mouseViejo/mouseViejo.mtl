@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.99 - (c)2007 guruware
-# File Created: 29.04.2025 15:22:31
+# File Created: 02.05.2025 09:42:49
 
 newmtl Material__424
 	Ns 10.0000
@@ -12,9 +12,9 @@ newmtl Material__424
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\main body_BaseColor.png
-	map_Kd textures\main body_BaseColor.png
-	map_d textures\main body_Alpha.png
+	map_Ka textures\main body_BaseColor.jpg
+	map_Kd textures\main body_BaseColor.jpg
+	map_d textures\main body_Alpha.jpg
 
 newmtl Material__448
 	Ns 10.0000
@@ -27,8 +27,8 @@ newmtl Material__448
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\scroll wheel_BaseColor.png
-	map_Kd textures\scroll wheel_BaseColor.png
+	map_Ka textures\scroll wheel_BaseColor.jpg
+	map_Kd textures\scroll wheel_BaseColor.jpg
 
 newmtl Material__461
 	Ns 10.0000
@@ -41,8 +41,8 @@ newmtl Material__461
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\rubber feet_BaseColor.png
-	map_Kd textures\rubber feet_BaseColor.png
+	map_Ka textures\rubber feet_BaseColor.jpg
+	map_Kd textures\rubber feet_BaseColor.jpg
 
 newmtl Material__449
 	Ns 10.0000
@@ -55,8 +55,8 @@ newmtl Material__449
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\cable end_BaseColor.png
-	map_Kd textures\cable end_BaseColor.png
+	map_Ka textures\cable end_BaseColor.jpg
+	map_Kd textures\cable end_BaseColor.jpg
 
 newmtl Material__423
 	Ns 10.0000
@@ -69,5 +69,5 @@ newmtl Material__423
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\cable_BaseColor.png
-	map_Kd textures\cable_BaseColor.png
+	map_Ka textures\cable_BaseColor.jpg
+	map_Kd textures\cable_BaseColor.jpg
