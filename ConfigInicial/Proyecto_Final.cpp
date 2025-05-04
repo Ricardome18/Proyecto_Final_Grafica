@@ -427,7 +427,6 @@ int main(){
 				glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].linear").c_str()), 0.05f);// más = menos alcance
 				glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].quadratic").c_str()), 0.009f);// más = menos alcance
 			}
-			// ============================================================================================
 
 			for (int i = 9; i < 16; ++i) {
 				std::string num = std::to_string(i);
