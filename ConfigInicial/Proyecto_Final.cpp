@@ -27,6 +27,37 @@
 #include "Camera.h"
 #include "Model.h"
 
+
+//Structs modelo humanide
+
+
+struct BoneTransformationValues {
+	glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+};
+
+struct HumanoidModelInfo {
+	BoneTransformationValues head;
+	BoneTransformationValues torso;
+	BoneTransformationValues rightArm;
+	BoneTransformationValues subRightArm;
+	BoneTransformationValues rightLeg;
+	BoneTransformationValues subRightLeg;
+	BoneTransformationValues leftArm;
+	BoneTransformationValues subLeftArm;
+	BoneTransformationValues leftLeg;
+	BoneTransformationValues subLeftLeg;
+};
+
+struct HumanoidFrame {
+	HumanoidModelInfo modelInfo;
+	HumanoidModelInfo inc;
+	int stepsToFrame = -1;
+};
+
+HumanoidModelInfo profesor;
+
+
 // Function prototypes
 void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode);
 void MouseCallback(GLFWwindow *window, double xPos, double yPos);
@@ -103,6 +134,25 @@ float labNuevoMove = 0.0f;
 float labNuevoBounce = 0.0f;
 int transicionLab = -1;
 
+
+int playAnimationIndex = -1;
+
+int FrameIndex = 0;			//introducir datos
+bool playCaminar = false;
+bool play = false;
+int playIndex = 0;
+
+//Animacion 0 
+
+float caminarTime = 0.0f;
+
+const int caminarAnimationMaxKeyFrame = 8;
+HumanoidFrame caminarAnimationKeyFrames[caminarAnimationMaxKeyFrame];
+int caminarAnimationKeyIndex = -1;
+int caminarAnimationMaxStep = -1;
+int caminarAnimationCurrentStep = -1;
+
+
 glm::vec3 Light1 = glm::vec3(0);//Luces
 
 //Variables para Animacion
@@ -110,7 +160,7 @@ float rotBall = 1.0472;
 bool AnimBall = false;
 float salto = 0.0f;
 float rot = 0.0f;
-
+bool renderProfesor = false;
 float animationSpeed = 0.06f;  // Controla la velocidad global de la animación. Un valor más bajo significa más lento.
 
 
@@ -118,8 +168,94 @@ float animationSpeed = 0.06f;  // Controla la velocidad global de la animación.
 GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
 GLfloat lastFrame = 0.0f;  	// Time of last frame
 
-int main()
+
+void startUpFrames() {
+
+	int caminarDelay1 = 3000;
+	int caminarDelay2 = 1000;
+	float doorZCoordinate = -54.0;
+	float chairXCoordinate = -18.0;
+	float chairZCoordinate = -23.0;
+
+	caminarAnimationKeyFrames[0].modelInfo.torso.position.x = -100.0;
+	caminarAnimationKeyFrames[0].modelInfo.torso.position.z = doorZCoordinate;
+	caminarAnimationKeyFrames[0].modelInfo.torso.rotation.y = 90.0f;
+
+	caminarAnimationKeyFrames[1].modelInfo.torso.position.x = 0.0;
+	caminarAnimationKeyFrames[1].modelInfo.torso.position.z = doorZCoordinate;
+	caminarAnimationKeyFrames[1].modelInfo.torso.rotation.y = 90.0f;
+	caminarAnimationKeyFrames[1].stepsToFrame = caminarDelay1;
+
+	caminarAnimationKeyFrames[2].modelInfo.torso.position.x = 0.0;
+	caminarAnimationKeyFrames[2].modelInfo.torso.position.z = doorZCoordinate;
+	caminarAnimationKeyFrames[2].modelInfo.torso.rotation.y = 0.0f;
+	caminarAnimationKeyFrames[2].stepsToFrame = caminarDelay2/3.0;
+
+	caminarAnimationKeyFrames[3].modelInfo.torso.position.x = 0.0;
+	caminarAnimationKeyFrames[3].modelInfo.torso.position.z = chairZCoordinate;
+	caminarAnimationKeyFrames[3].modelInfo.torso.rotation.y = 0.0f;
+	caminarAnimationKeyFrames[3].stepsToFrame = 1530;
+
+	caminarAnimationKeyFrames[4].modelInfo.torso.position.x = 0.0;
+	caminarAnimationKeyFrames[4].modelInfo.torso.position.z = chairZCoordinate;
+	caminarAnimationKeyFrames[4].modelInfo.torso.rotation.y = 90.0f;
+	caminarAnimationKeyFrames[4].stepsToFrame = caminarDelay2/5.0;
+
+	caminarAnimationKeyFrames[5].modelInfo.torso.position.x = -10.0;
+	caminarAnimationKeyFrames[5].modelInfo.torso.position.z = chairZCoordinate;
+	caminarAnimationKeyFrames[5].modelInfo.torso.rotation.y = 90.0f;
+	caminarAnimationKeyFrames[5].stepsToFrame = caminarDelay1/5.0;
+
+	caminarAnimationKeyFrames[6].modelInfo.torso.position.x = chairXCoordinate;
+	caminarAnimationKeyFrames[6].modelInfo.torso.position.z = chairZCoordinate;
+	caminarAnimationKeyFrames[6].modelInfo.torso.position.y = -5.0;
+	caminarAnimationKeyFrames[6].modelInfo.rightLeg.rotation.x = -60.0;
+	caminarAnimationKeyFrames[6].modelInfo.subRightLeg.rotation.x = 60.0;
+	caminarAnimationKeyFrames[6].modelInfo.leftLeg.rotation.x = -60.0;
+	caminarAnimationKeyFrames[6].modelInfo.subLeftLeg.rotation.x = 60.0;
+	caminarAnimationKeyFrames[6].modelInfo.rightLeg.rotation.x = -60.0;
+	caminarAnimationKeyFrames[6].modelInfo.leftArm.rotation.x = -30.0;
+	caminarAnimationKeyFrames[6].modelInfo.rightArm.rotation.x = 30.0;
+	caminarAnimationKeyFrames[6].modelInfo.torso.rotation.y = 90.0f;
+	caminarAnimationKeyFrames[6].stepsToFrame = caminarDelay2;
+
+	caminarAnimationKeyFrames[7].modelInfo.torso.position.x = chairXCoordinate;
+	caminarAnimationKeyFrames[7].modelInfo.torso.position.z = chairZCoordinate;
+	caminarAnimationKeyFrames[7].modelInfo.torso.position.y = -5.0;
+	caminarAnimationKeyFrames[7].modelInfo.rightLeg.rotation.x = -60.0;
+	caminarAnimationKeyFrames[7].modelInfo.subRightLeg.rotation.x = 60.0;
+	caminarAnimationKeyFrames[7].modelInfo.leftLeg.rotation.x = -60.0;
+	caminarAnimationKeyFrames[7].modelInfo.subLeftLeg.rotation.x = 60.0;
+	caminarAnimationKeyFrames[7].modelInfo.rightLeg.rotation.x = -60.0;
+	caminarAnimationKeyFrames[7].modelInfo.leftArm.rotation.z = -30.0;
+	caminarAnimationKeyFrames[7].modelInfo.rightArm.rotation.z = 30.0;
+	caminarAnimationKeyFrames[7].modelInfo.torso.rotation.y = 180.0f;
+	caminarAnimationKeyFrames[7].stepsToFrame = caminarDelay2;
+
+}
+
+
+
+float interpolar(float a, float b, float t) {
+	return (b - a) * t;
+}
+
+
+float interpolation2(float value, float next, int steps)
 {
+
+
+	return  (next - (value)) / steps;
+
+
+
+}
+
+
+
+int main(){
+
+	startUpFrames();
 	// Init GLFW
 	glfwInit();
 	
@@ -161,7 +297,18 @@ int main()
 	Shader lightingShader("Shader/lighting.vs", "Shader/lighting.frag");
 	Shader lampShader("Shader/lamp.vs", "Shader/lamp.frag");
 	
+	//------------------------Modelo Profesor
 
+	Model ProfesorTorso((char*)"Models/Profesor/ProfesorTorso.obj");
+	Model ProfesorHead((char*)"Models/Profesor/ProfesorHead.obj");
+	Model ProfesorRightArm((char*)"Models/Profesor/ProfesorRightArm.obj");
+	Model ProfesorSubRightArm((char*)"Models/Profesor/ProfesorSubRightArm.obj");
+	Model ProfesorLeftArm((char*)"Models/Profesor/ProfesorLeftArm.obj");
+	Model ProfesorSubLeftArm((char*)"Models/Profesor/ProfesorSubLeftArm.obj");
+	Model ProfesorRightLeg((char*)"Models/Profesor/ProfesorRightLeg.obj");
+	Model ProfesorSubRightLeg((char*)"Models/Profesor/ProfesorSubRightLeg.obj");
+	Model ProfesorLeftLeg((char*)"Models/Profesor/ProfesorLeftLeg.obj");
+	Model ProfesorSubLeftLeg((char*)"Models/Profesor/ProfesorSubLeftLeg.obj");
 
 	// ------------------- MODELOS LAB VIEJO -----------------------------------------
 
@@ -399,7 +546,7 @@ int main()
 
 		//Condicion para intercambiar entre los dos escenarios
 
-		if (!mostrarEscenarioNuevo) {
+		if (mostrarEscenarioNuevo) {
 
 
 
@@ -417,12 +564,127 @@ int main()
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCuarto));
 			Cuarto.Draw(lightingShader);
 
-			//Modelo Profesor
-			glm::mat4 modelProfesor = modelLabNuevo;
-			modelProfesor = glm::translate(modelProfesor, glm::vec3(3.868f, 11.692f, -54.0f));
-			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelProfesor));
-			Profesor.Draw(lightingShader);
+			//////Modelo Profesor
+			////glm::mat4 modelProfesor = modelLabNuevo;
+			////modelProfesor = glm::translate(modelProfesor, glm::vec3(3.868f, 11.692f, -54.0f));
+			////glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelProfesor));
+			////Profesor.Draw(lightingShader);
 
+			if (renderProfesor) {
+
+				//Profesor Torso
+
+
+
+
+				model = modelLabNuevo;
+				model = glm::translate(model, profesor.torso.position);
+				modelTemp = model = glm::scale(model, glm::vec3(0.15f));
+				modelTemp = model = glm::rotate(model, glm::radians(profesor.torso.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				modelTemp = model = glm::rotate(model, glm::radians(profesor.torso.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				modelTemp = model = glm::rotate(model, glm::radians(profesor.torso.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				ProfesorTorso.Draw(lightingShader);
+
+
+
+
+				//Profesor Head
+
+
+
+				model = modelLabNuevo;
+				model = glm::translate(modelTemp, glm::vec3(0.0f, 148.54f, 0.0f) + profesor.head.position);
+				model = glm::rotate(model, glm::radians(profesor.head.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(profesor.head.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(profesor.head.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				ProfesorHead.Draw(lightingShader);
+
+				//Profesor Right Arm
+
+				model = modelLabNuevo;
+				model = glm::translate(modelTemp, glm::vec3(-20.02f, 140.164f, 0.0f) + profesor.rightArm.position);
+				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				ProfesorRightArm.Draw(lightingShader);
+
+				//Profesor Sub Right Arm
+
+				model = modelLabNuevo;
+				model = glm::translate(modelTemp1, glm::vec3(-15.137, -16.795f, -0.456f) + profesor.subRightArm.position);
+				model = glm::rotate(model, glm::radians(profesor.subRightArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(profesor.subRightArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(profesor.subRightArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				ProfesorSubRightArm.Draw(lightingShader);
+
+
+
+
+				////Profesor Left Arm
+				model = modelLabNuevo;
+				model = glm::translate(modelTemp, glm::vec3(19.794f, 140.059f, -0.159f) + profesor.leftArm.position);
+				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				ProfesorLeftArm.Draw(lightingShader);
+
+				//Profesor Sub Left Arm
+
+				model = modelLabNuevo;
+				model = glm::translate(modelTemp1, glm::vec3(15.123f, -16.78f, -0.781f) + profesor.subLeftArm.position);
+				model = glm::rotate(model, glm::radians(profesor.subLeftArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(profesor.subLeftArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(profesor.subLeftArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				ProfesorSubLeftArm.Draw(lightingShader);
+
+
+
+				//Profesor Right Leg
+				model = modelLabNuevo;
+				model = glm::translate(modelTemp, glm::vec3(0.0f, 87.83f, -9.225f) + profesor.rightLeg.position);
+				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				ProfesorRightLeg.Draw(lightingShader);
+
+				//Profesor Sub Right Leg
+
+				model = modelLabNuevo;
+				model = glm::translate(modelTemp1, glm::vec3(-10.713f, -34.908f, 14.468f) + profesor.subRightLeg.position);
+				model = glm::rotate(model, glm::radians(profesor.subRightLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(profesor.subRightLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(profesor.subRightLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				ProfesorSubRightLeg.Draw(lightingShader);
+
+
+				//Profesor Left Leg
+				model = modelLabNuevo;
+				model = glm::translate(modelTemp, glm::vec3(9.817f, 87.906f, -9.521f) + profesor.leftLeg.position);
+				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				ProfesorLeftLeg.Draw(lightingShader);
+
+				//Profesor Sub Left Leg
+
+				model = modelLabNuevo;
+				model = glm::translate(modelTemp1, glm::vec3(0.272f, -36.701f, 17.087f) + profesor.subLeftLeg.position);
+				model = glm::rotate(model, glm::radians(profesor.subLeftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(profesor.subLeftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(profesor.subLeftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				ProfesorSubLeftLeg.Draw(lightingShader);
+
+			}
 
 			//Modelos de accesorios profesor
 			glm::mat4 modelMonitorProf = modelLabNuevo;
@@ -1997,6 +2259,7 @@ int main()
 	return 0;
 }
 
+
 // Moves/alters the camera positions based on user input
 void DoMovement()
 {
@@ -2064,6 +2327,8 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 		{
 			Light1 = glm::vec3(0);//Cuado es solo un valor en los 3 vectores pueden dejar solo una componente
 		}
+
+		
 	}
 	
 	//Nueva tecla para intercambiar entre escenarios
@@ -2086,9 +2351,17 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 			labNuevoBounce = 0.0f;
 			mostrarEscenarioNuevo = true;
 			transicionLab = 3;
+			renderProfesor = false;
 		}
 
 
+
+	}
+
+	if (keys[GLFW_KEY_N] && action == GLFW_PRESS && transicionLab == 3)
+	{
+		renderProfesor = true;
+		playAnimationIndex = 0;
 
 	}
 
@@ -2097,7 +2370,146 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 
 
 void Animation() {
+	//--------------------Animacion 0
+	
 
+	int steps = int(floor(500.0 * deltaTime));
+
+	for (int i = 0; i < steps; i++) {
+		switch (playAnimationIndex)
+		{
+		case 0:
+			if (caminarAnimationKeyIndex == -1) {
+				HumanoidModelInfo firstFrame = caminarAnimationKeyFrames[0].modelInfo;
+
+				profesor.torso.position.x = firstFrame.torso.position.x;
+				profesor.torso.position.z = firstFrame.torso.position.z;
+				profesor.torso.position.y = firstFrame.torso.position.y;
+				profesor.torso.rotation.y = firstFrame.torso.rotation.y;
+				playCaminar = true;
+				caminarAnimationKeyIndex = 0;
+			}
+			else if (caminarAnimationKeyIndex < caminarAnimationMaxKeyFrame) {
+				if (caminarAnimationMaxStep == -1) {
+
+					caminarAnimationCurrentStep = 0;
+
+					if (caminarAnimationKeyIndex == 4) {
+
+						playCaminar = false;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.rightArm.rotation.x = profesor.rightArm.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.leftArm.rotation.x = profesor.leftArm.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subRightArm.rotation.x = profesor.subRightArm.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subLeftArm.rotation.x = profesor.subLeftArm.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.rightLeg.rotation.x = profesor.rightLeg.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.leftLeg.rotation.x = profesor.leftLeg.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subRightLeg.rotation.x = profesor.subRightLeg.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subLeftLeg.rotation.x = profesor.subLeftLeg.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.leftArm.rotation.z = profesor.leftArm.rotation.z;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.rightArm.rotation.z = profesor.rightArm.rotation.z;
+					}
+
+
+					caminarAnimationMaxStep = caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].stepsToFrame;
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.x = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.torso.position.x, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.torso.position.x, caminarAnimationMaxStep);
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.y = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.torso.position.y, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.torso.position.y, caminarAnimationMaxStep);
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.z = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.torso.position.z, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.torso.position.z, caminarAnimationMaxStep);
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.rotation.y = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.torso.rotation.y, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.torso.rotation.y, caminarAnimationMaxStep);
+
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.rightArm.rotation.x = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.rightArm.rotation.x, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.rightArm.rotation.x, caminarAnimationMaxStep);
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.leftArm.rotation.x = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.leftArm.rotation.x, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.leftArm.rotation.x, caminarAnimationMaxStep);
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subRightArm.rotation.x = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subRightArm.rotation.x, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.subRightArm.rotation.x, caminarAnimationMaxStep);
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subLeftArm.rotation.x = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subLeftArm.rotation.x, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.subLeftArm.rotation.x, caminarAnimationMaxStep);
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.rightLeg.rotation.x = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.rightLeg.rotation.x, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.rightLeg.rotation.x, caminarAnimationMaxStep);
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.leftLeg.rotation.x = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.leftLeg.rotation.x, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.leftLeg.rotation.x, caminarAnimationMaxStep);
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subRightLeg.rotation.x = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subRightLeg.rotation.x, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.subRightLeg.rotation.x, caminarAnimationMaxStep);
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subLeftLeg.rotation.x = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subLeftLeg.rotation.x, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.subLeftLeg.rotation.x, caminarAnimationMaxStep);
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.leftArm.rotation.z = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.leftArm.rotation.z, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.leftArm.rotation.z, caminarAnimationMaxStep);
+					caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.rightArm.rotation.z = interpolation2(caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.rightArm.rotation.z, caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].modelInfo.rightArm.rotation.z, caminarAnimationMaxStep);
+
+				}
+				else {
+					if (caminarAnimationCurrentStep < caminarAnimationMaxStep) {
+						profesor.torso.position.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.x;
+						profesor.torso.position.y += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.y;
+						profesor.torso.position.z += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.z;
+						profesor.torso.rotation.y += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.rotation.y;
+
+						caminarTime += 15.0 * sqrt(pow(caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.x, 2.0) + pow(caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.z, 2.0));
+
+						profesor.rightArm.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.rightArm.rotation.x;
+						profesor.leftArm.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.leftArm.rotation.x;
+						profesor.subRightArm.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subRightArm.rotation.x;
+						profesor.subLeftArm.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subLeftArm.rotation.x;
+						profesor.rightLeg.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.rightLeg.rotation.x;
+						profesor.leftLeg.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.leftLeg.rotation.x;
+
+						profesor.subRightLeg.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subRightLeg.rotation.x;
+						profesor.subLeftLeg.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subLeftLeg.rotation.x;
+
+						profesor.leftArm.rotation.z += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.leftArm.rotation.z;
+						profesor.rightArm.rotation.z += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.rightArm.rotation.z;
+
+
+
+
+						caminarAnimationCurrentStep++;
+					}
+					else {
+						if (caminarAnimationKeyIndex == 5) {
+
+
+
+						}
+
+						caminarAnimationMaxStep = -1;
+						caminarAnimationCurrentStep = -1;
+						caminarAnimationKeyIndex++;
+
+
+					}
+				}
+
+			}
+			else {
+				caminarAnimationKeyIndex = -1;
+				playCaminar = false;
+				playAnimationIndex = -1;
+			}
+			break;
+
+
+
+
+		default:
+			break;
+		}
+
+
+	}
+
+	if (playCaminar)
+	{
+		
+		profesor.rightArm.rotation.x = 15.0f + sin(glm::radians(caminarTime)) * 30;
+		profesor.leftArm.rotation.x = 15.0f - sin(glm::radians(caminarTime)) * 30;
+		profesor.subRightArm.rotation.x = -15.0f + sin(glm::radians(caminarTime)) * 15;
+		profesor.subLeftArm.rotation.x = -15.0f - sin(glm::radians(caminarTime)) * 15;
+		profesor.rightLeg.rotation.x = -15.0f + sin(glm::radians(caminarTime)) * 15;
+		profesor.leftLeg.rotation.x = -15.0f - sin(glm::radians(caminarTime)) * 15;
+
+		profesor.subRightLeg.rotation.x = 30.0f + sin(glm::radians(caminarTime) - 0.5) * 30;
+		profesor.subLeftLeg.rotation.x = 30.0f - sin(glm::radians(caminarTime) - 0.5) * 30;
+
+		profesor.leftArm.rotation.z = -30.0f;
+		profesor.rightArm.rotation.z = 30.0f;
+	}
+	else
+	{
+		// Si la animación está desactivada, restablecer las variables
+		caminarTime = 0.0f;
+	}
+	//------------Transicion de laboratorios
 	if (transicionLab > -1 && transicionLab < 3) {
 		mostrarLuces = false;
 		if (rotarYEscenario < 360) {
@@ -2161,7 +2573,7 @@ void Animation() {
 		labNuevoMove = abs(100.0f * cos(glm::radians(labNuevoBounce)) * ((maxBounce - labNuevoBounce) / maxBounce));
 
 		if (labNuevoBounce >= maxBounce) {
-
+			renderProfesor = false;
 			transicionLab = 3;
 
 		}
