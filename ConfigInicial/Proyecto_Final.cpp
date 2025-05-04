@@ -296,6 +296,11 @@ int main(){
 
 	Shader lightingShader("Shader/lighting.vs", "Shader/lighting.frag");
 	Shader lampShader("Shader/lamp.vs", "Shader/lamp.frag");
+	//--------------------------------DECORACION------------------------------------------------------------
+
+	Model pasto((char*)"Models/Pasto/pasto.obj");
+
+	Model arbol((char*)"Models/Tree/Tree.obj");
 	
 	//------------------------Modelo Profesor
 
@@ -540,6 +545,123 @@ int main(){
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
+
+		//-----------------------------Decoraciones------------------------------------------------
+		glm::mat4 modelCesped(1.0f);
+		modelCesped = glm::scale(modelCesped, glm::vec3(10.0f, 0.001f, 10.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCesped));
+		pasto.Draw(lightingShader);
+
+
+		glm::mat4 modelEmpty(1.0f);
+
+
+		glEnable(GL_BLEND);//Activa la funcionalidad para trabajar el canal alfa
+		glm::mat4 modelArbol(1.0f);
+		modelArbol = glm::translate(modelArbol, glm::vec3(100.0f, 0.0f, 0.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(80.0f, 0.0f, 60.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(70.0f, 0.0f, -80.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(-90.0f, 0.0f, 65.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(85.0f, 0.0f, 95.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(-70.0f, 0.0f, -100.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(100.0f, 0.0f, 70.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(-100.0f, 0.0f, -90.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(95.0f, 0.0f, -65.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(-80.0f, 0.0f, 85.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(60.0f, 0.0f, 100.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+		glDisable(GL_BLEND);  //Desactiva el canal alfa 
+
+		
+
+		//-----------------------------Fin decoraciones---------------------------------------------
 
 		glm::mat4 model(1);
 
