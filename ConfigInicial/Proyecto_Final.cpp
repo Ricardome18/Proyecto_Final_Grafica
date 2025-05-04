@@ -402,114 +402,126 @@ int main(){
 		GLint viewPosLoc = glGetUniformLocation(lightingShader.Program, "viewPos");
 		glUniform3f(viewPosLoc, camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z);
 
-		
-			// --------------------------------------------------------------------------------------------
+		// --------------------------------------------------------------------------------------------
 			// ---------------------- DIBUJO LUCES ESCENARIO NUEVO ----------------------------------------
 			// --------------------------------------------------------------------------------------------
-			if (mostrarEscenarioNuevo) {
-				// Directional light-Luz general al escenario
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.direction"), 10.2f, 83.0f, 10.3f);
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"), 0.3f, 0.3f, 0.3f);
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), 0.6f, 0.6f, 0.6f);
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.specular"), 0.7f, 0.7f, 0.7f);
+		if (mostrarEscenarioNuevo) {
+
+			// Directional light-Luz general al escenario
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.direction"), 20.2f, 13.0f, 10.3f);
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"), 0.3f, 0.3f, 0.3f);
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), 0.6f, 0.6f, 0.6f);
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.specular"), 0.7f, 0.7f, 0.7f);
 
 
-				
-					//Luz puntual-Luz de lamparas
-					for (int i = 0; i < 9; ++i) {
-						std::string number = std::to_string(i);
-						glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].position").c_str()), pointLightPositions[i].x, pointLightPositions[i].y, pointLightPositions[i].z);
-						glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].ambient").c_str()), 0.05f, 0.05f, 0.05f);
-						glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].diffuse").c_str()), 1.00f, 1.00f, 1.00f);// Blanco intenso
-						glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].specular").c_str()), 0.2f, 0.2f, 0.2f);// Reflejo blanco
-						//calculo de la atenuacion
-						glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].constant").c_str()), 1.0f); // no  tocar mucho
-						glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].linear").c_str()), 0.05f);// más = menos alcance
-						glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].quadratic").c_str()), 0.009f);// más = menos alcance
-					}
-				
-				
 
-				// SpotLight - intensificada
-				// Dirección calculada rotando en eje X
-				spotLightDir.x = 0.0f;
-				spotLightDir.y = sin(glm::radians(spotPitch));
-				spotLightDir.z = -cos(glm::radians(spotPitch));  // apunta hacia "adelante"
-
-
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.position"), 3.0f, 12.3f, -40.0f);
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.direction"), spotLightDir.x, spotLightDir.y, spotLightDir.z);
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.direction"), spotLightDir.x, spotLightDir.y, spotLightDir.z);
-				// Intensidades más brillantes
-				// Luz azul brillante
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.ambient"), 0.05f, 0.05f, 0.4f);   // luz azul tenue
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.diffuse"), 0.1f, 0.1f, 12.5f);     // azul intenso visible
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.specular"), 0.3f, 0.3f, 1.0f);    // reflejo azulado
-				// Atenuación más suave para mayor alcance
-				glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.constant"), 1.0f);
-				glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.linear"), 0.09f);
-				glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.quadratic"), 0.032f);
-				// Ángulos más amplios (más área iluminada)
-				glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.cutOff"), glm::cos(glm::radians(30.0f)));
-				glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.outerCutOff"), glm::cos(glm::radians(40.0f)));
+			//Luz puntual-Luz de lamparas
+			for (int i = 0; i < 9; ++i) {
+				std::string number = std::to_string(i);
+				glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].position").c_str()), pointLightPositions[i].x, pointLightPositions[i].y, pointLightPositions[i].z);
+				glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].ambient").c_str()), 0.05f, 0.05f, 0.05f);
+				glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].diffuse").c_str()), 1.00f, 1.00f, 1.00f);// Blanco intenso
+				glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].specular").c_str()), 0.2f, 0.2f, 0.2f);// Reflejo blanco
+				//calculo de la atenuacion
+				glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].constant").c_str()), 1.0f); // no  tocar mucho
+				glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].linear").c_str()), 0.05f);// más = menos alcance
+				glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].quadratic").c_str()), 0.009f);// más = menos alcance
 			}
 			// ============================================================================================
 
-			// --------------------------------------------------------------------------------------------
-			// ---------------------- DIBUJO LUCES ESCENARIO VIEJO ----------------------------------------
-			// --------------------------------------------------------------------------------------------
-			else {
-				// Directional light-Luz general al escenario
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.direction"), 20.2f, 13.0f, 10.3f);
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"), 0.4f, 0.4f, 0.4f);
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), 0.6f, 0.6f, 0.6f);
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.specular"), 0.2f, 0.2f, 0.2f);
-
-
-
-				
-					//Luz puntual-Luz de lamparas
-
-					for (int i = 0; i < 16; i++) {
-						std::string number = std::to_string(i);
-						glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].position").c_str()), pointLightPositions2[i].x, pointLightPositions2[i].y, pointLightPositions2[i].z);
-						glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].ambient").c_str()), 0.09f, 0.09f, 0.09f);
-						glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].diffuse").c_str()), 0.9f, 0.85f, 0.85f);// Blanco intenso
-						glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].specular").c_str()), 0.3f, 0.3f, 0.3f);// Reflejo blanco
-						//calculo de la atenuacion
-						glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].constant").c_str()), 1.0f); // no  tocar mucho
-						glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].linear").c_str()), 0.05f);// más = menos alcance
-						glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].quadratic").c_str()), 0.009f);// más = menos alcance
-					}
-				
-
-				
-
-				// SpotLight - intensificada para proyector
-				// Dirección calculada rotando en eje X
-				spotLightDir.x = 0.0f;
-				spotLightDir.y = sin(glm::radians(spotPitch));
-				spotLightDir.z = -cos(glm::radians(spotPitch));  // apunta hacia "adelante"
-
-
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.position"), 3.0f, 12.3f, -40.0f);
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.direction"), spotLightDir.x, spotLightDir.y, spotLightDir.z);
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.direction"), spotLightDir.x, spotLightDir.y, spotLightDir.z);
-				// Intensidades más brillantes
-				// Valores nulos para el proyector apagado
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.ambient"), 0.0f, 0.0f, 0.0f);
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.diffuse"), 0.0f, 0.0f, 0.0f);
-				glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.specular"), 0.0f, 0.0f, 0.0f);
-				// Atenuación más suave para mayor alcance
-				glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.constant"), 1.0f);
-				glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.linear"), 0.09f);
-				glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.quadratic"), 0.032f);
-				// Ángulos más amplios (más área iluminada)
-				glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.cutOff"), glm::cos(glm::radians(30.0f)));
-				glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.outerCutOff"), glm::cos(glm::radians(40.0f)));
+			for (int i = 9; i < 16; ++i) {
+				std::string num = std::to_string(i);
+				std::string base = "pointLights[" + num + "]";
+				glUniform3f(glGetUniformLocation(lightingShader.Program, (base + ".ambient").c_str()), 0.0f, 0.0f, 0.0f);
+				glUniform3f(glGetUniformLocation(lightingShader.Program, (base + ".diffuse").c_str()), 0.0f, 0.0f, 0.0f);
+				glUniform3f(glGetUniformLocation(lightingShader.Program, (base + ".specular").c_str()), 0.0f, 0.0f, 0.0f);
 			}
-			// --------------------------------------------------------------------------------------------
-		
+
+
+
+			// SpotLight - intensificada
+			// Dirección calculada rotando en eje X
+			spotLightDir.x = 0.0f;
+			spotLightDir.y = sin(glm::radians(spotPitch));
+			spotLightDir.z = -cos(glm::radians(spotPitch));  // apunta hacia "adelante"
+
+
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.position"), 3.0f, 12.3f, -40.0f);
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.direction"), spotLightDir.x, spotLightDir.y, spotLightDir.z);
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.direction"), spotLightDir.x, spotLightDir.y, spotLightDir.z);
+			// Intensidades más brillantes
+			// Luz azul brillante
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.ambient"), 0.05f, 0.05f, 0.4f);   // luz azul tenue
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.diffuse"), 0.1f, 0.1f, 15.0f);     // azul intenso visible
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.specular"), 0.3f, 0.3f, 1.0f);    // reflejo azulado
+			// Atenuación más suave para mayor alcance
+			glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.constant"), 1.0f);
+			glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.linear"), 0.09f);
+			glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.quadratic"), 0.032f);
+			// Ángulos más amplios (más área iluminada)
+			glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.cutOff"), glm::cos(glm::radians(30.0f)));
+			glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.outerCutOff"), glm::cos(glm::radians(40.0f)));
+
+
+		}
+		// ============================================================================================
+
+		// --------------------------------------------------------------------------------------------
+		// ---------------------- DIBUJO LUCES ESCENARIO VIEJO ----------------------------------------
+		// --------------------------------------------------------------------------------------------
+		else {
+
+
+			// Directional light-Luz general al escenario
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.direction"), 20.2f, 13.0f, 10.3f);
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"), 0.4f, 0.4f, 0.4f);
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), 0.6f, 0.6f, 0.6f);
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.specular"), 0.2f, 0.2f, 0.2f);
+
+
+			//Luz puntual-Luz de lamparas
+
+			for (int i = 0; i < 16; i++) {
+				std::string number = std::to_string(i);
+				glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].position").c_str()), pointLightPositions2[i].x, pointLightPositions2[i].y, pointLightPositions2[i].z);
+				glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].ambient").c_str()), 0.09f, 0.09f, 0.09f);
+				glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].diffuse").c_str()), 0.9f, 0.85f, 0.85f);// Blanco intenso
+				glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].specular").c_str()), 0.3f, 0.3f, 0.3f);// Reflejo blanco
+				//calculo de la atenuacion
+				glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].constant").c_str()), 1.0f); // no  tocar mucho
+				glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].linear").c_str()), 0.05f);// más = menos alcance
+				glUniform1f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + number + "].quadratic").c_str()), 0.009f);// más = menos alcance
+			}
+
+
+
+
+			// SpotLight - intensificada para proyector
+			// Dirección calculada rotando en eje X
+			spotLightDir.x = 0.0f;
+			spotLightDir.y = sin(glm::radians(spotPitch));
+			spotLightDir.z = -cos(glm::radians(spotPitch));  // apunta hacia "adelante"
+
+
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.position"), 3.0f, 12.3f, -40.0f);
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.direction"), spotLightDir.x, spotLightDir.y, spotLightDir.z);
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.direction"), spotLightDir.x, spotLightDir.y, spotLightDir.z);
+			// Intensidades más brillantes
+			// Valores nulos para el proyector apagado
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.ambient"), 0.0f, 0.0f, 0.0f);
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.diffuse"), 0.0f, 0.0f, 0.0f);
+			glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.specular"), 0.0f, 0.0f, 0.0f);
+			// Atenuación más suave para mayor alcance
+			glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.constant"), 1.0f);
+			glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.linear"), 0.09f);
+			glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.quadratic"), 0.032f);
+			// Ángulos más amplios (más área iluminada)
+			glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.cutOff"), glm::cos(glm::radians(30.0f)));
+			glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.outerCutOff"), glm::cos(glm::radians(40.0f)));
+
+		}
+		// --------------------------------------------------------------------------------------------
+
 
 
 
