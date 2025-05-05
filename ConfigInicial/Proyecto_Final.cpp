@@ -261,7 +261,7 @@ int main(){
 	
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Proyecto Final Grafica", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Equipo 5. Proyecto Final Grafica", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
