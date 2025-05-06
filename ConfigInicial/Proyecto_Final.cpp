@@ -298,9 +298,9 @@ int main(){
 	Shader lampShader("Shader/lamp.vs", "Shader/lamp.frag");
 	//--------------------------------DECORACION------------------------------------------------------------
 
-	Model pasto((char*)"Models/Pasto/pasto.obj");
+	Model pasto((char*)"Models/Decoracion/Pasto/pasto.obj");
 
-	Model arbol((char*)"Models/Tree/Tree.obj");
+	Model arbol((char*)"Models/Decoracion/Tree/Tree.obj");
 	
 	//------------------------Modelo Profesor
 
