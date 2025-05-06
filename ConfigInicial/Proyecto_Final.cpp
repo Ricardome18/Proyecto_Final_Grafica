@@ -1,4 +1,12 @@
-﻿
+﻿/*
+PROYECTO FINAL LABORATORIO COMPUTACIÓN GRÁFICA
+LABORATORIO SALA D
+EQUIPO 5
+AXEL
+RICARDO
+JEREMIAS
+
+*/
 
 
 #include <iostream>
@@ -2302,6 +2310,7 @@ int main(){
 			puertaOld.Draw(lightingShader);
 			glDisable(GL_BLEND);
 			glBindVertexArray(0);
+
 			// =========================================================================================
 			// ================================ FIN MODELADO LAB VIEJO =================================
 			// =========================================================================================
