@@ -1,5 +1,5 @@
 ﻿/*
-PROYECTO FINAL LABORATORIO COMPUTACIÓN GRÁFICA
+PROYECTO FINAL  COMPUTACIÓN GRÁFICA
 LABORATORIO SALA D
 EQUIPO 5
 AXEL
@@ -34,6 +34,8 @@ JEREMIAS
 #include "Shader.h"
 #include "Camera.h"
 #include "Model.h"
+#include "Texture.h"//Skybox
+
 
 
 //Structs modelo humanide
@@ -145,7 +147,7 @@ int transicionLab = -1;
 
 int playAnimationIndex = -1;
 
-int FrameIndex = 0;			//introducir datos
+int FrameIndex = 0;	//introducir datos
 bool playCaminar = false;
 bool play = false;
 int playIndex = 0;
@@ -304,11 +306,8 @@ int main(){
 
 	Shader lightingShader("Shader/lighting.vs", "Shader/lighting.frag");
 	Shader lampShader("Shader/lamp.vs", "Shader/lamp.frag");
-	//--------------------------------DECORACION------------------------------------------------------------
+	Shader skyboxShader("Shader/SkyBox.vs", "Shader/SkyBox.frag");//Skybox
 
-	Model pasto((char*)"Models/Decoracion/Pasto/pasto.obj");
-
-	Model arbol((char*)"Models/Decoracion/Tree/Tree.obj");
 	
 	//------------------------Modelo Profesor
 
@@ -351,16 +350,84 @@ int main(){
 	Model MonitorProf((char*)"Models/Escenario_Nuevo/Mon_Prof/Mon_Prof.obj");
 	Model MesaProf((char*)"Models/Escenario_Nuevo/Mesa_Profe/Mesa_Prof.obj");
 
-	
+	Model DetachTable((char*)"Models/Escenario_Nuevo/Detach_Table/Table1.obj");
+	Model DetachTable2((char*)"Models/Escenario_Nuevo/Detach_Table/Table2.obj");
+
+	GLfloat skyboxVertices[] = {//Skybox
+		// Positions
+		-1.0f,  1.0f, -1.0f,
+		-1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+
+		-1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
+
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+
+		-1.0f, -1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
+
+		-1.0f,  1.0f, -1.0f,
+		1.0f,  1.0f, -1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f, -1.0f,
+
+		-1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		1.0f, -1.0f,  1.0f
+	};
+
+
+	GLuint indices[] =//Skybox
+	{  // Note that we start from 0!
+		0,1,2,3,
+		4,5,6,7,
+		8,9,10,11,
+		12,13,14,15,
+		16,17,18,19,
+		20,21,22,23,
+		24,25,26,27,
+		28,29,30,31,
+		32,33,34,35
+	};
+
 
 
 	// First, set the container's VAO (and VBO)
-	GLuint VBO, VAO;
+	GLuint VBO, VAO, EBO;//Skybox
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);//Skybox
+
+
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);//Skybox
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);//Skybox
+
+	
 	// Position attribute
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
@@ -372,6 +439,31 @@ int main(){
 	lightingShader.Use();
 	glUniform1i(glGetUniformLocation(lightingShader.Program, "Material.difuse"), 0);
 	glUniform1i(glGetUniformLocation(lightingShader.Program, "Material.specular"), 1);
+
+
+	//Skybox
+	GLuint  skyboxVBO, skyboxVAO;//Skybox
+	glGenVertexArrays(1, &skyboxVAO);//Skybox
+	glGenBuffers(1, &skyboxVBO);//Skybox
+	glBindVertexArray(skyboxVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);//Skybox
+	glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), skyboxVertices, GL_STATIC_DRAW);//Skybox
+	glEnableVertexAttribArray(0);//Skybox
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);//Skybox
+
+	//load texture skybox
+	vector<const GLchar*> faces;//Skybox
+	faces.push_back("SkyBox_Desierto/right.png");//Skybox
+	faces.push_back("SkyBox_Desierto/left.png");//Skybox
+	faces.push_back("SkyBox_Desierto/top.png");//Skybox
+	faces.push_back("SkyBox_Desierto/bottom.png");//Skybox
+	faces.push_back("SkyBox_Desierto/front.png");//Skybox
+	faces.push_back("SkyBox_Desierto/back.png");//Skybox
+
+	GLuint cubemapTexture = TextureLoading::LoadCubemap(faces);//Skybox
+
+
+
 
 	glm::mat4 projection = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 300.0f);//Modificacion a 300 para alcanze más lejano de la camara
 
@@ -396,10 +488,6 @@ int main(){
 		// OpenGL options
 		glEnable(GL_DEPTH_TEST);
 
-		//Nuevas funciones agregadas
-		/*glEnable(GL_CULL_FACE);
-		glCullFace(GL_FRONT);
-		glFrontFace(GL_CW);*/
 
 		glm::mat4 modelTemp = glm::mat4(1.0f); //Temp
 		glm::mat4 modelTemp1 = glm::mat4(1.0f); //Temp
@@ -554,86 +642,6 @@ int main(){
 		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
 
-		//-----------------------------Decoraciones------------------------------------------------
-		glm::mat4 modelCesped(1.0f);
-		modelCesped = glm::scale(modelCesped, glm::vec3(10.0f, 0.001f, 10.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCesped));
-		pasto.Draw(lightingShader);
-
-
-		glm::mat4 modelEmpty(1.0f);
-
-
-		glm::mat4 modelArbol(1.0f);
-		modelArbol = glm::translate(modelArbol, glm::vec3(100.0f, 0.0f, 0.0f));
-		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
-		arbol.Draw(lightingShader);
-
-
-		modelArbol = modelEmpty;
-		modelArbol = glm::translate(modelArbol, glm::vec3(80.0f, 0.0f, 60.0f));
-		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
-		arbol.Draw(lightingShader);
-
-
-		modelArbol = modelEmpty;
-		modelArbol = glm::translate(modelArbol, glm::vec3(70.0f, 0.0f, -80.0f));
-		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
-		arbol.Draw(lightingShader);
-
-		modelArbol = modelEmpty;
-		modelArbol = glm::translate(modelArbol, glm::vec3(-90.0f, 0.0f, 65.0f));
-		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
-		arbol.Draw(lightingShader);
-
-		modelArbol = modelEmpty;
-		modelArbol = glm::translate(modelArbol, glm::vec3(85.0f, 0.0f, 95.0f));
-		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
-		arbol.Draw(lightingShader);
-
-		modelArbol = modelEmpty;
-		modelArbol = glm::translate(modelArbol, glm::vec3(-70.0f, 0.0f, -100.0f));
-		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
-		arbol.Draw(lightingShader);
-
-		modelArbol = modelEmpty;
-		modelArbol = glm::translate(modelArbol, glm::vec3(100.0f, 0.0f, 70.0f));
-		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
-		arbol.Draw(lightingShader);
-
-		modelArbol = modelEmpty;
-		modelArbol = glm::translate(modelArbol, glm::vec3(-100.0f, 0.0f, -90.0f));
-		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
-		arbol.Draw(lightingShader);
-
-		modelArbol = modelEmpty;
-		modelArbol = glm::translate(modelArbol, glm::vec3(95.0f, 0.0f, -65.0f));
-		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
-		arbol.Draw(lightingShader);
-
-		modelArbol = modelEmpty;
-		modelArbol = glm::translate(modelArbol, glm::vec3(-80.0f, 0.0f, 85.0f));
-		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
-		arbol.Draw(lightingShader);
-
-		modelArbol = modelEmpty;
-		modelArbol = glm::translate(modelArbol, glm::vec3(60.0f, 0.0f, 100.0f));
-		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
-		arbol.Draw(lightingShader);
-		
-
-		//-----------------------------Fin decoraciones---------------------------------------------
 
 		glm::mat4 model(1);
 
@@ -649,15 +657,62 @@ int main(){
 		modelLabViejo = glm::translate(modelLabViejo, glm::vec3(labViejoMove, labViejoMove, 0.0f));
 		modelLabViejo = glm::rotate(modelLabViejo, glm::radians(rotarYLabViejo), glm::vec3(0.0f, 1.0f, 0.0f));
 
+
+
+
+		// ================PARTE DE CODIGO DE RENDERIZADO DE SKYBOX PARA EL MANEJO DE TRANSPARENCIA=========================================
+		
+		// 1. Limpiar buffers al inicio del frame
+		// Se borran tanto el color buffer como el depth buffer para empezar un nuevo frame limpio
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		// 2. Dibujar el skybox sin escribir en el depth buffer
+		// Se desactiva la escritura en el depth buffer para que el skybox no bloquee otros objetos
+		glDepthMask(GL_FALSE);
+		// Se permite dibujar píxeles con profundidad menor o igual, necesario para el skybox
+		glDepthFunc(GL_LEQUAL);
+		// Activar el shader del skybox
+		skyboxShader.Use();
+
+		// Se elimina la componente de traslación de la cámara para que el skybox no se mueva con ella
+		glm::mat4 viewSkybox = glm::mat4(glm::mat3(camera.GetViewMatrix()));
+		// Se pasan las matrices de vista y proyección al shader del skybox
+		glUniformMatrix4fv(glGetUniformLocation(skyboxShader.Program, "view"), 1, GL_FALSE, glm::value_ptr(viewSkybox));
+		glUniformMatrix4fv(glGetUniformLocation(skyboxShader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+		// Se enlaza el VAO y la textura cúbica del skybox
+		glBindVertexArray(skyboxVAO);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+
+		// Se dibuja el cubo del skybox
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		glBindVertexArray(0);
+
+		// Se reactiva la escritura en el depth buffer
+		glDepthMask(GL_TRUE);
+		// Se restaura el comportamiento estándar del depth test
+		glDepthFunc(GL_LESS);
+		// 3. Dibujar modelos opacos (sin transparencia)
+		// Aquí se activan los shaders de iluminación y se dibujan los modelos normales
+		lightingShader.Use();
+		// 4. Dibujar modelos transparentes (de más lejos a más cerca)
+		// Se activa el blending para permitir transparencias (mezclar colores con fondo)
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		// ... aquí se dibujan modelos con texturas o materiales que contienen canal alfa ...
+		glDisable(GL_BLEND);
+
+
+
 		//Condicion para intercambiar entre los dos escenarios
 
 		if (mostrarEscenarioNuevo) {
 
 
 
-			// =========================================================================================
-	// ================================ INICIO DE  MODELADO LAB NUEVO =================================
-	// =========================================================================================
+		// =========================================================================================
+		// ================================ INICIO DE  MODELADO LAB NUEVO =================================
+		// =========================================================================================
 
 
 
@@ -828,6 +883,81 @@ int main(){
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMouseProfe));
 			Mouse.Draw(lightingShader);
 
+			
+			//------Inicio de Modelos Separados de columna 1,fila 4 y modelos respectivos 3 y 4------//
+
+			//Mesa 4 Izquierda
+			glm::mat4 modelMesa4_Izq = modelLabNuevo;
+			modelMesa4_Izq = glm::translate(modelMesa4_Izq, glm::vec3(-31.0f, 5.31f, 42.22f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa4_Izq));
+			DetachTable2.Draw(lightingShader);
+
+			//Sillas
+
+			glm::mat4 modelSilla3_3 = modelLabNuevo;
+			modelSilla3_3 = glm::translate(modelSilla3_3, glm::vec3(-27.529f, 0.12f, 52.643f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelSilla3_3));
+			Silla.Draw(lightingShader);
+
+			glm::mat4 modelSilla3_4 = modelLabNuevo;
+			modelSilla3_4 = glm::translate(modelSilla3_4, glm::vec3(-17.529f, 0.12f, 52.643f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelSilla3_4));
+			Silla.Draw(lightingShader);
+
+			//CPUs
+
+			glm::mat4 modelCPU3_3 = modelLabNuevo;
+			modelCPU3_3 = glm::translate(modelCPU3_3, glm::vec3(-27.25f, 12.8f, 39.736f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCPU3_3));
+			CPU_1.Draw(lightingShader);
+
+			glm::mat4 modelCPU3_4 = modelLabNuevo;
+			modelCPU3_4 = glm::translate(modelCPU3_4, glm::vec3(-17.25f, 12.8f, 39.736f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCPU3_4));
+			CPU_1.Draw(lightingShader);
+
+			//Monitores
+
+			glm::mat4 modelMon3_3 = modelLabNuevo;
+			modelMon3_3 = glm::translate(modelMon3_3, glm::vec3(-26.529f, 10.1f, 41.324f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMon3_3));
+			Mon1.Draw(lightingShader);
+
+			glm::mat4 modelMon3_4 = modelLabNuevo;
+			modelMon3_4 = glm::translate(modelMon3_4, glm::vec3(-16.529f, 10.1f, 41.324f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMon3_4));
+			Mon1.Draw(lightingShader);
+
+			//Teclados
+
+			glm::mat4 modelTeclado3_3 = modelLabNuevo;
+			modelTeclado3_3 = glm::translate(modelTeclado3_3, glm::vec3(-26.529f, 10.0f, 44.0f));
+			modelTeclado3_3 = glm::scale(modelTeclado3_3, glm::vec3(1.1f, 1.1f, 1.1f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTeclado3_3));
+			Teclado.Draw(lightingShader);
+
+			glm::mat4 modelTeclado3_4 = modelLabNuevo;
+			modelTeclado3_4 = glm::translate(modelTeclado3_4, glm::vec3(-16.529f, 10.0f, 44.0f));
+			modelTeclado3_4 = glm::scale(modelTeclado3_4, glm::vec3(1.1f, 1.1f, 1.1f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTeclado3_4));
+			Teclado.Draw(lightingShader);
+
+
+			//Mouse
+
+			glm::mat4 modelMouse3_3 = modelLabNuevo;
+			modelMouse3_3 = glm::translate(modelMouse3_3, glm::vec3(-22.0f, 10.0f, 44.0f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMouse3_3));
+			Mouse.Draw(lightingShader);
+
+			glm::mat4 modelMouse3_4 = modelLabNuevo;
+			modelMouse3_4 = glm::translate(modelMouse3_4, glm::vec3(-12.0f, 10.0f, 44.0f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMouse3_4));
+			Mouse.Draw(lightingShader);
+
+
+			//------FIN de Modelos Separados de columna 1,fila 4 y modelos respectivos 3 y 4------//
+			
 
 
 
@@ -851,10 +981,13 @@ int main(){
 			Mesa.Draw(lightingShader);
 
 
-			glm::mat4 modelMesa4 = modelLabNuevo;
-			modelMesa4 = glm::translate(modelMesa4, glm::vec3(-31.0f, 5.31f, 42.22f));
-			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa4));
-			Mesa.Draw(lightingShader);
+			
+			//Mesa 4 Derecha
+			glm::mat4 modelMesa4_Der = modelLabNuevo;
+			modelMesa4_Der = glm::translate(modelMesa4_Der, glm::vec3(-31.0f, 5.31f, 42.22f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMesa4_Der));
+			DetachTable.Draw(lightingShader);
+
 
 
 
@@ -889,7 +1022,7 @@ int main(){
 
 			// --- Modelos de sillas --- 
 			//COLUMNA 1
-			int numFilas = 4;         // Número de filas de sillas
+			int numFilas = 3;         // Número de filas de sillas
 			int sillasPorFila = 4;    // Número de sillas en cada fila
 
 			float xBase = -47.529f;         // X de la primera silla de cada fila
@@ -907,7 +1040,15 @@ int main(){
 					Silla.Draw(lightingShader);
 				}
 			}
+			glm::mat4 modelSilla3_1 = modelLabNuevo;
+			modelSilla3_1 = glm::translate(modelSilla3_1, glm::vec3(-47.529f, 0.12f, 52.643f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelSilla3_1));
+			Silla.Draw(lightingShader);
 
+			glm::mat4 modelSilla3_2 = modelLabNuevo;
+			modelSilla3_2 = glm::translate(modelSilla3_2, glm::vec3(-37.529f, 0.12f, 52.643f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelSilla3_2));
+			Silla.Draw(lightingShader);
 
 
 			//Modelos de sillas 
@@ -935,7 +1076,7 @@ int main(){
 
 			// --- Modelos de CPU ---
 			//Columna 1
-			int numFilas_CPU1 = 4;         // Número de filas de CPU's
+			int numFilas_CPU1 = 3;         // Número de filas de CPU's
 			int CPU_PorFila = 4;    // Número de cpu's en cada fila
 
 			float xBase_CPU1 = -47.25f;         // X del primer CPU  de cada fila
@@ -953,6 +1094,19 @@ int main(){
 					CPU_1.Draw(lightingShader);
 				}
 			}
+
+
+			glm::mat4 modelCPU3_1 = modelLabNuevo;
+			modelCPU3_1 = glm::translate(modelCPU3_1, glm::vec3(-47.25f, 12.8f, 39.736f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCPU3_1));
+			CPU_1.Draw(lightingShader);
+
+			glm::mat4 modelCPU3_2 = modelLabNuevo;
+			modelCPU3_2 = glm::translate(modelCPU3_2, glm::vec3(-37.25f, 12.8f, 39.736f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCPU3_2));
+			CPU_1.Draw(lightingShader);
+
+
 
 			// ---Columna 2 de CPUs ---
 			int numFilas_CPU2 = 4;         // Número de filas de CPU's
@@ -980,7 +1134,7 @@ int main(){
 			// --- Modelos de Monitores ---
 
 			// Columna 1 (4 monitores por fila, 4 filas)
-			int numFilas_Mon1 = 4;
+			int numFilas_Mon1 = 3;
 			int Mon1_PorFila = 4;
 
 			float xBase_Mon1 = -46.529f;         // X del primer monitor de la primera columna
@@ -998,6 +1152,18 @@ int main(){
 					Mon1.Draw(lightingShader);
 				}
 			}
+
+			glm::mat4 modelMon3_1 = modelLabNuevo;
+			modelMon3_1 = glm::translate(modelMon3_1, glm::vec3(-46.529f, 10.1f, 41.324f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMon3_1));
+			Mon1.Draw(lightingShader);
+
+			glm::mat4 modelMon3_2 = modelLabNuevo;
+			modelMon3_2 = glm::translate(modelMon3_2, glm::vec3(-36.529f, 10.1f, 41.324f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMon3_2));
+			Mon1.Draw(lightingShader);
+
+
 
 			// Columna 2 (5 monitores por fila, 4 filas)
 			int numFilas_Mon2 = 4;
@@ -1024,7 +1190,7 @@ int main(){
 			// --- Modelos de Teclados ---
 
 			// Columna 1 (4 teclados por fila)
-			int numFilas_Teclado1 = 4;
+			int numFilas_Teclado1 = 3;
 			int Teclados1_PorFila = 4;
 
 			float xBase_Teclado1 = -46.529f;         // X inicial de la primera columna
@@ -1043,6 +1209,19 @@ int main(){
 					Teclado.Draw(lightingShader); // Asegúrate que tu modelo de teclado se llame "Teclado"
 				}
 			}
+			glm::mat4 modelTeclado3_1 = modelLabNuevo;
+			modelTeclado3_1 = glm::translate(modelTeclado3_1, glm::vec3(-46.529f, 10.0f, 44.0f));
+			modelTeclado3_1 = glm::scale(modelTeclado3_1, glm::vec3(1.1f, 1.1f, 1.1f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTeclado3_1));
+			Teclado.Draw(lightingShader);
+
+			glm::mat4 modelTeclado3_2 = modelLabNuevo;
+			modelTeclado3_2 = glm::translate(modelTeclado3_2, glm::vec3(-36.529f, 10.0f, 44.0f));
+			modelTeclado3_2 = glm::scale(modelTeclado3_2, glm::vec3(1.1f, 1.1f, 1.1f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTeclado3_2));
+			Teclado.Draw(lightingShader);
+
+
 
 			// --- Columna 2 (5 teclados por fila) ---
 			int numFilas_Teclado2 = 4;
@@ -1068,7 +1247,7 @@ int main(){
 			// --- Modelos de Mouse ---
 
 			// Columna 1 (4 mouses por fila)
-			int numFilas_Mouse1 = 4;
+			int numFilas_Mouse1 = 3;
 			int Mouses1_PorFila = 4;
 
 			float xBase_Mouse1 = -42.0f;
@@ -1086,6 +1265,17 @@ int main(){
 					Mouse.Draw(lightingShader); // Modelo de Mouse
 				}
 			}
+
+			glm::mat4 modelMouse3_1 = modelLabNuevo;
+			modelMouse3_1 = glm::translate(modelMouse3_1, glm::vec3(-42.0f, 10.0f, 44.0f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMouse3_1));
+			Mouse.Draw(lightingShader);
+
+			glm::mat4 modelMouse3_2 = modelLabNuevo;
+			modelMouse3_2 = glm::translate(modelMouse3_2, glm::vec3(-32.0f, 10.0f, 44.0f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMouse3_2));
+			Mouse.Draw(lightingShader);
+
 
 			// Columna 2 (5 mouses por fila)
 			int numFilas_Mouse2 = 4;
@@ -2285,35 +2475,43 @@ int main(){
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla37));
 			sillaOld.Draw(lightingShader);
 
+
+
 			// -----------------------------------------------------------------
 			// ventanas con transparencia
 			glm::mat4 modelVentanasOld = modelLabViejo;
 			glEnable(GL_BLEND);//Activa la funcionalidad para trabajar el canal alfa
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelVentanasOld));
-			glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 1);
+			glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
 			modelCuartoOld = glm::scale(modelCuartoOld, glm::vec3(1.0f, 1.0f, 1.0f));
 			modelCuartoOld = glm::translate(modelCuartoOld, glm::vec3(0.0f, 0.0f, 0.0f));
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelVentanasOld));
 			ventanasOld.Draw(lightingShader);
 			glDisable(GL_BLEND);
 			glBindVertexArray(0);
+
+
 			// Puerta del salón
 			glm::mat4 modelPuertaOld = modelLabViejo;
 			glEnable(GL_BLEND);//Activa la funcionalidad para trabajar el canal alfa
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelPuertaOld));
-			glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 1);
+			glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
 			modelPuertaOld = glm::scale(modelCuartoOld, glm::vec3(1.0f, 1.0f, 1.0f));
 			modelPuertaOld = glm::translate(modelCuartoOld, glm::vec3(-51.728f, 12.277f, -67.497f));
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelPuertaOld));
 			puertaOld.Draw(lightingShader);
 			glDisable(GL_BLEND);
 			glBindVertexArray(0);
+			
+
 
 			// =========================================================================================
 			// ================================ FIN MODELADO LAB VIEJO =================================
 			// =========================================================================================
+
+
 
 
 		}
@@ -2344,12 +2542,22 @@ int main(){
 		//glDrawArrays(GL_TRIANGLES, 0, 36);
 		
 		glBindVertexArray(0);
-
-
-
+		
+		
+		
+		
 		// Swap the screen buffers
 		glfwSwapBuffers(window);
+	
+		
 	}
+
+	// Delete all the objects as they're been cleared as well
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);//Skybox
+	glDeleteBuffers(1, &EBO);//Skybox
+	glDeleteVertexArrays(1, &skyboxVAO);//Skybox
+	glDeleteBuffers(1, &skyboxVAO);//Skybox
 
 
 	// Terminate GLFW, clearing any resources allocated by GLFW.
