@@ -65,7 +65,7 @@ struct HumanoidFrame {
 	int stepsToFrame = -1;
 };
 
-HumanoidModelInfo profesor;
+HumanoidModelInfo alumno1;
 
 
 // Function prototypes
@@ -170,7 +170,7 @@ float rotBall = 1.0472;
 bool AnimBall = false;
 float salto = 0.0f;
 float rot = 0.0f;
-bool renderProfesor = false;
+bool renderAlumno1 = false;
 float animationSpeed = 0.06f;  // Controla la velocidad global de la animación. Un valor más bajo significa más lento.
 
 
@@ -220,9 +220,9 @@ void startUpFrames() {
 	caminarAnimationKeyFrames[6].modelInfo.torso.position.z = chairZCoordinate;
 	caminarAnimationKeyFrames[6].modelInfo.torso.position.y = -5.0;
 	caminarAnimationKeyFrames[6].modelInfo.rightLeg.rotation.x = -60.0;
-	caminarAnimationKeyFrames[6].modelInfo.subRightLeg.rotation.x = 60.0;
+	caminarAnimationKeyFrames[6].modelInfo.subRightLeg.rotation.x = 30.0;
 	caminarAnimationKeyFrames[6].modelInfo.leftLeg.rotation.x = -60.0;
-	caminarAnimationKeyFrames[6].modelInfo.subLeftLeg.rotation.x = 60.0;
+	caminarAnimationKeyFrames[6].modelInfo.subLeftLeg.rotation.x = 30.0;
 	caminarAnimationKeyFrames[6].modelInfo.rightLeg.rotation.x = -60.0;
 	caminarAnimationKeyFrames[6].modelInfo.leftArm.rotation.x = -30.0;
 	caminarAnimationKeyFrames[6].modelInfo.rightArm.rotation.x = 30.0;
@@ -233,9 +233,9 @@ void startUpFrames() {
 	caminarAnimationKeyFrames[7].modelInfo.torso.position.z = chairZCoordinate;
 	caminarAnimationKeyFrames[7].modelInfo.torso.position.y = -5.0;
 	caminarAnimationKeyFrames[7].modelInfo.rightLeg.rotation.x = -60.0;
-	caminarAnimationKeyFrames[7].modelInfo.subRightLeg.rotation.x = 60.0;
+	caminarAnimationKeyFrames[7].modelInfo.subRightLeg.rotation.x = 30.0;
 	caminarAnimationKeyFrames[7].modelInfo.leftLeg.rotation.x = -60.0;
-	caminarAnimationKeyFrames[7].modelInfo.subLeftLeg.rotation.x = 60.0;
+	caminarAnimationKeyFrames[7].modelInfo.subLeftLeg.rotation.x = 30.0;
 	caminarAnimationKeyFrames[7].modelInfo.rightLeg.rotation.x = -60.0;
 	caminarAnimationKeyFrames[7].modelInfo.leftArm.rotation.z = -30.0;
 	caminarAnimationKeyFrames[7].modelInfo.rightArm.rotation.z = 30.0;
@@ -309,49 +309,75 @@ int main(){
 	Shader skyboxShader("Shader/SkyBox.vs", "Shader/SkyBox.frag");//Skybox
 
 	
-	//------------------------Modelo Profesor
+	//------------------------Modelo Alumno1
 
-	Model ProfesorTorso((char*)"Models/Profesor/ProfesorTorso.obj");
-	Model ProfesorHead((char*)"Models/Profesor/ProfesorHead.obj");
-	Model ProfesorRightArm((char*)"Models/Profesor/ProfesorRightArm.obj");
-	Model ProfesorSubRightArm((char*)"Models/Profesor/ProfesorSubRightArm.obj");
-	Model ProfesorLeftArm((char*)"Models/Profesor/ProfesorLeftArm.obj");
-	Model ProfesorSubLeftArm((char*)"Models/Profesor/ProfesorSubLeftArm.obj");
-	Model ProfesorRightLeg((char*)"Models/Profesor/ProfesorRightLeg.obj");
-	Model ProfesorSubRightLeg((char*)"Models/Profesor/ProfesorSubRightLeg.obj");
-	Model ProfesorLeftLeg((char*)"Models/Profesor/ProfesorLeftLeg.obj");
-	Model ProfesorSubLeftLeg((char*)"Models/Profesor/ProfesorSubLeftLeg.obj");
+	Model Alumno1Torso((char*)"Models/Alumno1/ProfesorTorso.obj");
+	Model Alumno1Head((char*)"Models/Alumno1/ProfesorHead.obj");
+	Model Alumno1RightArm((char*)"Models/Alumno1/ProfesorRightArm.obj");
+	Model Alumno1SubRightArm((char*)"Models/Alumno1/ProfesorSubRightArm.obj");
+	Model Alumno1LeftArm((char*)"Models/Alumno1/ProfesorLeftArm.obj");
+	Model Alumno1SubLeftArm((char*)"Models/Alumno1/ProfesorSubLeftArm.obj");
+	Model Alumno1RightLeg((char*)"Models/Alumno1/ProfesorRightLeg.obj");
+	Model Alumno1SubRightLeg((char*)"Models/Alumno1/ProfesorSubRightLeg.obj");
+	Model Alumno1LeftLeg((char*)"Models/Alumno1/ProfesorLeftLeg.obj");
+	Model Alumno1SubLeftLeg((char*)"Models/Alumno1/ProfesorSubLeftLeg.obj");
 
 	// ------------------- MODELOS LAB VIEJO -----------------------------------------
 
 	Model tornado((char*)"Models/Tornado/tornado.obj");
 
-	Model cuartoOld((char*)"Models/Escenario_Viejo/CuartoViejo/salonViejo.obj");		// LAB VIEJO
-	Model ventanasOld((char*)"Models/Escenario_Viejo/ventanasOLD/ventanasOLD.obj");		// VENTANAS OLD
-	Model mesaOld((char*)"Models/Escenario_Viejo/mesaOLD/mesaOLD.obj");					// MESA VIEJA
-	Model sillaOld((char*)"Models/Escenario_Viejo/sillaOLD/sillaOLD.obj");				// SILLA VIEJA
-	Model oldCPU((char*)"Models/Escenario_Viejo/oldCPU/oldCPU.obj");					// CPU VIEJO
-	Model monitorOld((char*)"Models/Escenario_Viejo/monitorViejo/monitorViejo.obj");	// MONITOR VIEJO
-	Model tecladoOld((char*)"Models/Escenario_Viejo/tecladoViejo/teclado.obj");			// TECLADO VIEJO
-	Model mouseOld((char*)"Models/Escenario_Viejo/mouseViejo/mouseViejo.obj");			// MOUSE VIEJO
-	Model puertaOld((char*)"Models/Escenario_Viejo/puertaOLD/puertaOLD.obj");			// PUERTA VIEJA
+	//Model cuartoOld((char*)"Models/Escenario_Viejo/CuartoViejo/salonViejo.obj");		// LAB VIEJO
+	//Model ventanasOld((char*)"Models/Escenario_Viejo/ventanasOLD/ventanasOLD.obj");		// VENTANAS OLD
+	//Model mesaOld((char*)"Models/Escenario_Viejo/mesaOLD/mesaOLD.obj");					// MESA VIEJA
+	//Model sillaOld((char*)"Models/Escenario_Viejo/sillaOLD/sillaOLD.obj");				// SILLA VIEJA
+	//Model oldCPU((char*)"Models/Escenario_Viejo/oldCPU/oldCPU.obj");					// CPU VIEJO
+	//Model monitorOld((char*)"Models/Escenario_Viejo/monitorViejo/monitorViejo.obj");	// MONITOR VIEJO
+	//Model tecladoOld((char*)"Models/Escenario_Viejo/tecladoViejo/teclado.obj");			// TECLADO VIEJO
+	//Model mouseOld((char*)"Models/Escenario_Viejo/mouseViejo/mouseViejo.obj");			// MOUSE VIEJO
+	//Model puertaOld((char*)"Models/Escenario_Viejo/puertaOLD/puertaOLD.obj");			// PUERTA VIEJA
+
+	Model cuartoOld((char*)"Models/placeholder.obj");		// LAB VIEJO
+	Model ventanasOld((char*)"Models/placeholder.obj");		// VENTANAS OLD
+	Model mesaOld((char*)"Models/placeholder.obj");					// MESA VIEJA
+	Model sillaOld((char*)"Models/placeholder.obj");				// SILLA VIEJA
+	Model oldCPU((char*)"Models/placeholder.obj");					// CPU VIEJO
+	Model monitorOld((char*)"Models/placeholder.obj");	// MONITOR VIEJO
+	Model tecladoOld((char*)"Models/placeholder.obj");			// TECLADO VIEJO
+	Model mouseOld((char*)"Models/placeholder.obj");			// MOUSE VIEJO
+	Model puertaOld((char*)"Models/placeholder.obj");			// PUERTA VIEJA
 
 
 	// ------------------- MODELOS LAB NUEVO -----------------------------------------
-	Model Cuarto((char*)"Models/Escenario_Nuevo/Cuarto/Cuartov2.obj");
-	Model Ventana((char*)"Models/Escenario_Nuevo/Ventanas_Vidrio/Ventanas.obj");
-	Model Profesor((char*)"Models/Escenario_Nuevo/Profesor/Profesor.obj");
-	Model Mesa((char*)"Models/Escenario_Nuevo/Mesa/Mesa.obj");
+	//Model Cuarto((char*)"Models/Escenario_Nuevo/Cuarto/Cuartov2.obj");
+	//Model Ventana((char*)"Models/Escenario_Nuevo/Ventanas_Vidrio/Ventanas.obj");
+	//Model Alumno1((char*)"Models/Escenario_Nuevo/Alumno1/Profesor.obj");
+	//Model Mesa((char*)"Models/Escenario_Nuevo/Mesa/Mesa.obj");
 	Model Silla((char*)"Models/Escenario_Nuevo/Silla/Silla.obj");
-	Model CPU_1((char*)"Models/Escenario_Nuevo/CPU/CPU1.obj");
-	Model Mon1((char*)"Models/Escenario_Nuevo/Monitor/Mon1.obj");
-	Model Teclado((char*)"Models/Escenario_Nuevo/Teclado/Teclado.obj");
-	Model Mouse((char*)"Models/Escenario_Nuevo/Mouse/Mouse.obj");
-	Model MonitorProf((char*)"Models/Escenario_Nuevo/Mon_Prof/Mon_Prof.obj");
-	Model MesaProf((char*)"Models/Escenario_Nuevo/Mesa_Profe/Mesa_Prof.obj");
+	//Model CPU_1((char*)"Models/Escenario_Nuevo/CPU/CPU1.obj");
+	//Model Mon1((char*)"Models/Escenario_Nuevo/Monitor/Mon1.obj");
+	//Model Teclado((char*)"Models/Escenario_Nuevo/Teclado/Teclado.obj");
+	//Model Mouse((char*)"Models/Escenario_Nuevo/Mouse/Mouse.obj");
+	//Model MonitorProf((char*)"Models/Escenario_Nuevo/Mon_Prof/Mon_Prof.obj");
+	//Model MesaProf((char*)"Models/Escenario_Nuevo/Mesa_Profe/Mesa_Prof.obj");
 
-	Model DetachTable((char*)"Models/Escenario_Nuevo/Detach_Table/Table1.obj");
-	Model DetachTable2((char*)"Models/Escenario_Nuevo/Detach_Table/Table2.obj");
+	//Model DetachTable((char*)"Models/Escenario_Nuevo/Detach_Table/Table1.obj");
+	//Model DetachTable2((char*)"Models/Escenario_Nuevo/Detach_Table/Table2.obj");
+
+
+	Model Cuarto((char*)"MModels/placeholder.obj");
+	Model Ventana((char*)"Models/placeholder.obj");
+	Model Alumno1((char*)"Models/placeholder.obj");
+	Model Mesa((char*)"Models/placeholder.obj");
+	/*Model Silla((char*)"Models/placeholder.obj");*/
+	Model CPU_1((char*)"Models/placeholder.obj");
+	Model Mon1((char*)"Models/placeholder.obj");
+	Model Teclado((char*)"Models/placeholder.obj");
+	Model Mouse((char*)"Models/placeholder.obj");
+	Model MonitorProf((char*)"Models/placeholder.obj");
+	Model MesaProf((char*)"Models/placeholder.obj");
+
+	Model DetachTable((char*)"Models/placeholder.obj");
+	Model DetachTable2((char*)"Models/placeholder.obj");
 
 	GLfloat skyboxVertices[] = {//Skybox
 		// Positions
@@ -725,123 +751,123 @@ int main(){
 			Cuarto.Draw(lightingShader);
 
 
-			if (renderProfesor) {
+			if (renderAlumno1) {
 
-				//Profesor Torso
+				//Alumno1 Torso
 
 
 
 
 				model = modelLabNuevo;
-				model = glm::translate(model, profesor.torso.position);
+				model = glm::translate(model, alumno1.torso.position);
 				modelTemp = model = glm::scale(model, glm::vec3(0.15f));
-				modelTemp = model = glm::rotate(model, glm::radians(profesor.torso.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				modelTemp = model = glm::rotate(model, glm::radians(profesor.torso.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				modelTemp = model = glm::rotate(model, glm::radians(profesor.torso.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				modelTemp = model = glm::rotate(model, glm::radians(alumno1.torso.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				modelTemp = model = glm::rotate(model, glm::radians(alumno1.torso.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				modelTemp = model = glm::rotate(model, glm::radians(alumno1.torso.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-				ProfesorTorso.Draw(lightingShader);
+				Alumno1Torso.Draw(lightingShader);
 
 
 
 
-				//Profesor Head
+				//Alumno1 Head
 
 
 
 				model = modelLabNuevo;
-				model = glm::translate(modelTemp, glm::vec3(0.0f, 148.54f, 0.0f) + profesor.head.position);
-				model = glm::rotate(model, glm::radians(profesor.head.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(profesor.head.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(profesor.head.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				model = glm::translate(modelTemp, glm::vec3(0.0f, 148.54f, 0.0f) + alumno1.head.position);
+				model = glm::rotate(model, glm::radians(alumno1.head.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(alumno1.head.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(alumno1.head.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-				ProfesorHead.Draw(lightingShader);
+				Alumno1Head.Draw(lightingShader);
 
-				//Profesor Right Arm
+				//Alumno1 Right Arm
 
 				model = modelLabNuevo;
-				model = glm::translate(modelTemp, glm::vec3(-20.02f, 140.164f, 0.0f) + profesor.rightArm.position);
-				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				model = glm::translate(modelTemp, glm::vec3(-20.02f, 140.164f, 0.0f) + alumno1.rightArm.position);
+				modelTemp1 = model = glm::rotate(model, glm::radians(alumno1.rightArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(alumno1.rightArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(alumno1.rightArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-				ProfesorRightArm.Draw(lightingShader);
+				Alumno1RightArm.Draw(lightingShader);
 
-				//Profesor Sub Right Arm
+				//Alumno1 Sub Right Arm
 
 				model = modelLabNuevo;
-				model = glm::translate(modelTemp1, glm::vec3(-15.137, -16.795f, -0.456f) + profesor.subRightArm.position);
-				model = glm::rotate(model, glm::radians(profesor.subRightArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(profesor.subRightArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(profesor.subRightArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				model = glm::translate(modelTemp1, glm::vec3(-15.137, -16.795f, -0.456f) + alumno1.subRightArm.position);
+				model = glm::rotate(model, glm::radians(alumno1.subRightArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(alumno1.subRightArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(alumno1.subRightArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-				ProfesorSubRightArm.Draw(lightingShader);
+				Alumno1SubRightArm.Draw(lightingShader);
 
 
 
 
-				////Profesor Left Arm
+				////Alumno1 Left Arm
 				model = modelLabNuevo;
-				model = glm::translate(modelTemp, glm::vec3(19.794f, 140.059f, -0.159f) + profesor.leftArm.position);
-				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				model = glm::translate(modelTemp, glm::vec3(19.794f, 140.059f, -0.159f) + alumno1.leftArm.position);
+				modelTemp1 = model = glm::rotate(model, glm::radians(alumno1.leftArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(alumno1.leftArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(alumno1.leftArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-				ProfesorLeftArm.Draw(lightingShader);
+				Alumno1LeftArm.Draw(lightingShader);
 
-				//Profesor Sub Left Arm
-
-				model = modelLabNuevo;
-				model = glm::translate(modelTemp1, glm::vec3(15.123f, -16.78f, -0.781f) + profesor.subLeftArm.position);
-				model = glm::rotate(model, glm::radians(profesor.subLeftArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(profesor.subLeftArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(profesor.subLeftArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-				ProfesorSubLeftArm.Draw(lightingShader);
-
-
-
-				//Profesor Right Leg
-				model = modelLabNuevo;
-				model = glm::translate(modelTemp, glm::vec3(0.0f, 87.83f, -9.225f) + profesor.rightLeg.position);
-				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.rightLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-				ProfesorRightLeg.Draw(lightingShader);
-
-				//Profesor Sub Right Leg
+				//Alumno1 Sub Left Arm
 
 				model = modelLabNuevo;
-				model = glm::translate(modelTemp1, glm::vec3(-10.713f, -34.908f, 14.468f) + profesor.subRightLeg.position);
-				model = glm::rotate(model, glm::radians(profesor.subRightLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(profesor.subRightLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(profesor.subRightLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				model = glm::translate(modelTemp1, glm::vec3(15.123f, -16.78f, -0.781f) + alumno1.subLeftArm.position);
+				model = glm::rotate(model, glm::radians(alumno1.subLeftArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(alumno1.subLeftArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(alumno1.subLeftArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-				ProfesorSubRightLeg.Draw(lightingShader);
+				Alumno1SubLeftArm.Draw(lightingShader);
 
 
-				//Profesor Left Leg
+
+				//Alumno1 Right Leg
 				model = modelLabNuevo;
-				model = glm::translate(modelTemp, glm::vec3(9.817f, 87.906f, -9.521f) + profesor.leftLeg.position);
-				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				modelTemp1 = model = glm::rotate(model, glm::radians(profesor.leftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				model = glm::translate(modelTemp, glm::vec3(0.0f, 87.83f, -9.225f) + alumno1.rightLeg.position);
+				modelTemp1 = model = glm::rotate(model, glm::radians(alumno1.rightLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(alumno1.rightLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(alumno1.rightLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-				ProfesorLeftLeg.Draw(lightingShader);
+				Alumno1RightLeg.Draw(lightingShader);
 
-				//Profesor Sub Left Leg
+				//Alumno1 Sub Right Leg
 
 				model = modelLabNuevo;
-				model = glm::translate(modelTemp1, glm::vec3(0.272f, -36.701f, 17.087f) + profesor.subLeftLeg.position);
-				model = glm::rotate(model, glm::radians(profesor.subLeftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(profesor.subLeftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(profesor.subLeftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				model = glm::translate(modelTemp1, glm::vec3(-10.713f, -34.908f, 14.468f) + alumno1.subRightLeg.position);
+				model = glm::rotate(model, glm::radians(alumno1.subRightLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(alumno1.subRightLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(alumno1.subRightLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-				ProfesorSubLeftLeg.Draw(lightingShader);
+				Alumno1SubRightLeg.Draw(lightingShader);
+
+
+				//Alumno1 Left Leg
+				model = modelLabNuevo;
+				model = glm::translate(modelTemp, glm::vec3(9.817f, 87.906f, -9.521f) + alumno1.leftLeg.position);
+				modelTemp1 = model = glm::rotate(model, glm::radians(alumno1.leftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(alumno1.leftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(alumno1.leftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				Alumno1LeftLeg.Draw(lightingShader);
+
+				//Alumno1 Sub Left Leg
+
+				model = modelLabNuevo;
+				model = glm::translate(modelTemp1, glm::vec3(0.272f, -36.701f, 17.087f) + alumno1.subLeftLeg.position);
+				model = glm::rotate(model, glm::radians(alumno1.subLeftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(alumno1.subLeftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(alumno1.subLeftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				Alumno1SubLeftLeg.Draw(lightingShader);
 
 			}
 
-			//Modelos de accesorios profesor
+			//Modelos de accesorios alumno1
 			glm::mat4 modelMonitorProf = modelLabNuevo;
 			modelMonitorProf = glm::translate(modelMonitorProf, glm::vec3(45.0f, 10.1f, -49.0f));
 			modelMonitorProf = glm::rotate(modelMonitorProf, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1344,8 +1370,8 @@ int main(){
 
 		   // ---------------------------------------------------------------------------------
 
-		   // ------------- Modelado escritorio Profesor ----------------------------------------------
-		   // Escritorio 1 (profesor)
+		   // ------------- Modelado escritorio Alumno1 ----------------------------------------------
+		   // Escritorio 1 (alumno1)
 			glm::mat4 modelOldMesa1 = modelLabViejo;
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa1));
 			glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
@@ -1354,31 +1380,31 @@ int main(){
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelOldMesa1));
 			mesaOld.Draw(lightingShader);
 
-			// CPU profesor
+			// CPU alumno1
 			glm::mat4 modeloldCPU1 = modelLabViejo;
 			modeloldCPU1 = glm::translate(modeloldCPU1, glm::vec3(42.13f, 14.443f, -59.904f));
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldCPU1));
 			oldCPU.Draw(lightingShader);
 
-			// monitor Profesor
+			// monitor Alumno1
 			glm::mat4 modeloldMonitor1 = modelLabViejo;
 			modeloldMonitor1 = glm::translate(modeloldMonitor1, glm::vec3(37.701f, 14.434f, -60.837f));
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMonitor1));
 			monitorOld.Draw(lightingShader);
 
-			// teclado Profesor
+			// teclado Alumno1
 			glm::mat4 modeloldTeclado1 = modelLabViejo;
 			modeloldTeclado1 = glm::translate(modeloldTeclado1, glm::vec3(37.659f, 12.327f, -57.878f));
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldTeclado1));
 			tecladoOld.Draw(lightingShader);
 
-			// mouse Profesor
+			// mouse Alumno1
 			glm::mat4 modeloldMouse1 = modelLabViejo;
 			modeloldMouse1 = glm::translate(modeloldMouse1, glm::vec3(38.811f, 12.405f, -59.408f));
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldMouse1));
 			mouseOld.Draw(lightingShader);
 
-			// silla Profesor
+			// silla Alumno1
 			glm::mat4 modeloldSilla1 = modelLabViejo;
 			modeloldSilla1 = glm::translate(modeloldSilla1, glm::vec3(37.575f, 6.377f, -49.771f));
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modeloldSilla1));
@@ -2660,7 +2686,7 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 			labNuevoBounce = 0.0f;
 			mostrarEscenarioNuevo = true;
 			transicionLab = 3;
-			renderProfesor = false;
+			renderAlumno1 = false;
 		}
 
 
@@ -2669,7 +2695,7 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 
 	if (keys[GLFW_KEY_N] && action == GLFW_PRESS && transicionLab == 3)
 	{
-		renderProfesor = true;
+		renderAlumno1 = true;
 		playAnimationIndex = 0;
 
 	}
@@ -2691,10 +2717,10 @@ void Animation() {
 			if (caminarAnimationKeyIndex == -1) {
 				HumanoidModelInfo firstFrame = caminarAnimationKeyFrames[0].modelInfo;
 
-				profesor.torso.position.x = firstFrame.torso.position.x;
-				profesor.torso.position.z = firstFrame.torso.position.z;
-				profesor.torso.position.y = firstFrame.torso.position.y;
-				profesor.torso.rotation.y = firstFrame.torso.rotation.y;
+				alumno1.torso.position.x = firstFrame.torso.position.x;
+				alumno1.torso.position.z = firstFrame.torso.position.z;
+				alumno1.torso.position.y = firstFrame.torso.position.y;
+				alumno1.torso.rotation.y = firstFrame.torso.rotation.y;
 				playCaminar = true;
 				caminarAnimationKeyIndex = 0;
 			}
@@ -2706,16 +2732,16 @@ void Animation() {
 					if (caminarAnimationKeyIndex == 4) {
 
 						playCaminar = false;
-						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.rightArm.rotation.x = profesor.rightArm.rotation.x;
-						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.leftArm.rotation.x = profesor.leftArm.rotation.x;
-						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subRightArm.rotation.x = profesor.subRightArm.rotation.x;
-						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subLeftArm.rotation.x = profesor.subLeftArm.rotation.x;
-						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.rightLeg.rotation.x = profesor.rightLeg.rotation.x;
-						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.leftLeg.rotation.x = profesor.leftLeg.rotation.x;
-						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subRightLeg.rotation.x = profesor.subRightLeg.rotation.x;
-						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subLeftLeg.rotation.x = profesor.subLeftLeg.rotation.x;
-						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.leftArm.rotation.z = profesor.leftArm.rotation.z;
-						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.rightArm.rotation.z = profesor.rightArm.rotation.z;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.rightArm.rotation.x = alumno1.rightArm.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.leftArm.rotation.x = alumno1.leftArm.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subRightArm.rotation.x = alumno1.subRightArm.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subLeftArm.rotation.x = alumno1.subLeftArm.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.rightLeg.rotation.x = alumno1.rightLeg.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.leftLeg.rotation.x = alumno1.leftLeg.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subRightLeg.rotation.x = alumno1.subRightLeg.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.subLeftLeg.rotation.x = alumno1.subLeftLeg.rotation.x;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.leftArm.rotation.z = alumno1.leftArm.rotation.z;
+						caminarAnimationKeyFrames[caminarAnimationKeyIndex].modelInfo.rightArm.rotation.z = alumno1.rightArm.rotation.z;
 					}
 
 
@@ -2739,25 +2765,25 @@ void Animation() {
 				}
 				else {
 					if (caminarAnimationCurrentStep < caminarAnimationMaxStep) {
-						profesor.torso.position.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.x;
-						profesor.torso.position.y += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.y;
-						profesor.torso.position.z += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.z;
-						profesor.torso.rotation.y += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.rotation.y;
+						alumno1.torso.position.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.x;
+						alumno1.torso.position.y += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.y;
+						alumno1.torso.position.z += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.z;
+						alumno1.torso.rotation.y += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.rotation.y;
 
 						caminarTime += 15.0 * sqrt(pow(caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.x, 2.0) + pow(caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.torso.position.z, 2.0));
 
-						profesor.rightArm.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.rightArm.rotation.x;
-						profesor.leftArm.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.leftArm.rotation.x;
-						profesor.subRightArm.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subRightArm.rotation.x;
-						profesor.subLeftArm.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subLeftArm.rotation.x;
-						profesor.rightLeg.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.rightLeg.rotation.x;
-						profesor.leftLeg.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.leftLeg.rotation.x;
+						alumno1.rightArm.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.rightArm.rotation.x;
+						alumno1.leftArm.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.leftArm.rotation.x;
+						alumno1.subRightArm.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subRightArm.rotation.x;
+						alumno1.subLeftArm.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subLeftArm.rotation.x;
+						alumno1.rightLeg.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.rightLeg.rotation.x;
+						alumno1.leftLeg.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.leftLeg.rotation.x;
 
-						profesor.subRightLeg.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subRightLeg.rotation.x;
-						profesor.subLeftLeg.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subLeftLeg.rotation.x;
+						alumno1.subRightLeg.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subRightLeg.rotation.x;
+						alumno1.subLeftLeg.rotation.x += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.subLeftLeg.rotation.x;
 
-						profesor.leftArm.rotation.z += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.leftArm.rotation.z;
-						profesor.rightArm.rotation.z += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.rightArm.rotation.z;
+						alumno1.leftArm.rotation.z += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.leftArm.rotation.z;
+						alumno1.rightArm.rotation.z += caminarAnimationKeyFrames[caminarAnimationKeyIndex + 1].inc.rightArm.rotation.z;
 
 
 
@@ -2800,18 +2826,18 @@ void Animation() {
 	if (playCaminar)
 	{
 		
-		profesor.rightArm.rotation.x = 15.0f + sin(glm::radians(caminarTime)) * 30;
-		profesor.leftArm.rotation.x = 15.0f - sin(glm::radians(caminarTime)) * 30;
-		profesor.subRightArm.rotation.x = -15.0f + sin(glm::radians(caminarTime)) * 15;
-		profesor.subLeftArm.rotation.x = -15.0f - sin(glm::radians(caminarTime)) * 15;
-		profesor.rightLeg.rotation.x = -15.0f + sin(glm::radians(caminarTime)) * 15;
-		profesor.leftLeg.rotation.x = -15.0f - sin(glm::radians(caminarTime)) * 15;
+		alumno1.rightArm.rotation.x = 15.0f + sin(glm::radians(caminarTime)) * 30;
+		alumno1.leftArm.rotation.x = 15.0f - sin(glm::radians(caminarTime)) * 30;
+		alumno1.subRightArm.rotation.x = -15.0f + sin(glm::radians(caminarTime)) * 15;
+		alumno1.subLeftArm.rotation.x = -15.0f - sin(glm::radians(caminarTime)) * 15;
+		alumno1.rightLeg.rotation.x = -15.0f + sin(glm::radians(caminarTime)) * 15;
+		alumno1.leftLeg.rotation.x = -15.0f - sin(glm::radians(caminarTime)) * 15;
 
-		profesor.subRightLeg.rotation.x = 30.0f + sin(glm::radians(caminarTime) - 0.5) * 30;
-		profesor.subLeftLeg.rotation.x = 30.0f - sin(glm::radians(caminarTime) - 0.5) * 30;
+		alumno1.subRightLeg.rotation.x = 30.0f + sin(glm::radians(caminarTime) - 0.5) * 30;
+		alumno1.subLeftLeg.rotation.x = 30.0f - sin(glm::radians(caminarTime) - 0.5) * 30;
 
-		profesor.leftArm.rotation.z = -30.0f;
-		profesor.rightArm.rotation.z = 30.0f;
+		alumno1.leftArm.rotation.z = -30.0f;
+		alumno1.rightArm.rotation.z = 30.0f;
 	}
 	else
 	{
@@ -2882,7 +2908,7 @@ void Animation() {
 		labNuevoMove = abs(100.0f * cos(glm::radians(labNuevoBounce)) * ((maxBounce - labNuevoBounce) / maxBounce));
 
 		if (labNuevoBounce >= maxBounce) {
-			renderProfesor = false;
+			renderAlumno1 = false;
 			transicionLab = 3;
 
 		}
