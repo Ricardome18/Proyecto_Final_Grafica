@@ -437,45 +437,45 @@ int main(){
 
 	Model tornado((char*)"Models/Tornado/tornado.obj");
 
-	//Model cuartoOld((char*)"Models/Escenario_Viejo/CuartoViejo/salonViejo.obj");		// LAB VIEJO
-	//Model ventanasOld((char*)"Models/Escenario_Viejo/ventanasOLD/ventanasOLD.obj");		// VENTANAS OLD
-	//Model mesaOld((char*)"Models/Escenario_Viejo/mesaOLD/mesaOLD.obj");					// MESA VIEJA
-	//Model sillaOld((char*)"Models/Escenario_Viejo/sillaOLD/sillaOLD.obj");				// SILLA VIEJA
-	//Model oldCPU((char*)"Models/Escenario_Viejo/oldCPU/oldCPU.obj");					// CPU VIEJO
-	//Model monitorOld((char*)"Models/Escenario_Viejo/monitorViejo/monitorViejo.obj");	// MONITOR VIEJO
-	//Model tecladoOld((char*)"Models/Escenario_Viejo/tecladoViejo/teclado.obj");			// TECLADO VIEJO
-	//Model mouseOld((char*)"Models/Escenario_Viejo/mouseViejo/mouseViejo.obj");			// MOUSE VIEJO
-	//Model puertaOld((char*)"Models/Escenario_Viejo/puertaOLD/puertaOLD.obj");			// PUERTA VIEJA
+	Model cuartoOld((char*)"Models/Escenario_Viejo/CuartoViejo/salonViejo.obj");		// LAB VIEJO
+	Model ventanasOld((char*)"Models/Escenario_Viejo/ventanasOLD/ventanasOLD.obj");		// VENTANAS OLD
+	Model mesaOld((char*)"Models/Escenario_Viejo/mesaOLD/mesaOLD.obj");					// MESA VIEJA
+	Model sillaOld((char*)"Models/Escenario_Viejo/sillaOLD/sillaOLD.obj");				// SILLA VIEJA
+	Model oldCPU((char*)"Models/Escenario_Viejo/oldCPU/oldCPU.obj");					// CPU VIEJO
+	Model monitorOld((char*)"Models/Escenario_Viejo/monitorViejo/monitorViejo.obj");	// MONITOR VIEJO
+	Model tecladoOld((char*)"Models/Escenario_Viejo/tecladoViejo/teclado.obj");			// TECLADO VIEJO
+	Model mouseOld((char*)"Models/Escenario_Viejo/mouseViejo/mouseViejo.obj");			// MOUSE VIEJO
+	Model puertaOld((char*)"Models/Escenario_Viejo/puertaOLD/puertaOLD.obj");			// PUERTA VIEJA
 
-	Model cuartoOld((char*)"Models/placeholder.obj");		// LAB VIEJO
-	Model ventanasOld((char*)"Models/placeholder.obj");		// VENTANAS OLD
-	Model mesaOld((char*)"Models/placeholder.obj");					// MESA VIEJA
-	Model sillaOld((char*)"Models/placeholder.obj");				// SILLA VIEJA
-	Model oldCPU((char*)"Models/placeholder.obj");					// CPU VIEJO
-	Model monitorOld((char*)"Models/placeholder.obj");	// MONITOR VIEJO
-	Model tecladoOld((char*)"Models/placeholder.obj");			// TECLADO VIEJO
-	Model mouseOld((char*)"Models/placeholder.obj");			// MOUSE VIEJO
-	Model puertaOld((char*)"Models/placeholder.obj");			// PUERTA VIEJA
+	//Model cuartoOld((char*)"Models/placeholder.obj");		// LAB VIEJO
+	//Model ventanasOld((char*)"Models/placeholder.obj");		// VENTANAS OLD
+	//Model mesaOld((char*)"Models/placeholder.obj");					// MESA VIEJA
+	//Model sillaOld((char*)"Models/placeholder.obj");				// SILLA VIEJA
+	//Model oldCPU((char*)"Models/placeholder.obj");					// CPU VIEJO
+	//Model monitorOld((char*)"Models/placeholder.obj");	// MONITOR VIEJO
+	//Model tecladoOld((char*)"Models/placeholder.obj");			// TECLADO VIEJO
+	//Model mouseOld((char*)"Models/placeholder.obj");			// MOUSE VIEJO
+	//Model puertaOld((char*)"Models/placeholder.obj");			// PUERTA VIEJA
 
 
 	// ------------------- MODELOS LAB NUEVO -----------------------------------------
-	//Model Cuarto((char*)"Models/Escenario_Nuevo/Cuarto/Cuartov2.obj");
-	//Model Ventana((char*)"Models/Escenario_Nuevo/Ventanas_Vidrio/Ventanas.obj");
+	Model Cuarto((char*)"Models/Escenario_Nuevo/Cuarto/Cuartov2.obj");
+	Model Ventana((char*)"Models/Escenario_Nuevo/Ventanas_Vidrio/Ventanas.obj");
 	//Model Alumno1((char*)"Models/Escenario_Nuevo/Alumno1/Profesor.obj");
-	//Model Mesa((char*)"Models/Escenario_Nuevo/Mesa/Mesa.obj");
-	//Model Silla((char*)"Models/Escenario_Nuevo/Silla/Silla.obj");
-	//Model CPU_1((char*)"Models/Escenario_Nuevo/CPU/CPU1.obj");
-	//Model Mon1((char*)"Models/Escenario_Nuevo/Monitor/Mon1.obj");
-	//Model Teclado((char*)"Models/Escenario_Nuevo/Teclado/Teclado.obj");
-	//Model Mouse((char*)"Models/Escenario_Nuevo/Mouse/Mouse.obj");
-	//Model MonitorProf((char*)"Models/Escenario_Nuevo/Mon_Prof/Mon_Prof.obj");
-	//Model MesaProf((char*)"Models/Escenario_Nuevo/Mesa_Profe/Mesa_Prof.obj");
+	Model Mesa((char*)"Models/Escenario_Nuevo/Mesa/Mesa.obj");
+	Model Silla((char*)"Models/Escenario_Nuevo/Silla/Silla.obj");
+	Model CPU_1((char*)"Models/Escenario_Nuevo/CPU/CPU1.obj");
+	Model Mon1((char*)"Models/Escenario_Nuevo/Monitor/Mon1.obj");
+	Model Teclado((char*)"Models/Escenario_Nuevo/Teclado/Teclado.obj");
+	Model Mouse((char*)"Models/Escenario_Nuevo/Mouse/Mouse.obj");
+	Model MonitorProf((char*)"Models/Escenario_Nuevo/Mon_Prof/Mon_Prof.obj");
+	Model MesaProf((char*)"Models/Escenario_Nuevo/Mesa_Profe/Mesa_Prof.obj");
 
-	//Model DetachTable((char*)"Models/Escenario_Nuevo/Detach_Table/Table1.obj");
-	//Model DetachTable2((char*)"Models/Escenario_Nuevo/Detach_Table/Table2.obj");
+	Model DetachTable((char*)"Models/Escenario_Nuevo/Detach_Table/Table1.obj");
+	Model DetachTable2((char*)"Models/Escenario_Nuevo/Detach_Table/Table2.obj");
 
 
-	Model Cuarto((char*)"Models/placeholder.obj");
+	/*Model Cuarto((char*)"Models/placeholder.obj");
 	Model Ventana((char*)"Models/placeholder.obj");
 	Model Alumno1((char*)"Models/placeholder.obj");
 	Model Mesa((char*)"Models/placeholder.obj");
@@ -488,7 +488,7 @@ int main(){
 	Model MesaProf((char*)"Models/placeholder.obj");
 
 	Model DetachTable((char*)"Models/placeholder.obj");
-	Model DetachTable2((char*)"Models/placeholder.obj");
+	Model DetachTable2((char*)"Models/placeholder.obj");*/
 
 	GLfloat skyboxVertices[] = {//Skybox
 		// Positions
@@ -2944,10 +2944,10 @@ void DoMovement()
 {
 
 	// Camera controls
-	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
-	{
+	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP]) {
+		std::cout << "W PRESSED - deltaTime: " << deltaTime << std::endl;
 		camera.ProcessKeyboard(FORWARD, deltaTime);
-
+		std::cout << "Camera moved FORWARD\n";
 	}
 
 	if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
@@ -2973,6 +2973,21 @@ void DoMovement()
 
 	
 }
+
+void resetHumanoidAnimation(HumanoidAnimation& animation) {
+	animation.currentKeyFrame = -1;
+	animation.step = -1;
+	animation.maxStep = -1;
+	return;
+}
+void resetCaminarAnimation() {
+	caminarAnimationKeyIndex = -1;
+	caminarAnimationMaxStep = -1;
+	caminarAnimationCurrentStep = -1;
+	playCaminar = false;
+	caminarTime = 0.0f;
+}
+
 
 // Is called whenever a key is pressed/released via GLFW
 void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode)
@@ -3041,29 +3056,27 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 	{
 		renderAlumno1 = true;
 		playAnimationIndex = 0;
+		resetCaminarAnimation(); // <--- IMPORTANTE
+
 
 	}
 
 	if (key == GLFW_KEY_M && action == GLFW_PRESS && mostrarEscenarioNuevo )
 	{
-		
-		
 		playAnimationIndex = 1;
+		resetHumanoidAnimation(animations[1]); // IMPORTANTE
+
 		
 
 	}
+	std::cout << "Tecla presionada: " << key << ", action: " << action << std::endl;
 
 	
 
 
 }
 
-void resetHumanoidAnimation(HumanoidAnimation animation) {
-	animation.currentKeyFrame = -1;
-	animation.step = -1;
-	animation.maxStep = -1;
-	return;
-}
+
 
 bool progressHumanoidAnimation(int animation, int model) {
 	
@@ -3281,7 +3294,7 @@ bool progressHumanoidAnimation(int animation, int model) {
 				animations[animation].currentKeyFrame++;
 
 				if (animations[animation].currentKeyFrame >= animations[animation].maxKeyFrame) {
-					playAnimationIndex = -1;
+					//playAnimationIndex = -1;
 					return false;
 				}
 
@@ -3298,7 +3311,7 @@ bool progressHumanoidAnimation(int animation, int model) {
 
 void Animation() {
 	//--------------------Animacion 0
-	printf("El valor es: %f\n", playAnimationIndex);
+	//printf("El valor es: %f\n", playAnimationIndex);
 	
 	int steps = int(floor(500.0 * deltaTime));
 
@@ -3406,8 +3419,9 @@ void Animation() {
 			break;
 		case 1:
 			//printf("El número es: %d\n", playAnimationIndex);
-			progressHumanoidAnimation(1, 2);
-				
+			if (progressHumanoidAnimation(1, 2)) {
+				//playAnimationIndex = -1;
+			}
 			
 			
 			break;
