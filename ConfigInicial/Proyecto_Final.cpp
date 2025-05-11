@@ -277,16 +277,8 @@ void startUpFrames() {
 	}
 	//animation 1
 	if (true) {
-		animations[1].keyFrames[0].modelInfo.torso.position = glm::vec3(0.0f, -4.028f, 0.059f);
-		animations[1].keyFrames[0].modelInfo.torso.rotation.y = -90.0f;
-		animations[1].keyFrames[0].modelInfo.leftArm.rotation.x = 30.0f;
-		animations[1].keyFrames[0].modelInfo.rightArm.rotation.x = -30.0f;
-		animations[1].keyFrames[0].modelInfo.rightLeg.rotation.z = -80.0f;
-		animations[1].keyFrames[0].modelInfo.leftLeg.rotation.z = -80.0f;
-		animations[1].keyFrames[0].modelInfo.subRightLeg.rotation.z = 30.0f;
-		animations[1].keyFrames[0].modelInfo.subLeftLeg.rotation.z = 30.0f;
 
-
+		animations[1].maxKeyFrame = 4;
 
 		animations[1].keyFrames[0].modelInfo.torso.position = glm::vec3(0.0f, -4.028f, 0.059f);
 		animations[1].keyFrames[0].modelInfo.torso.rotation.y = -90.0f;
@@ -296,6 +288,43 @@ void startUpFrames() {
 		animations[1].keyFrames[0].modelInfo.leftLeg.rotation.z = -80.0f;
 		animations[1].keyFrames[0].modelInfo.subRightLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[0].modelInfo.subLeftLeg.rotation.z = 30.0f;
+
+
+
+		animations[1].keyFrames[1].modelInfo.torso.position = glm::vec3(0.0f, -4.028f, 0.059f);
+		animations[1].keyFrames[1].modelInfo.torso.rotation.y = -90.0f;
+		animations[1].keyFrames[1].modelInfo.torso.rotation.z = 15.0f;
+		animations[1].keyFrames[1].modelInfo.leftArm.rotation.x = 30.0f;
+		animations[1].keyFrames[1].modelInfo.leftArm.rotation.z = -75.0f;
+		animations[1].keyFrames[1].modelInfo.subLeftArm.rotation.y = -10.0f;
+		animations[1].keyFrames[1].modelInfo.rightArm.rotation.x = -30.0f;
+		animations[1].keyFrames[1].modelInfo.rightLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[1].modelInfo.leftLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[1].modelInfo.subRightLeg.rotation.z = 30.0f;
+		animations[1].keyFrames[1].modelInfo.subLeftLeg.rotation.z = 30.0f;
+		animations[1].keyFrames[1].stepsToFrame = 500;
+
+		animations[1].keyFrames[2].modelInfo.torso.position = glm::vec3(0.0f, -4.028f, 0.059f);
+		animations[1].keyFrames[2].modelInfo.torso.rotation.y = -90.0f;
+		animations[1].keyFrames[2].modelInfo.torso.rotation.z = 15.0f;
+		animations[1].keyFrames[2].modelInfo.leftArm.rotation.x = 45.0f;
+		animations[1].keyFrames[2].modelInfo.leftArm.rotation.z = -45.0f;
+		animations[1].keyFrames[2].modelInfo.rightArm.rotation.x = -30.0f;
+		animations[1].keyFrames[2].modelInfo.rightLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[2].modelInfo.leftLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[2].modelInfo.subRightLeg.rotation.z = 30.0f;
+		animations[1].keyFrames[2].modelInfo.subLeftLeg.rotation.z = 30.0f;
+		animations[1].keyFrames[2].stepsToFrame = 500;
+
+		animations[1].keyFrames[3].modelInfo.torso.position = glm::vec3(0.0f, -4.028f, 0.059f);
+		animations[1].keyFrames[3].modelInfo.torso.rotation.y = -90.0f;
+		animations[1].keyFrames[3].modelInfo.leftArm.rotation.x = 30.0f;
+		animations[1].keyFrames[3].modelInfo.rightArm.rotation.x = -30.0f;
+		animations[1].keyFrames[3].modelInfo.rightLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[3].modelInfo.leftLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[3].modelInfo.subRightLeg.rotation.z = 30.0f;
+		animations[1].keyFrames[3].modelInfo.subLeftLeg.rotation.z = 30.0f;
+		animations[1].keyFrames[3].stepsToFrame = 500;
 	}
 }
 
@@ -3008,252 +3037,269 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 
 	}
 
-	/*if (key == GLFW_KEY_N && action == GLFW_PRESS && transicionLab == 3 && playAnimationIndex = -1)
+	if (key == GLFW_KEY_N && action == GLFW_PRESS && mostrarEscenarioNuevo )
 	{
 		renderAlumno1 = true;
 		playAnimationIndex = 0;
 
-	}*/
+	}
+
+	if (key == GLFW_KEY_M && action == GLFW_PRESS && mostrarEscenarioNuevo )
+	{
+		
+		
+		playAnimationIndex = 1;
+		
+
+	}
+
+	
 
 
 }
 
-//void resetHumanoidAnimation(HumanoidAnimation animation) {
-//	animation.currentKeyFrame = -1;
-//	animation.step = -1;
-//	animation.maxStep = -1;
-//	return;
-//}
-//
-//bool progressHumanoidAnimation(HumanoidAnimation animation, HumanoidModelInfo model) {
-//	if (animation.currentKeyFrame == -1) {
-//		HumanoidModelInfo firstFrame = animation.keyFrames[0].modelInfo;
-//
-//		model.torso.rotation.x = firstFrame.torso.rotation.x;
-//		model.torso.rotation.z = firstFrame.torso.rotation.z;
-//		model.torso.rotation.y = firstFrame.torso.rotation.y;
-//		model.torso.position.x = firstFrame.torso.position.x;
-//		model.torso.position.z = firstFrame.torso.position.z;
-//		model.torso.position.y = firstFrame.torso.position.y;
-//		model.head.rotation.x = firstFrame.head.rotation.x;
-//		model.head.rotation.z = firstFrame.head.rotation.z;
-//		model.head.rotation.y = firstFrame.head.rotation.y;
-//		model.head.position.x = firstFrame.head.position.x;
-//		model.head.position.z = firstFrame.head.position.z;
-//		model.head.position.y = firstFrame.head.position.y;
-//		model.rightArm.rotation.x = firstFrame.rightArm.rotation.x;
-//		model.rightArm.rotation.z = firstFrame.rightArm.rotation.z;
-//		model.rightArm.rotation.y = firstFrame.rightArm.rotation.y;
-//		model.rightArm.position.x = firstFrame.rightArm.position.x;
-//		model.rightArm.position.z = firstFrame.rightArm.position.z;
-//		model.rightArm.position.y = firstFrame.rightArm.position.y;
-//		model.subRightArm.rotation.x = firstFrame.subRightArm.rotation.x;
-//		model.subRightArm.rotation.z = firstFrame.subRightArm.rotation.z;
-//		model.subRightArm.rotation.y = firstFrame.subRightArm.rotation.y;
-//		model.subRightArm.position.x = firstFrame.subRightArm.position.x;
-//		model.subRightArm.position.z = firstFrame.subRightArm.position.z;
-//		model.subRightArm.position.y = firstFrame.subRightArm.position.y;
-//		model.leftArm.rotation.x = firstFrame.leftArm.rotation.x;
-//		model.leftArm.rotation.z = firstFrame.leftArm.rotation.z;
-//		model.leftArm.rotation.y = firstFrame.leftArm.rotation.y;
-//		model.leftArm.position.x = firstFrame.leftArm.position.x;
-//		model.leftArm.position.z = firstFrame.leftArm.position.z;
-//		model.leftArm.position.y = firstFrame.leftArm.position.y;
-//		model.subLeftArm.rotation.x = firstFrame.subLeftArm.rotation.x;
-//		model.subLeftArm.rotation.z = firstFrame.subLeftArm.rotation.z;
-//		model.subLeftArm.rotation.y = firstFrame.subLeftArm.rotation.y;
-//		model.subLeftArm.position.x = firstFrame.subLeftArm.position.x;
-//		model.subLeftArm.position.z = firstFrame.subLeftArm.position.z;
-//		model.subLeftArm.position.y = firstFrame.subLeftArm.position.y;
-//		model.rightLeg.rotation.x = firstFrame.rightLeg.rotation.x;
-//		model.rightLeg.rotation.z = firstFrame.rightLeg.rotation.z;
-//		model.rightLeg.rotation.y = firstFrame.rightLeg.rotation.y;
-//		model.rightLeg.position.x = firstFrame.rightLeg.position.x;
-//		model.rightLeg.position.z = firstFrame.rightLeg.position.z;
-//		model.rightLeg.position.y = firstFrame.rightLeg.position.y;
-//		model.subRightLeg.rotation.x = firstFrame.subRightLeg.rotation.x;
-//		model.subRightLeg.rotation.z = firstFrame.subRightLeg.rotation.z;
-//		model.subRightLeg.rotation.y = firstFrame.subRightLeg.rotation.y;
-//		model.subRightLeg.position.x = firstFrame.subRightLeg.position.x;
-//		model.subRightLeg.position.z = firstFrame.subRightLeg.position.z;
-//		model.subRightLeg.position.y = firstFrame.subRightLeg.position.y;
-//		model.leftLeg.rotation.x = firstFrame.leftLeg.rotation.x;
-//		model.leftLeg.rotation.z = firstFrame.leftLeg.rotation.z;
-//		model.leftLeg.rotation.y = firstFrame.leftLeg.rotation.y;
-//		model.leftLeg.position.x = firstFrame.leftLeg.position.x;
-//		model.leftLeg.position.z = firstFrame.leftLeg.position.z;
-//		model.leftLeg.position.y = firstFrame.leftLeg.position.y;
-//		model.subLeftLeg.rotation.x = firstFrame.subLeftLeg.rotation.x;
-//		model.subLeftLeg.rotation.z = firstFrame.subLeftLeg.rotation.z;
-//		model.subLeftLeg.rotation.y = firstFrame.subLeftLeg.rotation.y;
-//		model.subLeftLeg.position.x = firstFrame.subLeftLeg.position.x;
-//		model.subLeftLeg.position.z = firstFrame.subLeftLeg.position.z;
-//		model.subLeftLeg.position.y = firstFrame.subLeftLeg.position.y;
-//
-//		animation.currentKeyFrame = 0;
-//	}
-//	else if (animation.currentKeyFrame < caminarAnimationMaxKeyFrame) {
-//		if (animation.maxStep == -1) {
-//
-//			animation.step = 0;
-//
-//
-//
-//
-//			animation.maxStep = animation.keyFrames[animation.currentKeyFrame + 1].stepsToFrame;
-//
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.torso.position.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.torso.position.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.torso.position.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.torso.position.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.torso.position.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.torso.position.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.torso.position.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.torso.position.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.torso.position.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.torso.rotation.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.torso.rotation.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.torso.rotation.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.torso.rotation.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.torso.rotation.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.torso.rotation.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.torso.rotation.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.torso.rotation.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.torso.rotation.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.head.position.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.head.position.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.head.position.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.head.position.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.head.position.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.head.position.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.head.position.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.head.position.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.head.position.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.head.rotation.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.head.rotation.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.head.rotation.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.head.rotation.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.head.rotation.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.head.rotation.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.head.rotation.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.head.rotation.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.head.rotation.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.rightArm.position.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.rightArm.position.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.rightArm.position.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.rightArm.position.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.rightArm.position.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.rightArm.position.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.rightArm.position.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.rightArm.position.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.rightArm.position.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.rightArm.rotation.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.rightArm.rotation.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.rightArm.rotation.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.rightArm.rotation.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.rightArm.rotation.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.rightArm.rotation.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.rightArm.rotation.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.rightArm.rotation.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.rightArm.rotation.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightArm.position.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subRightArm.position.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subRightArm.position.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightArm.position.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subRightArm.position.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subRightArm.position.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightArm.position.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subRightArm.position.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subRightArm.position.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightArm.rotation.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subRightArm.rotation.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subRightArm.rotation.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightArm.rotation.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subRightArm.rotation.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subRightArm.rotation.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightArm.rotation.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subRightArm.rotation.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subRightArm.rotation.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.leftArm.position.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.leftArm.position.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.leftArm.position.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.leftArm.position.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.leftArm.position.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.leftArm.position.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.leftArm.position.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.leftArm.position.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.leftArm.position.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.leftArm.rotation.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.leftArm.rotation.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.leftArm.rotation.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.leftArm.rotation.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.leftArm.rotation.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.leftArm.rotation.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.leftArm.rotation.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.leftArm.rotation.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.leftArm.rotation.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftArm.position.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subLeftArm.position.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subLeftArm.position.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftArm.position.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subLeftArm.position.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subLeftArm.position.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftArm.position.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subLeftArm.position.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subLeftArm.position.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftArm.rotation.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subLeftArm.rotation.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subLeftArm.rotation.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftArm.rotation.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subLeftArm.rotation.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subLeftArm.rotation.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftArm.rotation.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subLeftArm.rotation.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subLeftArm.rotation.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.rightLeg.position.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.rightLeg.position.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.rightLeg.position.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.rightLeg.position.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.rightLeg.position.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.rightLeg.position.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.rightLeg.position.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.rightLeg.position.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.rightLeg.position.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.rightLeg.rotation.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.rightLeg.rotation.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.rightLeg.rotation.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.rightLeg.rotation.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.rightLeg.rotation.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.rightLeg.rotation.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.rightLeg.rotation.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.rightLeg.rotation.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.rightLeg.rotation.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightLeg.position.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subRightLeg.position.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subRightLeg.position.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightLeg.position.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subRightLeg.position.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subRightLeg.position.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightLeg.position.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subRightLeg.position.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subRightLeg.position.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightLeg.rotation.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subRightLeg.rotation.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subRightLeg.rotation.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightLeg.rotation.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subRightLeg.rotation.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subRightLeg.rotation.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightLeg.rotation.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subRightLeg.rotation.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subRightLeg.rotation.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.leftLeg.position.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.leftLeg.position.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.leftLeg.position.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.leftLeg.position.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.leftLeg.position.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.leftLeg.position.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.leftLeg.position.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.leftLeg.position.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.leftLeg.position.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.leftLeg.rotation.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.leftLeg.rotation.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.leftLeg.rotation.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.leftLeg.rotation.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.leftLeg.rotation.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.leftLeg.rotation.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.leftLeg.rotation.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.leftLeg.rotation.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.leftLeg.rotation.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftLeg.position.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subLeftLeg.position.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subLeftLeg.position.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftLeg.position.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subLeftLeg.position.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subLeftLeg.position.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftLeg.position.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subLeftLeg.position.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subLeftLeg.position.z, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftLeg.rotation.x = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subLeftLeg.rotation.x, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subLeftLeg.rotation.x, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftLeg.rotation.y = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subLeftLeg.rotation.y, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subLeftLeg.rotation.y, animation.maxStep);
-//			animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftLeg.rotation.z = interpolation2(animation.keyFrames[animation.currentKeyFrame].modelInfo.subLeftLeg.rotation.z, animation.keyFrames[animation.currentKeyFrame + 1].modelInfo.subLeftLeg.rotation.z, animation.maxStep);
-//
-//		}
-//		else {
-//			if (animation.step < animation.maxStep) {
-//
-//				model.torso.rotation.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.torso.rotation.x;
-//				model.torso.rotation.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.torso.rotation.y;
-//				model.torso.rotation.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.torso.rotation.z;
-//				model.torso.position.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.torso.position.x;
-//				model.torso.position.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.torso.position.y;
-//				model.torso.position.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.torso.position.z;
-//				model.head.rotation.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.head.rotation.x;
-//				model.head.rotation.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.head.rotation.y;
-//				model.head.rotation.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.head.rotation.z;
-//				model.head.position.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.head.position.x;
-//				model.head.position.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.head.position.y;
-//				model.head.position.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.head.position.z;
-//				model.rightArm.rotation.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.rightArm.rotation.x;
-//				model.rightArm.rotation.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.rightArm.rotation.y;
-//				model.rightArm.rotation.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.rightArm.rotation.z;
-//				model.rightArm.position.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.rightArm.position.x;
-//				model.rightArm.position.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.rightArm.position.y;
-//				model.rightArm.position.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.rightArm.position.z;
-//				model.subRightArm.rotation.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightArm.rotation.x;
-//				model.subRightArm.rotation.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightArm.rotation.y;
-//				model.subRightArm.rotation.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightArm.rotation.z;
-//				model.subRightArm.position.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightArm.position.x;
-//				model.subRightArm.position.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightArm.position.y;
-//				model.subRightArm.position.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightArm.position.z;
-//				model.leftArm.rotation.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.leftArm.rotation.x;
-//				model.leftArm.rotation.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.leftArm.rotation.y;
-//				model.leftArm.rotation.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.leftArm.rotation.z;
-//				model.leftArm.position.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.leftArm.position.x;
-//				model.leftArm.position.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.leftArm.position.y;
-//				model.leftArm.position.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.leftArm.position.z;
-//				model.subLeftArm.rotation.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftArm.rotation.x;
-//				model.subLeftArm.rotation.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftArm.rotation.y;
-//				model.subLeftArm.rotation.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftArm.rotation.z;
-//				model.subLeftArm.position.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftArm.position.x;
-//				model.subLeftArm.position.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftArm.position.y;
-//				model.subLeftArm.position.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftArm.position.z;
-//				model.rightLeg.rotation.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.rightLeg.rotation.x;
-//				model.rightLeg.rotation.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.rightLeg.rotation.y;
-//				model.rightLeg.rotation.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.rightLeg.rotation.z;
-//				model.rightLeg.position.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.rightLeg.position.x;
-//				model.rightLeg.position.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.rightLeg.position.y;
-//				model.rightLeg.position.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.rightLeg.position.z;
-//				model.subRightLeg.rotation.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightLeg.rotation.x;
-//				model.subRightLeg.rotation.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightLeg.rotation.y;
-//				model.subRightLeg.rotation.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightLeg.rotation.z;
-//				model.subRightLeg.position.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightLeg.position.x;
-//				model.subRightLeg.position.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightLeg.position.y;
-//				model.subRightLeg.position.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.subRightLeg.position.z;
-//				model.leftLeg.rotation.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.leftLeg.rotation.x;
-//				model.leftLeg.rotation.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.leftLeg.rotation.y;
-//				model.leftLeg.rotation.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.leftLeg.rotation.z;
-//				model.leftLeg.position.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.leftLeg.position.x;
-//				model.leftLeg.position.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.leftLeg.position.y;
-//				model.leftLeg.position.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.leftLeg.position.z;
-//				model.subLeftLeg.rotation.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftLeg.rotation.x;
-//				model.subLeftLeg.rotation.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftLeg.rotation.y;
-//				model.subLeftLeg.rotation.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftLeg.rotation.z;
-//				model.subLeftLeg.position.x += animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftLeg.position.x;
-//				model.subLeftLeg.position.y += animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftLeg.position.y;
-//				model.subLeftLeg.position.z += animation.keyFrames[animation.currentKeyFrame + 1].inc.subLeftLeg.position.z;
-//
-//
-//
-//
-//				animation.step++;
-//			}
-//			else {
-//
-//				animation.maxStep = -1;
-//				animation.step = -1;
-//				animation.currentKeyFrame++;
-//
-//
-//			}
-//		}
-//		return false;
-//	}
-//	else {
-//		resetHumanoidAnimation(animation);
-//		return true;
-//	}
-//}
+void resetHumanoidAnimation(HumanoidAnimation animation) {
+	animation.currentKeyFrame = -1;
+	animation.step = -1;
+	animation.maxStep = -1;
+	return;
+}
+
+bool progressHumanoidAnimation(int animation, int model) {
+	
+	if (animations[animation].currentKeyFrame == -1) {
+		HumanoidModelInfo firstFrame = animations[animation].keyFrames[0].modelInfo;
+		
+		personas[model].torso.rotation.x = firstFrame.torso.rotation.x;
+		personas[model].torso.rotation.z = firstFrame.torso.rotation.z;
+		personas[model].torso.rotation.y = firstFrame.torso.rotation.y;
+		personas[model].torso.position.x = firstFrame.torso.position.x;
+		personas[model].torso.position.z = firstFrame.torso.position.z;
+		personas[model].torso.position.y = firstFrame.torso.position.y;
+		personas[model].head.rotation.x = firstFrame.head.rotation.x;
+		personas[model].head.rotation.z = firstFrame.head.rotation.z;
+		personas[model].head.rotation.y = firstFrame.head.rotation.y;
+		personas[model].head.position.x = firstFrame.head.position.x;
+		personas[model].head.position.z = firstFrame.head.position.z;
+		personas[model].head.position.y = firstFrame.head.position.y;
+		personas[model].rightArm.rotation.x = firstFrame.rightArm.rotation.x;
+		personas[model].rightArm.rotation.z = firstFrame.rightArm.rotation.z;
+		personas[model].rightArm.rotation.y = firstFrame.rightArm.rotation.y;
+		personas[model].rightArm.position.x = firstFrame.rightArm.position.x;
+		personas[model].rightArm.position.z = firstFrame.rightArm.position.z;
+		personas[model].rightArm.position.y = firstFrame.rightArm.position.y;
+		personas[model].subRightArm.rotation.x = firstFrame.subRightArm.rotation.x;
+		personas[model].subRightArm.rotation.z = firstFrame.subRightArm.rotation.z;
+		personas[model].subRightArm.rotation.y = firstFrame.subRightArm.rotation.y;
+		personas[model].subRightArm.position.x = firstFrame.subRightArm.position.x;
+		personas[model].subRightArm.position.z = firstFrame.subRightArm.position.z;
+		personas[model].subRightArm.position.y = firstFrame.subRightArm.position.y;
+		personas[model].leftArm.rotation.x = firstFrame.leftArm.rotation.x;
+		personas[model].leftArm.rotation.z = firstFrame.leftArm.rotation.z;
+		personas[model].leftArm.rotation.y = firstFrame.leftArm.rotation.y;
+		personas[model].leftArm.position.x = firstFrame.leftArm.position.x;
+		personas[model].leftArm.position.z = firstFrame.leftArm.position.z;
+		personas[model].leftArm.position.y = firstFrame.leftArm.position.y;
+		personas[model].subLeftArm.rotation.x = firstFrame.subLeftArm.rotation.x;
+		personas[model].subLeftArm.rotation.z = firstFrame.subLeftArm.rotation.z;
+		personas[model].subLeftArm.rotation.y = firstFrame.subLeftArm.rotation.y;
+		personas[model].subLeftArm.position.x = firstFrame.subLeftArm.position.x;
+		personas[model].subLeftArm.position.z = firstFrame.subLeftArm.position.z;
+		personas[model].subLeftArm.position.y = firstFrame.subLeftArm.position.y;
+		personas[model].rightLeg.rotation.x = firstFrame.rightLeg.rotation.x;
+		personas[model].rightLeg.rotation.z = firstFrame.rightLeg.rotation.z;
+		personas[model].rightLeg.rotation.y = firstFrame.rightLeg.rotation.y;
+		personas[model].rightLeg.position.x = firstFrame.rightLeg.position.x;
+		personas[model].rightLeg.position.z = firstFrame.rightLeg.position.z;
+		personas[model].rightLeg.position.y = firstFrame.rightLeg.position.y;
+		personas[model].subRightLeg.rotation.x = firstFrame.subRightLeg.rotation.x;
+		personas[model].subRightLeg.rotation.z = firstFrame.subRightLeg.rotation.z;
+		personas[model].subRightLeg.rotation.y = firstFrame.subRightLeg.rotation.y;
+		personas[model].subRightLeg.position.x = firstFrame.subRightLeg.position.x;
+		personas[model].subRightLeg.position.z = firstFrame.subRightLeg.position.z;
+		personas[model].subRightLeg.position.y = firstFrame.subRightLeg.position.y;
+		personas[model].leftLeg.rotation.x = firstFrame.leftLeg.rotation.x;
+		personas[model].leftLeg.rotation.z = firstFrame.leftLeg.rotation.z;
+		personas[model].leftLeg.rotation.y = firstFrame.leftLeg.rotation.y;
+		personas[model].leftLeg.position.x = firstFrame.leftLeg.position.x;
+		personas[model].leftLeg.position.z = firstFrame.leftLeg.position.z;
+		personas[model].leftLeg.position.y = firstFrame.leftLeg.position.y;
+		personas[model].subLeftLeg.rotation.x = firstFrame.subLeftLeg.rotation.x;
+		personas[model].subLeftLeg.rotation.z = firstFrame.subLeftLeg.rotation.z;
+		personas[model].subLeftLeg.rotation.y = firstFrame.subLeftLeg.rotation.y;
+		personas[model].subLeftLeg.position.x = firstFrame.subLeftLeg.position.x;
+		personas[model].subLeftLeg.position.z = firstFrame.subLeftLeg.position.z;
+		personas[model].subLeftLeg.position.y = firstFrame.subLeftLeg.position.y;
+
+		animations[animation].currentKeyFrame = 0;
+	}
+	else if (animations[animation].currentKeyFrame < animations[animation].maxKeyFrame) {
+		if (animations[animation].maxStep == -1) {
+
+			animations[animation].step = 0;
+
+
+
+
+			animations[animation].maxStep = animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].stepsToFrame;
+
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.torso.position.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.torso.position.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.torso.position.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.torso.position.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.torso.position.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.torso.position.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.torso.position.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.torso.position.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.torso.position.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.torso.rotation.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.torso.rotation.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.torso.rotation.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.torso.rotation.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.torso.rotation.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.torso.rotation.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.torso.rotation.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.torso.rotation.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.torso.rotation.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.head.position.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.head.position.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.head.position.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.head.position.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.head.position.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.head.position.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.head.position.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.head.position.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.head.position.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.head.rotation.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.head.rotation.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.head.rotation.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.head.rotation.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.head.rotation.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.head.rotation.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.head.rotation.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.head.rotation.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.head.rotation.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightArm.position.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.rightArm.position.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.rightArm.position.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightArm.position.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.rightArm.position.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.rightArm.position.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightArm.position.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.rightArm.position.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.rightArm.position.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightArm.rotation.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.rightArm.rotation.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.rightArm.rotation.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightArm.rotation.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.rightArm.rotation.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.rightArm.rotation.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightArm.rotation.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.rightArm.rotation.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.rightArm.rotation.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightArm.position.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subRightArm.position.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subRightArm.position.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightArm.position.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subRightArm.position.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subRightArm.position.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightArm.position.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subRightArm.position.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subRightArm.position.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightArm.rotation.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subRightArm.rotation.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subRightArm.rotation.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightArm.rotation.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subRightArm.rotation.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subRightArm.rotation.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightArm.rotation.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subRightArm.rotation.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subRightArm.rotation.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftArm.position.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.leftArm.position.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.leftArm.position.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftArm.position.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.leftArm.position.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.leftArm.position.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftArm.position.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.leftArm.position.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.leftArm.position.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftArm.rotation.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.leftArm.rotation.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.leftArm.rotation.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftArm.rotation.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.leftArm.rotation.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.leftArm.rotation.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftArm.rotation.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.leftArm.rotation.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.leftArm.rotation.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftArm.position.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subLeftArm.position.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subLeftArm.position.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftArm.position.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subLeftArm.position.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subLeftArm.position.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftArm.position.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subLeftArm.position.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subLeftArm.position.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftArm.rotation.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subLeftArm.rotation.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subLeftArm.rotation.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftArm.rotation.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subLeftArm.rotation.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subLeftArm.rotation.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftArm.rotation.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subLeftArm.rotation.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subLeftArm.rotation.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightLeg.position.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.rightLeg.position.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.rightLeg.position.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightLeg.position.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.rightLeg.position.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.rightLeg.position.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightLeg.position.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.rightLeg.position.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.rightLeg.position.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightLeg.rotation.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.rightLeg.rotation.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.rightLeg.rotation.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightLeg.rotation.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.rightLeg.rotation.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.rightLeg.rotation.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightLeg.rotation.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.rightLeg.rotation.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.rightLeg.rotation.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightLeg.position.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subRightLeg.position.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subRightLeg.position.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightLeg.position.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subRightLeg.position.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subRightLeg.position.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightLeg.position.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subRightLeg.position.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subRightLeg.position.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightLeg.rotation.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subRightLeg.rotation.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subRightLeg.rotation.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightLeg.rotation.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subRightLeg.rotation.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subRightLeg.rotation.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightLeg.rotation.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subRightLeg.rotation.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subRightLeg.rotation.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftLeg.position.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.leftLeg.position.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.leftLeg.position.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftLeg.position.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.leftLeg.position.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.leftLeg.position.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftLeg.position.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.leftLeg.position.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.leftLeg.position.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftLeg.rotation.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.leftLeg.rotation.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.leftLeg.rotation.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftLeg.rotation.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.leftLeg.rotation.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.leftLeg.rotation.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftLeg.rotation.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.leftLeg.rotation.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.leftLeg.rotation.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftLeg.position.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subLeftLeg.position.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subLeftLeg.position.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftLeg.position.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subLeftLeg.position.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subLeftLeg.position.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftLeg.position.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subLeftLeg.position.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subLeftLeg.position.z, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftLeg.rotation.x = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subLeftLeg.rotation.x, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subLeftLeg.rotation.x, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftLeg.rotation.y = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subLeftLeg.rotation.y, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subLeftLeg.rotation.y, animations[animation].maxStep);
+			animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftLeg.rotation.z = interpolation2(animations[animation].keyFrames[animations[animation].currentKeyFrame].modelInfo.subLeftLeg.rotation.z, animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].modelInfo.subLeftLeg.rotation.z, animations[animation].maxStep);
+
+		}
+		else {
+			if (animations[animation].step < animations[animation].maxStep) {
+
+				personas[model].torso.rotation.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.torso.rotation.x;
+				personas[model].torso.rotation.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.torso.rotation.y;
+				personas[model].torso.rotation.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.torso.rotation.z;
+				personas[model].torso.position.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.torso.position.x;
+				personas[model].torso.position.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.torso.position.y;
+				personas[model].torso.position.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.torso.position.z;
+				personas[model].head.rotation.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.head.rotation.x;
+				personas[model].head.rotation.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.head.rotation.y;
+				personas[model].head.rotation.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.head.rotation.z;
+				personas[model].head.position.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.head.position.x;
+				personas[model].head.position.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.head.position.y;
+				personas[model].head.position.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.head.position.z;
+				personas[model].rightArm.rotation.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightArm.rotation.x;
+				personas[model].rightArm.rotation.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightArm.rotation.y;
+				personas[model].rightArm.rotation.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightArm.rotation.z;
+				personas[model].rightArm.position.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightArm.position.x;
+				personas[model].rightArm.position.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightArm.position.y;
+				personas[model].rightArm.position.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightArm.position.z;
+				personas[model].subRightArm.rotation.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightArm.rotation.x;
+				personas[model].subRightArm.rotation.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightArm.rotation.y;
+				personas[model].subRightArm.rotation.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightArm.rotation.z;
+				personas[model].subRightArm.position.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightArm.position.x;
+				personas[model].subRightArm.position.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightArm.position.y;
+				personas[model].subRightArm.position.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightArm.position.z;
+				personas[model].leftArm.rotation.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftArm.rotation.x;
+				personas[model].leftArm.rotation.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftArm.rotation.y;
+				personas[model].leftArm.rotation.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftArm.rotation.z;
+				personas[model].leftArm.position.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftArm.position.x;
+				personas[model].leftArm.position.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftArm.position.y;
+				personas[model].leftArm.position.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftArm.position.z;
+				personas[model].subLeftArm.rotation.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftArm.rotation.x;
+				personas[model].subLeftArm.rotation.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftArm.rotation.y;
+				personas[model].subLeftArm.rotation.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftArm.rotation.z;
+				personas[model].subLeftArm.position.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftArm.position.x;
+				personas[model].subLeftArm.position.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftArm.position.y;
+				personas[model].subLeftArm.position.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftArm.position.z;
+				personas[model].rightLeg.rotation.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightLeg.rotation.x;
+				personas[model].rightLeg.rotation.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightLeg.rotation.y;
+				personas[model].rightLeg.rotation.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightLeg.rotation.z;
+				personas[model].rightLeg.position.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightLeg.position.x;
+				personas[model].rightLeg.position.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightLeg.position.y;
+				personas[model].rightLeg.position.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.rightLeg.position.z;
+				personas[model].subRightLeg.rotation.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightLeg.rotation.x;
+				personas[model].subRightLeg.rotation.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightLeg.rotation.y;
+				personas[model].subRightLeg.rotation.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightLeg.rotation.z;
+				personas[model].subRightLeg.position.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightLeg.position.x;
+				personas[model].subRightLeg.position.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightLeg.position.y;
+				personas[model].subRightLeg.position.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subRightLeg.position.z;
+				personas[model].leftLeg.rotation.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftLeg.rotation.x;
+				personas[model].leftLeg.rotation.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftLeg.rotation.y;
+				personas[model].leftLeg.rotation.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftLeg.rotation.z;
+				personas[model].leftLeg.position.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftLeg.position.x;
+				personas[model].leftLeg.position.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftLeg.position.y;
+				personas[model].leftLeg.position.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.leftLeg.position.z;
+				personas[model].subLeftLeg.rotation.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftLeg.rotation.x;
+				personas[model].subLeftLeg.rotation.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftLeg.rotation.y;
+				personas[model].subLeftLeg.rotation.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftLeg.rotation.z;
+				personas[model].subLeftLeg.position.x += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftLeg.position.x;
+				personas[model].subLeftLeg.position.y += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftLeg.position.y;
+				personas[model].subLeftLeg.position.z += animations[animation].keyFrames[animations[animation].currentKeyFrame + 1].inc.subLeftLeg.position.z;
+
+
+
+
+				animations[animation].step++;
+			}
+			else {
+
+				animations[animation].maxStep = -1;
+				animations[animation].step = -1;
+				animations[animation].currentKeyFrame++;
+
+				if (animations[animation].currentKeyFrame >= animations[animation].maxKeyFrame) {
+					playAnimationIndex = -1;
+					return false;
+				}
+
+			}
+		}
+		return false;
+	}
+	else {
+		resetHumanoidAnimation(animations[animation]);
+		playAnimationIndex = -1;
+		return true;
+	}
+}
 
 void Animation() {
 	//--------------------Animacion 0
+	printf("El valor es: %f\n", playAnimationIndex);
 	
-
 	int steps = int(floor(500.0 * deltaTime));
 
 	for (int i = 0; i < steps; i++) {
@@ -3358,7 +3404,13 @@ void Animation() {
 				playAnimationIndex = -1;
 			}
 			break;
-
+		case 1:
+			//printf("El número es: %d\n", playAnimationIndex);
+			progressHumanoidAnimation(1, 2);
+				
+			
+			
+			break;
 
 
 
