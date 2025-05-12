@@ -80,8 +80,8 @@ struct HumanoidAnimation {
 
 
 // Function prototypes
-void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode);
-void MouseCallback(GLFWwindow *window, double xPos, double yPos);
+void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
+void MouseCallback(GLFWwindow* window, double xPos, double yPos);
 void DoMovement();
 void Animation();
 
@@ -430,7 +430,7 @@ void startUpFrames() {
 
 		//regreso a posicion inicial
 
-		
+
 
 	}
 	//animation 2
@@ -487,7 +487,7 @@ void startUpFrames() {
 		animations[2].keyFrames[5].modelInfo.leftArm.rotation.x = 75.0f;
 		animations[2].keyFrames[5].stepsToFrame = 500;
 
-		
+
 		animations[2].keyFrames[6].modelInfo.torso.rotation.y = 90.0f;
 		animations[2].keyFrames[6].modelInfo.torso.position.z = -62.412f;
 		animations[2].keyFrames[6].modelInfo.torso.position.x = -5.236;
@@ -504,7 +504,7 @@ void startUpFrames() {
 		animations[2].keyFrames[7].modelInfo.leftArm.rotation.x = 75.0f;
 		animations[2].keyFrames[7].stepsToFrame = 500;
 
-		
+
 	}
 }
 
@@ -526,12 +526,12 @@ float interpolation2(float value, float next, int steps)
 
 
 
-int main(){
+int main() {
 
 	startUpFrames();
 	// Init GLFW
 	glfwInit();
-	
+
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
 	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Equipo 5. Proyecto Final Grafica", nullptr, nullptr);
@@ -571,9 +571,8 @@ int main(){
 	Shader lampShader("Shader/lamp.vs", "Shader/lamp.frag");
 	Shader skyboxShader("Shader/SkyBox.vs", "Shader/SkyBox.frag");//Skybox
 
-	
-	//------------------------Modelo Profesor
 
+	// ------------------- MODELO PROFESOR -------------------------------------------
 	Model ProfesorTorso((char*)"Models/Profesor/ProfesorTorso.obj");
 	Model ProfesorHead((char*)"Models/Profesor/ProfesorHead.obj");
 	Model ProfesorRightArm((char*)"Models/Profesor/ProfesorRightArm.obj");
@@ -586,8 +585,7 @@ int main(){
 	Model ProfesorSubLeftLeg((char*)"Models/Profesor/ProfesorSubLeftLeg.obj");
 
 
-	//------------------------Modelo Alumno1
-
+	// ------------------- MODELO ALUMNO 1 -------------------------------------------
 	Model Alumno1Torso((char*)"Models/Alumno1/ProfesorTorso.obj");
 	Model Alumno1Head((char*)"Models/Alumno1/ProfesorHead.obj");
 	Model Alumno1RightArm((char*)"Models/Alumno1/ProfesorRightArm.obj");
@@ -599,8 +597,7 @@ int main(){
 	Model Alumno1LeftLeg((char*)"Models/Alumno1/ProfesorLeftLeg.obj");
 	Model Alumno1SubLeftLeg((char*)"Models/Alumno1/ProfesorSubLeftLeg.obj");
 
-	//------------------------Modelo Alumno2
-
+	// ------------------- MODELO ALUMNO 2 -------------------------------------------
 	Model Alumno2Torso((char*)"Models/Alumno2/Alumno2Torso.obj");
 	Model Alumno2Head((char*)"Models/Alumno2/Alumno2Head.obj");
 	Model Alumno2RightArm((char*)"Models/Alumno2/Alumno2RightArm.obj");
@@ -613,7 +610,6 @@ int main(){
 	Model Alumno2SubLeftLeg((char*)"Models/Alumno2/Alumno2SubLeftLeg.obj");
 
 	// ------------------- MODELOS LAB VIEJO -----------------------------------------
-
 	Model tornado((char*)"Models/Tornado/tornado.obj");
 
 	Model cuartoOld((char*)"Models/Escenario_Viejo/CuartoViejo/salonViejo.obj");		// LAB VIEJO
@@ -653,8 +649,15 @@ int main(){
 	Model DetachTable((char*)"Models/Escenario_Nuevo/Detach_Table/Table1.obj");
 	Model DetachTable2((char*)"Models/Escenario_Nuevo/Detach_Table/Table2.obj");
 
+	// ------------------ MODELOS DECORACIONES --------------------------------------
+	Model aloe((char*)"Models/Decoracion/aloe/aloe.obj");
+	Model piso((char*)"Models/Decoracion/piso/piso.obj");
+	Model arbol((char*)"Models/Decoracion/Tree/Tree.obj");
+	// ------------------------------------------------------------------------------
 
-	Model Cuarto((char*)"Models/placeholder.obj");
+
+	// ----------------- PLACEHOLDERS -----------------------------------------------
+	/*Model Cuarto((char*)"Models/placeholder.obj");
 	Model Ventana((char*)"Models/placeholder.obj");
 	Model Alumno1((char*)"Models/placeholder.obj");
 	Model Mesa((char*)"Models/placeholder.obj");
@@ -667,7 +670,8 @@ int main(){
 	Model MesaProf((char*)"Models/placeholder.obj");
 
 	Model DetachTable((char*)"Models/placeholder.obj");
-	Model DetachTable2((char*)"Models/placeholder.obj");
+	Model DetachTable2((char*)"Models/placeholder.obj");*/
+	// ------------------------------------------------------------------------------
 
 	GLfloat skyboxVertices[] = {//Skybox
 		// Positions
@@ -743,7 +747,7 @@ int main(){
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);//Skybox
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);//Skybox
 
-	
+
 	// Position attribute
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
@@ -800,20 +804,20 @@ int main(){
 		// Clear the colorbuffer
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);//Se encarga de poner el fondo de color negro en formato RGB
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	   
+
 		// OpenGL options
 		glEnable(GL_DEPTH_TEST);
 
 
 		glm::mat4 modelTemp = glm::mat4(1.0f); //Temp
 		glm::mat4 modelTemp1 = glm::mat4(1.0f); //Temp
-		  
-		
+
+
 
 		// Use cooresponding shader when setting uniforms/drawing objects
 		lightingShader.Use();
 
-        glUniform1i(glGetUniformLocation(lightingShader.Program, "diffuse"), 0);
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "diffuse"), 0);
 		//glUniform1i(glGetUniformLocation(lightingShader.Program, "specular"),1);
 
 		GLint viewPosLoc = glGetUniformLocation(lightingShader.Program, "viewPos");
@@ -977,7 +981,7 @@ int main(){
 
 
 		// ================PARTE DE CODIGO DE RENDERIZADO DE SKYBOX PARA EL MANEJO DE TRANSPARENCIA=========================================
-		
+
 		// 1. Limpiar buffers al inicio del frame
 		// Se borran tanto el color buffer como el depth buffer para empezar un nuevo frame limpio
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -1018,6 +1022,88 @@ int main(){
 		// ... aquí se dibujan modelos con texturas o materiales que contienen canal alfa ...
 		glDisable(GL_BLEND);
 
+		// ================================================================================================
+		// ============================= MODELADO DECORACIONES ============================================
+		// ================================================================================================
+		glm::mat4 modelPiso(1.0f);
+		modelPiso = glm::translate(modelPiso, glm::vec3(0.0f, 0.0f, 0.0f));
+		//modemodelPisolAloe = glm::scale(modelPiso, glm::vec3(1572.0f, 1572.0f, 1572.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelPiso));
+		piso.Draw(lightingShader);
+
+		glm::mat4 modelEmpty(1.0f);
+
+
+		glm::mat4 modelArbol(1.0f);
+		modelArbol = glm::translate(modelArbol, glm::vec3(100.0f, 0.0f, 0.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(80.0f, 0.0f, 60.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(70.0f, 0.0f, -80.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(-90.0f, 0.0f, 65.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(85.0f, 0.0f, 95.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(-70.0f, 0.0f, -100.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(100.0f, 0.0f, 70.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(-100.0f, 0.0f, -90.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(95.0f, 0.0f, -65.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(-80.0f, 0.0f, 85.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+		modelArbol = modelEmpty;
+		modelArbol = glm::translate(modelArbol, glm::vec3(60.0f, 0.0f, 100.0f));
+		modelArbol = glm::scale(modelArbol, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelArbol));
+		arbol.Draw(lightingShader);
+
+
+
 
 
 		//Condicion para intercambiar entre los dos escenarios
@@ -1026,14 +1112,14 @@ int main(){
 
 
 
-		// =========================================================================================
-		// ================================ INICIO DE  MODELADO LAB NUEVO =================================
-		// =========================================================================================
+			// =========================================================================================
+			// ================================ INICIO DE  MODELADO LAB NUEVO =================================
+			// =========================================================================================
 
 
 
 
-	//Modelo cuarto
+		//Modelo cuarto
 			glm::mat4 modelCuarto = modelLabNuevo;
 			//modelCuarto = glm::scale(modelCuarto, glm::vec3(1.0f, 1.0f, 1.0f));
 			modelCuarto = glm::translate(modelCuarto, glm::vec3(0.351f, 17.922f, 1.5f));
@@ -1334,7 +1420,7 @@ int main(){
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMouseProfe));
 			Mouse.Draw(lightingShader);
 
-			
+
 			//------Inicio de Modelos Separados de columna 1,fila 4 y modelos respectivos 3 y 4------//
 
 			//Mesa 4 Izquierda
@@ -1408,7 +1494,7 @@ int main(){
 
 
 			//------FIN de Modelos Separados de columna 1,fila 4 y modelos respectivos 3 y 4------//
-			
+
 			if (true) {
 
 				//Alumno2 Torso
@@ -1549,7 +1635,7 @@ int main(){
 			Mesa.Draw(lightingShader);
 
 
-			
+
 			//Mesa 4 Derecha
 			glm::mat4 modelMesa4_Der = modelLabNuevo;
 			modelMesa4_Der = glm::translate(modelMesa4_Der, glm::vec3(-31.0f, 5.31f, 42.22f));
@@ -3072,7 +3158,7 @@ int main(){
 			puertaOld.Draw(lightingShader);
 			glDisable(GL_BLEND);
 			glBindVertexArray(0);
-			
+
 
 
 			// =========================================================================================
@@ -3084,7 +3170,7 @@ int main(){
 
 		}
 
-		
+
 
 		// Also draw the lamp object, again binding the appropriate shader
 		lampShader.Use();
@@ -3101,23 +3187,23 @@ int main(){
 		model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		// Draw the light object (using light's vertex attributes)
-		
+
 		model = glm::mat4(1);
 		model = glm::translate(model, pointLightPositions[0]);
 		model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glBindVertexArray(VAO);
 		//glDrawArrays(GL_TRIANGLES, 0, 36);
-		
+
 		glBindVertexArray(0);
-		
-		
-		
-		
+
+
+
+
 		// Swap the screen buffers
 		glfwSwapBuffers(window);
-	
-		
+
+
 	}
 
 	// Delete all the objects as they're been cleared as well
@@ -3169,7 +3255,7 @@ void DoMovement()
 
 	}
 
-	
+
 }
 
 void resetHumanoidAnimation(HumanoidAnimation& animation) {
@@ -3188,7 +3274,7 @@ void resetCaminarAnimation() {
 
 
 // Is called whenever a key is pressed/released via GLFW
-void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode)
+void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
 	if (GLFW_KEY_ESCAPE == key && GLFW_PRESS == action)
 	{
@@ -3213,16 +3299,16 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 		if (active)
 		{
 			Light1 = glm::vec3(1.0f, 1.0f, 0.0f);
-			
+
 		}
 		else
 		{
 			Light1 = glm::vec3(0);//Cuado es solo un valor en los 3 vectores pueden dejar solo una componente
 		}
 
-		
+
 	}
-	
+
 	//Nueva tecla para intercambiar entre escenarios
 	if (key == GLFW_KEY_E && action == GLFW_PRESS) {
 
@@ -3250,7 +3336,7 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 
 	}
 
-	if (key == GLFW_KEY_0 && action == GLFW_PRESS && mostrarEscenarioNuevo )
+	if (key == GLFW_KEY_0 && action == GLFW_PRESS && mostrarEscenarioNuevo)
 	{
 		renderAlumno1 = true;
 		playAnimationIndex = 0;
@@ -3259,12 +3345,12 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 
 	}
 
-	if (key == GLFW_KEY_1 && action == GLFW_PRESS && mostrarEscenarioNuevo )
+	if (key == GLFW_KEY_1 && action == GLFW_PRESS && mostrarEscenarioNuevo)
 	{
 		playAnimationIndex = 1;
 		resetHumanoidAnimation(animations[1]); // IMPORTANTE
 
-		
+
 
 	}
 
@@ -3278,7 +3364,7 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 	}
 	std::cout << "Tecla presionada: " << key << ", action: " << action << std::endl;
 
-	
+
 
 
 }
@@ -3286,10 +3372,10 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 
 
 bool progressHumanoidAnimation(int animation, int model) {
-	
+
 	if (animations[animation].currentKeyFrame == -1) {
 		HumanoidModelInfo firstFrame = animations[animation].keyFrames[0].modelInfo;
-		
+
 		personas[model].torso.rotation.x = firstFrame.torso.rotation.x;
 		personas[model].torso.rotation.z = firstFrame.torso.rotation.z;
 		personas[model].torso.rotation.y = firstFrame.torso.rotation.y;
@@ -3519,7 +3605,7 @@ bool progressHumanoidAnimation(int animation, int model) {
 void Animation() {
 	//--------------------Animacion 0
 	//printf("El valor es: %f\n", playAnimationIndex);
-	
+
 	int steps = int(floor(500.0 * deltaTime));
 
 	for (int i = 0; i < steps; i++) {
@@ -3629,8 +3715,8 @@ void Animation() {
 			if (progressHumanoidAnimation(1, 2)) {
 				//playAnimationIndex = -1;
 			}
-			
-			
+
+
 			break;
 
 		case 2:
@@ -3652,7 +3738,7 @@ void Animation() {
 
 	if (playCaminar)
 	{
-		
+
 		personas[0].rightArm.rotation.x = 15.0f + sin(glm::radians(caminarTime)) * 30;
 		personas[0].leftArm.rotation.x = 15.0f - sin(glm::radians(caminarTime)) * 30;
 		personas[0].subRightArm.rotation.x = -15.0f + sin(glm::radians(caminarTime)) * 15;
@@ -3748,7 +3834,7 @@ void Animation() {
 
 
 
-void MouseCallback(GLFWwindow *window, double xPos, double yPos)
+void MouseCallback(GLFWwindow* window, double xPos, double yPos)
 {
 	if (firstMouse)
 	{
