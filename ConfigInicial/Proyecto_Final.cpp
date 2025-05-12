@@ -198,9 +198,9 @@ GLfloat lastFrame = 0.0f;  	// Time of last frame
 void startUpFrames() {
 
 	personas[1].torso.rotation.y = 90.0f;
-	personas[1].torso.position.z = -58.602f;
-	personas[1].rightArm.rotation.x = -75.0f;
-	personas[1].leftArm.rotation.x = 75.0f;
+	personas[1].torso.position.z = -62.412f;
+	personas[1].rightArm.rotation.x = 0.0f;
+	personas[1].leftArm.rotation.x = 0.0f;
 
 	personas[2].torso.position = glm::vec3(0.0f, -4.028f, 0.059f);
 	personas[2].torso.rotation.y = -90.0f;
@@ -432,8 +432,15 @@ void startUpFrames() {
 		
 
 	}
+	//animation 2
+	if (true)
+	{
+		animations[2].keyFrames[0].modelInfo.torso.rotation.y = 90.0f;
+		animations[2].keyFrames[0].modelInfo.torso.position.z = -62.412f;
+		animations[2].keyFrames[0].modelInfo.rightArm.rotation.x = -75.0f;
+		animations[2].keyFrames[0].modelInfo.leftArm.rotation.x = 75.0f;
+	}
 }
-
 
 
 float interpolar(float a, float b, float t) {
@@ -565,7 +572,7 @@ int main(){
 
 
 	// ------------------- MODELOS LAB NUEVO -----------------------------------------
-	//Model Cuarto((char*)"Models/Escenario_Nuevo/Cuarto/Cuartov2.obj");
+	Model Cuarto((char*)"Models/Escenario_Nuevo/Cuarto/Cuartov2.obj");
 	//Model Ventana((char*)"Models/Escenario_Nuevo/Ventanas_Vidrio/Ventanas.obj");
 	////Model Alumno1((char*)"Models/Escenario_Nuevo/Alumno1/Profesor.obj");
 	Model Mesa((char*)"Models/Escenario_Nuevo/Mesa/Mesa.obj");
@@ -581,7 +588,7 @@ int main(){
 	Model DetachTable2((char*)"Models/Escenario_Nuevo/Detach_Table/Table2.obj");*/
 
 
-	Model Cuarto((char*)"Models/placeholder.obj");
+	/*Model Cuarto((char*)"Models/placeholder.obj");*/
 	Model Ventana((char*)"Models/placeholder.obj");
 	Model Alumno1((char*)"Models/placeholder.obj");
 	//Model Mesa((char*)"Models/placeholder.obj");
@@ -962,7 +969,7 @@ int main(){
 
 	//Modelo cuarto
 			glm::mat4 modelCuarto = modelLabNuevo;
-			modelCuarto = glm::scale(modelCuarto, glm::vec3(1.0f, 1.0f, 0.9f));
+			//modelCuarto = glm::scale(modelCuarto, glm::vec3(1.0f, 1.0f, 1.0f));
 			modelCuarto = glm::translate(modelCuarto, glm::vec3(0.351f, 17.922f, 1.5f));
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCuarto));
 			Cuarto.Draw(lightingShader);
@@ -1000,7 +1007,7 @@ int main(){
 				//Profesor Right Arm
 
 				model = modelLabNuevo;
-				model = glm::translate(modelTemp, glm::vec3(0.0f, 2.001f, -0.233f) + personas[1].rightArm.position);
+				model = glm::translate(modelTemp, glm::vec3(0.039f, 1.903f, -0.282f) + personas[1].rightArm.position);
 				modelTemp1 = model = glm::rotate(model, glm::radians(personas[1].rightArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
 				modelTemp1 = model = glm::rotate(model, glm::radians(personas[1].rightArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
 				modelTemp1 = model = glm::rotate(model, glm::radians(personas[1].rightArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
@@ -1010,7 +1017,7 @@ int main(){
 				//Profesor Sub Right Arm
 
 				model = modelLabNuevo;
-				model = glm::translate(modelTemp1, glm::vec3(0.106, -0.089f, -0.329f) + personas[1].subRightArm.position);
+				model = glm::translate(modelTemp1, glm::vec3(-0.002, 0.011f, -0.281f) + personas[1].subRightArm.position);
 				model = glm::rotate(model, glm::radians(personas[1].subRightArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
 				model = glm::rotate(model, glm::radians(personas[1].subRightArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
 				model = glm::rotate(model, glm::radians(personas[1].subRightArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
@@ -1022,7 +1029,7 @@ int main(){
 
 				////Profesor Left Arm
 				model = modelLabNuevo;
-				model = glm::translate(modelTemp, glm::vec3(0.0f, 1.993f, 0.222f) + personas[1].leftArm.position);
+				model = glm::translate(modelTemp, glm::vec3(0.04f, 1.9f, 0.24f) + personas[1].leftArm.position);
 				modelTemp1 = model = glm::rotate(model, glm::radians(personas[1].leftArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
 				modelTemp1 = model = glm::rotate(model, glm::radians(personas[1].leftArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
 				modelTemp1 = model = glm::rotate(model, glm::radians(personas[1].leftArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
@@ -1032,7 +1039,7 @@ int main(){
 				//Profesor Sub Left Arm
 
 				model = modelLabNuevo;
-				model = glm::translate(modelTemp1, glm::vec3(0.109f, -0.075f, 0.389f) + personas[1].subLeftArm.position);
+				model = glm::translate(modelTemp1, glm::vec3(-0.026f, 0.018f, 0.371f) + personas[1].subLeftArm.position);
 				model = glm::rotate(model, glm::radians(personas[1].subLeftArm.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
 				model = glm::rotate(model, glm::radians(personas[1].subLeftArm.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
 				model = glm::rotate(model, glm::radians(personas[1].subLeftArm.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
