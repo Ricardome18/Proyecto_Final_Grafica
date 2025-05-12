@@ -198,7 +198,7 @@ GLfloat lastFrame = 0.0f;  	// Time of last frame
 void startUpFrames() {
 
 	personas[1].torso.rotation.y = 90.0f;
-	personas[1].torso.position.z = -62.412f;
+	personas[1].torso.position.z = -55.412f;
 	personas[1].torso.position.y = 0.5f;
 	personas[1].rightArm.rotation.x = -75.0f;
 	personas[1].leftArm.rotation.x = 75.0f;
@@ -439,13 +439,13 @@ void startUpFrames() {
 		animations[2].maxKeyFrame = 8;
 
 		animations[2].keyFrames[0].modelInfo.torso.rotation.y = 90.0f;
-		animations[2].keyFrames[0].modelInfo.torso.position.z = -62.412f;
+		animations[2].keyFrames[0].modelInfo.torso.position.z = -55.412f;
 		animations[2].keyFrames[0].modelInfo.torso.position.y = 0.5;
 		animations[2].keyFrames[0].modelInfo.rightArm.rotation.x = -75.0f;
 		animations[2].keyFrames[0].modelInfo.leftArm.rotation.x = 75.0f;
 
 		animations[2].keyFrames[1].modelInfo.torso.rotation.y = 90.0f;
-		animations[2].keyFrames[1].modelInfo.torso.position.z = -62.412f;
+		animations[2].keyFrames[1].modelInfo.torso.position.z = -55.412f;
 		animations[2].keyFrames[1].modelInfo.torso.position.y = 0.5;
 		animations[2].keyFrames[1].modelInfo.rightArm.rotation.x = 45.0f;
 		animations[2].keyFrames[1].modelInfo.subRightArm.rotation.z = -90.0f;
@@ -454,14 +454,14 @@ void startUpFrames() {
 		animations[2].keyFrames[1].stepsToFrame = 500;
 
 		animations[2].keyFrames[2].modelInfo.torso.rotation.y = 90.0f;
-		animations[2].keyFrames[2].modelInfo.torso.position.z = -62.412f;
+		animations[2].keyFrames[2].modelInfo.torso.position.z = -55.412f;
 		animations[2].keyFrames[2].modelInfo.torso.position.y = 0.5;
 		animations[2].keyFrames[2].modelInfo.rightArm.rotation.x = -75.0f;
 		animations[2].keyFrames[2].modelInfo.leftArm.rotation.x = 75.0f;
 		animations[2].keyFrames[2].stepsToFrame = 500;
 
 		animations[2].keyFrames[3].modelInfo.torso.rotation.y = -90.0f;
-		animations[2].keyFrames[3].modelInfo.torso.position.z = -62.412f;
+		animations[2].keyFrames[3].modelInfo.torso.position.z = -55.412f;
 		animations[2].keyFrames[3].modelInfo.torso.position.y = 0.5;
 		animations[2].keyFrames[3].modelInfo.rightArm.rotation.x = -75.0f;
 		animations[2].keyFrames[3].modelInfo.leftArm.rotation.x = 75.0f;
@@ -470,7 +470,7 @@ void startUpFrames() {
 
 		animations[2].keyFrames[4].modelInfo.head.rotation.y = -50.0f;
 		animations[2].keyFrames[4].modelInfo.torso.rotation.y = -50.0f;
-		animations[2].keyFrames[4].modelInfo.torso.position.z = -62.412f;
+		animations[2].keyFrames[4].modelInfo.torso.position.z = -55.412f;
 		animations[2].keyFrames[4].modelInfo.torso.position.y = 0.5;
 		animations[2].keyFrames[4].modelInfo.rightArm.rotation.x = 25.0f;
 		animations[2].keyFrames[4].modelInfo.subRightArm.rotation.x = 40.0f;
@@ -479,7 +479,7 @@ void startUpFrames() {
 
 		animations[2].keyFrames[5].modelInfo.head.rotation.y = -70.0f;
 		animations[2].keyFrames[5].modelInfo.torso.rotation.y = -60.0f;
-		animations[2].keyFrames[5].modelInfo.torso.position.z = -62.412f;
+		animations[2].keyFrames[5].modelInfo.torso.position.z = -55.412f;
 		animations[2].keyFrames[5].modelInfo.torso.position.x = -5.236;
 		animations[2].keyFrames[5].modelInfo.torso.position.y = 0.5;
 		animations[2].keyFrames[5].modelInfo.rightArm.rotation.x = -60.0f;
@@ -489,7 +489,7 @@ void startUpFrames() {
 
 
 		animations[2].keyFrames[6].modelInfo.torso.rotation.y = 90.0f;
-		animations[2].keyFrames[6].modelInfo.torso.position.z = -62.412f;
+		animations[2].keyFrames[6].modelInfo.torso.position.z = -55.412f;
 		animations[2].keyFrames[6].modelInfo.torso.position.x = -5.236;
 		animations[2].keyFrames[6].modelInfo.torso.position.y = 0.5;
 		animations[2].keyFrames[6].modelInfo.rightArm.rotation.x = -75.0f;
@@ -498,7 +498,7 @@ void startUpFrames() {
 		animations[2].keyFrames[6].stepsToFrame = 500;
 
 		animations[2].keyFrames[7].modelInfo.torso.rotation.y = 90.0f;
-		animations[2].keyFrames[7].modelInfo.torso.position.z = -62.412f;
+		animations[2].keyFrames[7].modelInfo.torso.position.z = -55.412f;
 		animations[2].keyFrames[7].modelInfo.torso.position.y = 0.5;
 		animations[2].keyFrames[7].modelInfo.rightArm.rotation.x = -75.0f;
 		animations[2].keyFrames[7].modelInfo.leftArm.rotation.x = 75.0f;
@@ -636,7 +636,6 @@ int main() {
 	// ------------------- MODELOS LAB NUEVO -----------------------------------------
 	Model Cuarto((char*)"Models/Escenario_Nuevo/Cuarto/Cuartov2.obj");
 	Model Ventana((char*)"Models/Escenario_Nuevo/Ventanas_Vidrio/Ventanas.obj");
-	////Model Alumno1((char*)"Models/Escenario_Nuevo/Alumno1/Profesor.obj");
 	Model Mesa((char*)"Models/Escenario_Nuevo/Mesa/Mesa.obj");
 	Model Silla((char*)"Models/Escenario_Nuevo/Silla/Silla.obj");
 	Model CPU_1((char*)"Models/Escenario_Nuevo/CPU/CPU1.obj");
@@ -1121,10 +1120,11 @@ int main() {
 
 		//Modelo cuarto
 			glm::mat4 modelCuarto = modelLabNuevo;
-			//modelCuarto = glm::scale(modelCuarto, glm::vec3(1.0f, 1.0f, 1.0f));
+			modelCuarto = glm::scale(modelCuarto, glm::vec3(1.0f, 1.0f, 0.9f));
 			modelCuarto = glm::translate(modelCuarto, glm::vec3(0.351f, 17.922f, 1.5f));
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelCuarto));
 			Cuarto.Draw(lightingShader);
+			
 			if (true) {
 
 				//Profesor Torso
