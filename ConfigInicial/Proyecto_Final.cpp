@@ -659,24 +659,24 @@ int main() {
 	Model tornado((char*)"Models/Tornado/tornado.obj");
 
 	Model cuartoOld((char*)"Models/Escenario_Viejo/CuartoViejo/salonViejo.obj");		// LAB VIEJO
-	//Model ventanasOld((char*)"Models/Escenario_Viejo/ventanasOLD/ventanasOLD.obj");		// VENTANAS OLD
-	//Model mesaOld((char*)"Models/Escenario_Viejo/mesaOLD/mesaOLD.obj");					// MESA VIEJA
-	//Model sillaOld((char*)"Models/Escenario_Viejo/sillaOLD/sillaOLD.obj");				// SILLA VIEJA
-	//Model oldCPU((char*)"Models/Escenario_Viejo/oldCPU/oldCPU.obj");					// CPU VIEJO
-	//Model monitorOld((char*)"Models/Escenario_Viejo/monitorViejo/monitorViejo.obj");	// MONITOR VIEJO
-	//Model tecladoOld((char*)"Models/Escenario_Viejo/tecladoViejo/teclado.obj");			// TECLADO VIEJO
-	//Model mouseOld((char*)"Models/Escenario_Viejo/mouseViejo/mouseViejo.obj");			// MOUSE VIEJO
-	//Model puertaOld((char*)"Models/Escenario_Viejo/puertaOLD/puertaOLD.obj");			// PUERTA VIEJA
+	Model ventanasOld((char*)"Models/Escenario_Viejo/ventanasOLD/ventanasOLD.obj");		// VENTANAS OLD
+	Model mesaOld((char*)"Models/Escenario_Viejo/mesaOLD/mesaOLD.obj");					// MESA VIEJA
+	Model sillaOld((char*)"Models/Escenario_Viejo/sillaOLD/sillaOLD.obj");				// SILLA VIEJA
+	Model oldCPU((char*)"Models/Escenario_Viejo/oldCPU/oldCPU.obj");					// CPU VIEJO
+	Model monitorOld((char*)"Models/Escenario_Viejo/monitorViejo/monitorViejo.obj");	// MONITOR VIEJO
+	Model tecladoOld((char*)"Models/Escenario_Viejo/tecladoViejo/teclado.obj");			// TECLADO VIEJO
+	Model mouseOld((char*)"Models/Escenario_Viejo/mouseViejo/mouseViejo.obj");			// MOUSE VIEJO
+	Model puertaOld((char*)"Models/Escenario_Viejo/puertaOLD/puertaOLD.obj");			// PUERTA VIEJA
 
 	//Model cuartoOld((char*)"Models/placeholder.obj");		// LAB VIEJO
-	Model ventanasOld((char*)"Models/placeholder.obj");		// VENTANAS OLD
-	Model mesaOld((char*)"Models/placeholder.obj");					// MESA VIEJA
-	Model sillaOld((char*)"Models/placeholder.obj");				// SILLA VIEJA
-	Model oldCPU((char*)"Models/placeholder.obj");					// CPU VIEJO
-	Model monitorOld((char*)"Models/placeholder.obj");	// MONITOR VIEJO
-	Model tecladoOld((char*)"Models/placeholder.obj");			// TECLADO VIEJO
-	Model mouseOld((char*)"Models/placeholder.obj");			// MOUSE VIEJO
-	Model puertaOld((char*)"Models/placeholder.obj");			// PUERTA VIEJA
+	//Model ventanasOld((char*)"Models/placeholder.obj");		// VENTANAS OLD
+	//Model mesaOld((char*)"Models/placeholder.obj");					// MESA VIEJA
+	//Model sillaOld((char*)"Models/placeholder.obj");				// SILLA VIEJA
+	//Model oldCPU((char*)"Models/placeholder.obj");					// CPU VIEJO
+	//Model monitorOld((char*)"Models/placeholder.obj");	// MONITOR VIEJO
+	//Model tecladoOld((char*)"Models/placeholder.obj");			// TECLADO VIEJO
+	//Model mouseOld((char*)"Models/placeholder.obj");			// MOUSE VIEJO
+	//Model puertaOld((char*)"Models/placeholder.obj");			// PUERTA VIEJA
 	//Huevo
 	Model rightEgg((char*)"Models/Egg/RightEgg.obj");
 	Model leftEgg((char*)"Models/Egg/LeftEgg.obj");
@@ -686,18 +686,18 @@ int main() {
 	Model leftWing((char*)"Models/Wings/hawk_wing.obj");
 
 	Model Cuarto((char*)"Models/Escenario_Nuevo/Cuarto/Cuartov2.obj");
-	//Model Ventana((char*)"Models/Escenario_Nuevo/Ventanas_Vidrio/Ventanas.obj");
-	//Model Mesa((char*)"Models/Escenario_Nuevo/Mesa/Mesa.obj");
-	//Model Silla((char*)"Models/Escenario_Nuevo/Silla/Silla.obj");
-	//Model CPU_1((char*)"Models/Escenario_Nuevo/CPU/CPU1.obj");
-	//Model Mon1((char*)"Models/Escenario_Nuevo/Monitor/Mon1.obj");
-	//Model Teclado((char*)"Models/Escenario_Nuevo/Teclado/Teclado.obj");
-	//Model Mouse((char*)"Models/Escenario_Nuevo/Mouse/Mouse.obj");
-	//Model MonitorProf((char*)"Models/Escenario_Nuevo/Mon_Prof/Mon_Prof.obj");
-	//Model MesaProf((char*)"Models/Escenario_Nuevo/Mesa_Profe/Mesa_Prof.obj");
+	Model Ventana((char*)"Models/Escenario_Nuevo/Ventanas_Vidrio/Ventanas.obj");
+	Model Mesa((char*)"Models/Escenario_Nuevo/Mesa/Mesa.obj");
+	Model Silla((char*)"Models/Escenario_Nuevo/Silla/Silla.obj");
+	Model CPU_1((char*)"Models/Escenario_Nuevo/CPU/CPU1.obj");
+	Model Mon1((char*)"Models/Escenario_Nuevo/Monitor/Mon1.obj");
+	Model Teclado((char*)"Models/Escenario_Nuevo/Teclado/Teclado.obj");
+	Model Mouse((char*)"Models/Escenario_Nuevo/Mouse/Mouse.obj");
+	Model MonitorProf((char*)"Models/Escenario_Nuevo/Mon_Prof/Mon_Prof.obj");
+	Model MesaProf((char*)"Models/Escenario_Nuevo/Mesa_Profe/Mesa_Prof.obj");
 
-	//Model DetachTable((char*)"Models/Escenario_Nuevo/Detach_Table/Table1.obj");
-	//Model DetachTable2((char*)"Models/Escenario_Nuevo/Detach_Table/Table2.obj");
+	Model DetachTable((char*)"Models/Escenario_Nuevo/Detach_Table/Table1.obj");
+	Model DetachTable2((char*)"Models/Escenario_Nuevo/Detach_Table/Table2.obj");
 
 	// ------------------ MODELOS DECORACIONES --------------------------------------
 	//Model aloe((char*)"Models/Decoracion/aloe/aloe.obj");
@@ -708,7 +708,7 @@ int main() {
 
 	// ----------------- PLACEHOLDERS -----------------------------------------------
 	/*Model Cuarto((char*)"Models/placeholder.obj");*/
-	Model Ventana((char*)"Models/placeholder.obj");
+	/*Model Ventana((char*)"Models/placeholder.obj");
 	Model Alumno1((char*)"Models/placeholder.obj");
 	Model Mesa((char*)"Models/placeholder.obj");
 	Model Silla((char*)"Models/placeholder.obj");
@@ -717,10 +717,10 @@ int main() {
 	Model Teclado((char*)"Models/placeholder.obj");
 	Model Mouse((char*)"Models/placeholder.obj");
 	Model MonitorProf((char*)"Models/placeholder.obj");
-	Model MesaProf((char*)"Models/placeholder.obj");
+	Model MesaProf((char*)"Models/placeholder.obj");*/
 
-	Model DetachTable((char*)"Models/placeholder.obj");
-	Model DetachTable2((char*)"Models/placeholder.obj");
+	//Model DetachTable((char*)"Models/placeholder.obj");
+	//Model DetachTable2((char*)"Models/placeholder.obj");
 	// ------------------------------------------------------------------------------
 
 	GLfloat skyboxVertices[] = {//Skybox
