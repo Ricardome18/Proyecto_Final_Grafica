@@ -161,6 +161,7 @@ float tornadoScale = 0.0f;
 float tornadoMove = 0.0f;
 float labViejoMove = 0.0f;
 float labNuevoMove = 0.0f;
+float labNuevoMoveSub;
 float labNuevoBounce = 0.0f;
 int transicionLab = -1;
 
@@ -170,7 +171,10 @@ float wingScale = 1.0f;
 float eggScale = 1.0f;
 float labViejoScale = 1.0f;
 float eggYPosition = 0.0f;
+float eggRotation = 0.0f;
 float wingRotation = -90.0f;
+float wingRotationTime = 0.0f;
+float labNuevoMoveX = 0.0f;
 
 
 int playAnimationIndex = -1;
@@ -205,6 +209,28 @@ float animationSpeed = 0.06f;  // Controla la velocidad global de la animación.
 // Deltatime
 GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
 GLfloat lastFrame = 0.0f;  	// Time of last frame
+
+
+void resetlTransitionVariables() {
+	rotarYEscenario = 0.0f;
+	rotarYLabViejo = 0.0f;
+	tornadoScale = 0.0f;
+	tornadoMove = 0.0f;
+	labViejoMove = 0.0f;
+	labNuevoBounce = 0.0f;
+	labNuevoMove = 0.0f;
+	labNuevoMoveSub = 0.0f;
+	labNuevoMoveX = 0.0f;
+	wingRotation = 90.0f;
+	wingRotationTime = 0.0f;
+	wingScale = 0.0f;
+	eggScale = 0.0f;
+	eggRotation = 0.0f;
+	labViejoScale = 1.0f;
+	renderAlumno1 = false;
+	return;
+
+}
 
 
 void startUpFrames() {
@@ -540,6 +566,7 @@ float interpolation2(float value, float next, int steps)
 
 int main() {
 
+	resetlTransitionVariables();
 
 	// ---------------- REPRODUCCION DE MUSICA ----------------------------------------
 	std::cout << "Playing music \n";
@@ -991,9 +1018,10 @@ int main() {
 		glm::mat4 modelLabViejoYTornado(1);
 		modelLabViejoYTornado = glm::translate(modelLabViejoYTornado, glm::vec3(tornadoMove, 0.0f, 0.0f));
 		modelLabViejoYTornado = glm::rotate(modelLabViejoYTornado, glm::radians(rotarYEscenario), glm::vec3(0.0f, 1.0f, 0.0f));
+		modelLabViejoYTornado = glm::scale(modelLabViejoYTornado, glm::vec3(labViejoScale));
 
 		glm::mat4 modelLabNuevo(1.0f);
-		modelLabNuevo = glm::translate(modelLabNuevo, glm::vec3(0.0f, labNuevoMove, 0.0f));
+		modelLabNuevo = glm::translate(modelLabNuevo, glm::vec3(0.0f, labNuevoMove, -labNuevoMoveX));
 		modelLabNuevo = glm::rotate(modelLabNuevo, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 		glm::mat4 modelLabViejo = modelLabViejoYTornado;
@@ -1129,6 +1157,7 @@ int main() {
 
 		glm::mat4 rightEggModel = modelEmpty;
 		rightEggModel = glm::translate(rightEggModel, glm::vec3(0.0, 0.0f, 0.0f));
+		rightEggModel = glm::rotate(rightEggModel, glm::radians(-eggRotation), glm::vec3(1.0f, 0.0f, 0.0f));
 		rightEggModel = glm::scale(rightEggModel, glm::vec3(eggScale));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(rightEggModel));
 		rightEgg.Draw(lightingShader);
@@ -1136,6 +1165,7 @@ int main() {
 
 		glm::mat4 leftEggModel = modelEmpty;
 		leftEggModel = glm::translate(leftEggModel, glm::vec3(0.0, 00.0f, 0.0f));
+		leftEggModel = glm::rotate(leftEggModel, glm::radians(eggRotation), glm::vec3(1.0f, 0.0f,0.0f));
 		leftEggModel = glm::scale(leftEggModel, glm::vec3(eggScale));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(leftEggModel));
 		leftEgg.Draw(lightingShader);
@@ -3369,23 +3399,21 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode
 
 		if (transicionLab == -1) {
 			transicionLab = 0;
-		}
-		else if (transicionLab == 3) {
-			transicionLab = -1;
-			mostrarEscenarioNuevo = false;
+		}else if (transicionLab == -2) {
+			transicionLab = 3;
 		}
 		else {
-			rotarYEscenario = 0.0f;
-			rotarYLabViejo = 0.0f;
-			tornadoScale = 0.0f;
-			tornadoMove = 0.0f;
-			labViejoMove = 0.0f;
-			labNuevoMove = 0.0f;
-			labNuevoBounce = 0.0f;
-			mostrarEscenarioNuevo = true;
-			transicionLab = 3;
-			renderAlumno1 = false;
-		}
+			resetlTransitionVariables();
+			if(transicionLab >= 0 && transicionLab  <= 2){
+				transicionLab = -2;
+					mostrarEscenarioNuevo = true;
+			}
+			else {
+				transicionLab = -1;
+				mostrarEscenarioNuevo = false;
+			}
+		
+	}
 
 
 
@@ -3657,7 +3685,11 @@ bool progressHumanoidAnimation(int animation, int model) {
 	}
 }
 
+
+
+
 void Animation() {
+	float maxBounce = 270.0 * 2.0f;
 	//--------------------Animacion 0
 	//printf("El valor es: %f\n", playAnimationIndex);
 
@@ -3814,7 +3846,7 @@ void Animation() {
 	}
 	//------------Transicion de laboratorios
 	if (transicionLab > -1 && transicionLab < 3) {
-		mostrarLuces = false;
+		//mostrarLuces = false;
 		if (rotarYEscenario < 360) {
 			rotarYEscenario += 100.0 * deltaTime;
 		}
@@ -3830,14 +3862,12 @@ void Animation() {
 		}
 	}
 	else {
-		rotarYEscenario = 0.0f;
-		rotarYLabViejo = 0.0f;
-		tornadoScale = 0.0f;
-		tornadoMove = 0.0f;
-		labViejoMove = 0.0f;
+		
+		//mostrarLuces = true;
+	}
+
+	if (transicionLab < 0) {
 		labNuevoMove = 0.0f;
-		labNuevoBounce = 0.0f;
-		mostrarLuces = true;
 	}
 
 	switch (transicionLab) {
@@ -3870,20 +3900,134 @@ void Animation() {
 		break;
 
 	case 2:
-		float maxBounce = 270.0 * 2.0f;
+		
 
 		labNuevoBounce += 3.0f * 80.0f * deltaTime;
 		labNuevoMove = abs(100.0f * cos(glm::radians(labNuevoBounce)) * ((maxBounce - labNuevoBounce) / maxBounce));
 
 		if (labNuevoBounce >= maxBounce) {
-			renderAlumno1 = false;
-			transicionLab = 3;
+			resetlTransitionVariables();
+			mostrarEscenarioNuevo = true;
+			transicionLab = -2;
 
 		}
 
 
 
 		break;
+
+	case 3:
+
+		wingScale += 0.5 * deltaTime;
+		wingRotation = -90.0f * wingScale;
+
+		if (wingScale >= 1.0f) {
+			wingScale = 1.0f;
+			wingRotation = -90.0;
+			transicionLab = 4;
+
+		}
+
+
+
+		break;
+
+	case 4:
+		
+		wingRotationTime += 5 * deltaTime;
+
+		
+		wingRotation = -90.0 + sin(wingRotationTime)*30;
+
+		labNuevoMoveSub += 20.0 * deltaTime;
+
+
+
+		eggScale = labNuevoMoveSub / 90.0f;
+
+		labNuevoMove = labNuevoMoveSub + sin(wingRotationTime ) * 10;
+
+		if (labNuevoMoveSub >= 90.0f) {
+			
+			transicionLab = 5;
+
+		}
+
+
+
+		break;
+
+
+	case 5:
+
+
+		wingRotationTime += 5 * deltaTime;
+
+
+		wingRotation = -90.0 + sin(wingRotationTime) * 30;
+
+		labNuevoMove = labNuevoMoveSub + sin(wingRotationTime ) * 10;
+
+		labNuevoMoveX += 100.0 * deltaTime;
+
+		
+
+		if (labNuevoMoveX >= 300.0f) {
+			labViejoScale = 0.0f;
+			transicionLab = 6;
+			mostrarEscenarioNuevo = false;
+
+		}
+
+
+
+		break;
+
+
+	case 6:
+
+
+		eggRotation += 30.0f * deltaTime;
+
+
+		
+		labViejoScale = 0.0f;
+
+
+		if (eggRotation >= 30.0f) {
+			
+			transicionLab = 7;
+			
+
+		}
+
+
+
+		break;
+
+	case 7:
+
+
+		
+
+		labViejoScale += 1.0f * deltaTime;
+
+		eggScale = 1.0 - labViejoScale;
+
+
+
+
+		if (labViejoScale >= 1.0f) {
+			resetlTransitionVariables();
+			transicionLab = -1;
+
+
+		}
+
+
+
+		break;
+
 	}
 }
 
