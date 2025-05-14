@@ -36,7 +36,11 @@ JEREMIAS
 #include "Model.h"
 #include "Texture.h"//Skybox
 
-
+// librerías para la reproducción de música
+#include <Windows.h>
+#include <mmsystem.h>
+// se activa la librería necesaria para la música en windows
+#pragma comment(lib, "winmm.lib")
 
 //Structs modelo humanide
 
@@ -527,6 +531,13 @@ float interpolation2(float value, float next, int steps)
 
 
 int main() {
+
+
+	// ---------------- REPRODUCCION DE MUSICA ----------------------------------------
+	std::cout << "Playing music \n";
+	PlaySound(TEXT("background-music.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	// std::cout << "mUSIC OVER \n";
+	// --------------------------------------------------------------------------------
 
 	startUpFrames();
 	// Init GLFW
@@ -1250,16 +1261,18 @@ int main() {
 
 				//Profesor Sub Left Leg
 
-				model = modelLabNuevo;
-				model = glm::translate(modelTemp1, glm::vec3(-0.224f, -0.364f, 0.0f) + personas[1].subLeftLeg.position);
-				model = glm::rotate(model, glm::radians(personas[1].subLeftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(personas[1].subLeftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(personas[1].subLeftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-				ProfesorSubLeftLeg.Draw(lightingShader);
+				
 
 
 			}
+
+			model = modelLabNuevo;
+			model = glm::translate(modelTemp1, glm::vec3(-0.224f, -0.364f, 0.0f) + personas[1].subLeftLeg.position);
+			model = glm::rotate(model, glm::radians(personas[1].subLeftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+			model = glm::rotate(model, glm::radians(personas[1].subLeftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+			model = glm::rotate(model, glm::radians(personas[1].subLeftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+			ProfesorSubLeftLeg.Draw(lightingShader);
 
 
 			if (renderAlumno1) {
@@ -3213,7 +3226,7 @@ int main() {
 	glDeleteVertexArrays(1, &skyboxVAO);//Skybox
 	glDeleteBuffers(1, &skyboxVAO);//Skybox
 
-
+	
 	// Terminate GLFW, clearing any resources allocated by GLFW.
 	glfwTerminate();
 
