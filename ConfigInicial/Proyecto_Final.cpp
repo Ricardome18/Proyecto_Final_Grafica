@@ -136,7 +136,7 @@ glm::vec3 pointLightPositions2[] = {
 	glm::vec3(33.138f, 32.758f, -21.477f),			//C3-F2
 	glm::vec3(33.138f, 32.758f, 6.14F),				//C3-F3
 	glm::vec3(33.138f, 32.758f, 33.598f),			//C3-F4
-	//glm::vec3(33.138f, 32.758f, 33.598f),			//C3-F5
+	glm::vec3(33.138f, 32.758f, 33.598f),			//C3-F5
 };
 
 glm::vec3 spotLightDir(0.0f, -0.1f, 0.0f); // Dirección inicial
@@ -199,13 +199,8 @@ int caminarAnimationCurrentStep = -1;
 
 glm::vec3 Light1 = glm::vec3(0);//Luces
 
-//Variables para Animacion
-float rotBall = 1.0472;
-bool AnimBall = false;
-float salto = 0.0f;
-float rot = 0.0f;
+
 bool renderAlumno1 = false;
-float animationSpeed = 0.06f;  // Controla la velocidad global de la animación. Un valor más bajo significa más lento.
 
 
 // Deltatime
@@ -692,15 +687,6 @@ int main() {
 	Model mouseOld((char*)"Models/Escenario_Viejo/mouseViejo/mouseViejo.obj");			// MOUSE VIEJO
 	Model puertaOld((char*)"Models/Escenario_Viejo/puertaOLD/puertaOLD.obj");			// PUERTA VIEJA
 
-	//Model cuartoOld((char*)"Models/placeholder.obj");		// LAB VIEJO
-	//Model ventanasOld((char*)"Models/placeholder.obj");		// VENTANAS OLD
-	//Model mesaOld((char*)"Models/placeholder.obj");					// MESA VIEJA
-	//Model sillaOld((char*)"Models/placeholder.obj");				// SILLA VIEJA
-	//Model oldCPU((char*)"Models/placeholder.obj");					// CPU VIEJO
-	//Model monitorOld((char*)"Models/placeholder.obj");	// MONITOR VIEJO
-	//Model tecladoOld((char*)"Models/placeholder.obj");			// TECLADO VIEJO
-	//Model mouseOld((char*)"Models/placeholder.obj");			// MOUSE VIEJO
-	//Model puertaOld((char*)"Models/placeholder.obj");			// PUERTA VIEJA
 	//Huevo
 	Model rightEgg((char*)"Models/Egg/RightEgg.obj");
 	Model leftEgg((char*)"Models/Egg/LeftEgg.obj");
@@ -724,28 +710,8 @@ int main() {
 	Model DetachTable2((char*)"Models/Escenario_Nuevo/Detach_Table/Table2.obj");
 
 	// ------------------ MODELOS DECORACIONES --------------------------------------
-	//Model aloe((char*)"Models/Decoracion/aloe/aloe.obj");
 	Model piso((char*)"Models/Decoracion/piso/piso.obj");
 	Model arbol((char*)"Models/Decoracion/Tree/Tree.obj");
-	// ------------------------------------------------------------------------------
-
-
-	// ----------------- PLACEHOLDERS -----------------------------------------------
-	/*Model Cuarto((char*)"Models/placeholder.obj");*/
-	/*Model Ventana((char*)"Models/placeholder.obj");
-	Model Alumno1((char*)"Models/placeholder.obj");
-	Model Mesa((char*)"Models/placeholder.obj");
-	Model Silla((char*)"Models/placeholder.obj");
-	Model CPU_1((char*)"Models/placeholder.obj");
-	Model Mon1((char*)"Models/placeholder.obj");
-	Model Teclado((char*)"Models/placeholder.obj");
-	Model Mouse((char*)"Models/placeholder.obj");
-	Model MonitorProf((char*)"Models/placeholder.obj");
-	Model MesaProf((char*)"Models/placeholder.obj");*/
-
-	//Model DetachTable((char*)"Models/placeholder.obj");
-	//Model DetachTable2((char*)"Models/placeholder.obj");
-	// ------------------------------------------------------------------------------
 
 	GLfloat skyboxVertices[] = {//Skybox
 		// Positions
@@ -817,7 +783,6 @@ int main() {
 
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);//Skybox
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);//Skybox
 
@@ -1484,15 +1449,6 @@ int main() {
 				model = glm::rotate(model, glm::radians(personas[0].subLeftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 				Alumno1SubLeftLeg.Draw(lightingShader);
-				//Alumno1 Left Leg
-				/*if (renderExtraLeg) {
-					model = modelLabNuevo;
-					
-
-					glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-					Alumno1LeftLeg2.Draw(lightingShader);
-				}*/
-
 				
 
 
@@ -3414,21 +3370,7 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode
 		}
 	}
 
-	if (keys[GLFW_KEY_SPACE])
-	{
-		active = !active;
-		if (active)
-		{
-			Light1 = glm::vec3(1.0f, 1.0f, 0.0f);
-
-		}
-		else
-		{
-			Light1 = glm::vec3(0);//Cuado es solo un valor en los 3 vectores pueden dejar solo una componente
-		}
-
-
-	}
+	
 
 	//Nueva tecla para intercambiar entre escenarios
 	if (key == GLFW_KEY_E && action == GLFW_PRESS) {
@@ -3727,7 +3669,6 @@ bool progressHumanoidAnimation(int animation, int model) {
 void Animation() {
 	float maxBounce = 270.0 * 2.0f;
 	//--------------------Animacion 0
-	//printf("El valor es: %f\n", playAnimationIndex);
 
 	if (caminarAnimationKeyIndex == 0 && personas[1].torso.position.x < 20.0f) {
 		personas[1].torso.position.x += 5.0f * deltaTime;
@@ -3849,18 +3790,14 @@ void Animation() {
 			}
 			break;
 		case 1:
-			//printf("El número es: %d\n", playAnimationIndex);
 			if (progressHumanoidAnimation(1, 2)) {
-				//playAnimationIndex = -1;
 			}
 
 
 			break;
 
 		case 2:
-			//printf("El número es: %d\n", playAnimationIndex);
 			if (progressHumanoidAnimation(2, 1)) {
-				//playAnimationIndex = -1;
 			}
 
 
