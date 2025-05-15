@@ -3714,12 +3714,12 @@ void Animation() {
 	//--------------------Animacion 0
 	//printf("El valor es: %f\n", playAnimationIndex);
 
-	if (caminarAnimationKeyIndex == 1 && personas[1].torso.position.x < 10.0f) {
-		personas[0].torso.position.x += 5.0f * deltaTime;
+	if (caminarAnimationKeyIndex == 0 && personas[1].torso.position.x < 20.0f) {
+		personas[1].torso.position.x += 5.0f * deltaTime;
 	}
 
-	if (caminarAnimationKeyIndex == 3 && personas[1].torso.position.x > 0.0f) {
-		personas[0].torso.position.x -= 5.0f * deltaTime;
+	if (caminarAnimationKeyIndex >= 3 && personas[1].torso.position.x > 0.0f) {
+		personas[1].torso.position.x -= 5.0f * deltaTime;
 	}
 
 	int steps = int(floor(500.0 * deltaTime));
