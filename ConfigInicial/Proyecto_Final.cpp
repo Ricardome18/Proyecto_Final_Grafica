@@ -326,7 +326,9 @@ void startUpFrames() {
 		animations[1].keyFrames[0].modelInfo.leftArm.rotation.x = 30.0f;
 		animations[1].keyFrames[0].modelInfo.rightArm.rotation.x = -30.0f;
 		animations[1].keyFrames[0].modelInfo.rightLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[0].modelInfo.rightLeg.rotation.y = -15.0f;
 		animations[1].keyFrames[0].modelInfo.leftLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[0].modelInfo.leftLeg.rotation.y = 15.0f;
 		animations[1].keyFrames[0].modelInfo.subRightLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[0].modelInfo.subLeftLeg.rotation.z = 30.0f;
 
@@ -340,7 +342,9 @@ void startUpFrames() {
 		animations[1].keyFrames[1].modelInfo.leftArm.rotation.z = -100.0f;
 		animations[1].keyFrames[1].modelInfo.rightArm.rotation.x = -30.0f;
 		animations[1].keyFrames[1].modelInfo.rightLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[1].modelInfo.rightLeg.rotation.y = -15.0f;
 		animations[1].keyFrames[1].modelInfo.leftLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[1].modelInfo.leftLeg.rotation.y = 15.0f;
 		animations[1].keyFrames[1].modelInfo.subRightLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[1].modelInfo.subLeftLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[1].stepsToFrame = 250;
@@ -353,7 +357,9 @@ void startUpFrames() {
 		animations[1].keyFrames[2].modelInfo.leftArm.rotation.z = -100.0f;
 		animations[1].keyFrames[2].modelInfo.rightArm.rotation.x = -30.0f;
 		animations[1].keyFrames[2].modelInfo.rightLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[2].modelInfo.rightLeg.rotation.y = -15.0f;
 		animations[1].keyFrames[2].modelInfo.leftLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[2].modelInfo.leftLeg.rotation.y = 15.0f;
 		animations[1].keyFrames[2].modelInfo.subRightLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[2].modelInfo.subLeftLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[2].stepsToFrame = 250;
@@ -368,7 +374,9 @@ void startUpFrames() {
 		animations[1].keyFrames[3].modelInfo.subRightArm.rotation.y = 60.0f;
 		animations[1].keyFrames[3].modelInfo.subRightArm.position.y = 0.05f;
 		animations[1].keyFrames[3].modelInfo.rightLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[3].modelInfo.rightLeg.rotation.y = -15.0f;
 		animations[1].keyFrames[3].modelInfo.leftLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[3].modelInfo.leftLeg.rotation.y = 15.0f;
 		animations[1].keyFrames[3].modelInfo.subRightLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[3].modelInfo.subLeftLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[3].stepsToFrame = 250;
@@ -382,7 +390,9 @@ void startUpFrames() {
 		animations[1].keyFrames[4].modelInfo.subRightArm.rotation.y = 60.0f;
 		animations[1].keyFrames[4].modelInfo.subRightArm.position.y = 0.05f;
 		animations[1].keyFrames[4].modelInfo.rightLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[4].modelInfo.rightLeg.rotation.y = -15.0f;
 		animations[1].keyFrames[4].modelInfo.leftLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[4].modelInfo.leftLeg.rotation.y = 15.0f;
 		animations[1].keyFrames[4].modelInfo.subRightLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[4].modelInfo.subLeftLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[4].stepsToFrame = 250;
@@ -400,7 +410,9 @@ void startUpFrames() {
 		animations[1].keyFrames[5].modelInfo.subRightArm.rotation.y = 60.0f;
 		animations[1].keyFrames[5].modelInfo.subRightArm.position.y = 0.05f;
 		animations[1].keyFrames[5].modelInfo.rightLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[5].modelInfo.rightLeg.rotation.y = -15.0f;
 		animations[1].keyFrames[5].modelInfo.leftLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[5].modelInfo.leftLeg.rotation.y = 15.0f;
 		animations[1].keyFrames[5].modelInfo.subRightLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[5].modelInfo.subLeftLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[5].stepsToFrame = 250;
@@ -418,7 +430,9 @@ void startUpFrames() {
 		animations[1].keyFrames[6].modelInfo.subRightArm.rotation.y = 60.0f;
 		animations[1].keyFrames[6].modelInfo.subRightArm.position.y = 0.05f;
 		animations[1].keyFrames[6].modelInfo.rightLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[6].modelInfo.rightLeg.rotation.y = -15.0f;
 		animations[1].keyFrames[6].modelInfo.leftLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[6].modelInfo.leftLeg.rotation.y = 15.0f;
 		animations[1].keyFrames[6].modelInfo.subRightLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[6].modelInfo.subLeftLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[6].stepsToFrame = 200;
@@ -435,7 +449,9 @@ void startUpFrames() {
 		animations[1].keyFrames[7].modelInfo.subRightArm.rotation.y = 60.0f;
 		animations[1].keyFrames[7].modelInfo.subRightArm.position.y = 0.05f;
 		animations[1].keyFrames[7].modelInfo.rightLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[7].modelInfo.rightLeg.rotation.y = -15.0f;
 		animations[1].keyFrames[7].modelInfo.leftLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[7].modelInfo.leftLeg.rotation.y = 15.0f;
 		animations[1].keyFrames[7].modelInfo.subRightLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[7].modelInfo.subLeftLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[7].stepsToFrame = 200;
@@ -452,7 +468,9 @@ void startUpFrames() {
 		animations[1].keyFrames[8].modelInfo.subRightArm.rotation.y = 60.0f;
 		animations[1].keyFrames[8].modelInfo.subRightArm.position.y = 0.05f;
 		animations[1].keyFrames[8].modelInfo.rightLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[8].modelInfo.rightLeg.rotation.y = -15.0f;
 		animations[1].keyFrames[8].modelInfo.leftLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[8].modelInfo.leftLeg.rotation.y = 15.0f;
 		animations[1].keyFrames[8].modelInfo.subRightLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[8].modelInfo.subLeftLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[8].stepsToFrame = 200;
@@ -463,7 +481,9 @@ void startUpFrames() {
 		animations[1].keyFrames[9].modelInfo.leftArm.rotation.x = 30.0f;
 		animations[1].keyFrames[9].modelInfo.rightArm.rotation.x = -30.0f;
 		animations[1].keyFrames[9].modelInfo.rightLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[9].modelInfo.rightLeg.rotation.y = -15.0f;
 		animations[1].keyFrames[9].modelInfo.leftLeg.rotation.z = -80.0f;
+		animations[1].keyFrames[9].modelInfo.leftLeg.rotation.y = 15.0f;
 		animations[1].keyFrames[9].modelInfo.subRightLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[9].modelInfo.subLeftLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[9].stepsToFrame = 200;
