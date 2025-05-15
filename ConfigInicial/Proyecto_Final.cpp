@@ -332,7 +332,7 @@ void startUpFrames() {
 
 
 		//Toca pc con mano izquierda
-		animations[1].keyFrames[1].modelInfo.torso.position = glm::vec3(0.0f, -4.028f, 0.059f);
+		animations[1].keyFrames[1].modelInfo.torso.position = glm::vec3(3.148f, -4.028f, 0.059f);
 		animations[1].keyFrames[1].modelInfo.torso.rotation.y = -90.0f;
 		animations[1].keyFrames[1].modelInfo.torso.rotation.z = 20.0f;
 		animations[1].keyFrames[1].modelInfo.leftArm.rotation.x = 0.0f;
@@ -345,7 +345,7 @@ void startUpFrames() {
 		animations[1].keyFrames[1].modelInfo.subLeftLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[1].stepsToFrame = 250;
 
-		animations[1].keyFrames[2].modelInfo.torso.position = glm::vec3(0.0f, -4.028f, 0.059f);
+		animations[1].keyFrames[2].modelInfo.torso.position = glm::vec3(3.148f, -4.028f, 0.059f);
 		animations[1].keyFrames[2].modelInfo.torso.rotation.y = -90.0f;
 		animations[1].keyFrames[2].modelInfo.torso.rotation.z = 20.0f;
 		animations[1].keyFrames[2].modelInfo.leftArm.rotation.x = 0.0f;
@@ -359,7 +359,7 @@ void startUpFrames() {
 		animations[1].keyFrames[2].stepsToFrame = 250;
 
 		//Toca mouse con mano derecha
-		animations[1].keyFrames[3].modelInfo.torso.position = glm::vec3(0.0f, -4.028f, 0.059f);
+		animations[1].keyFrames[3].modelInfo.torso.position = glm::vec3(1.722f, -4.028f, 0.059f);
 		animations[1].keyFrames[3].modelInfo.torso.rotation.y = -90.0f;
 		animations[1].keyFrames[3].modelInfo.torso.rotation.z = 15.0f;
 		animations[1].keyFrames[3].modelInfo.leftArm.rotation.x = 30.0f;
@@ -373,7 +373,7 @@ void startUpFrames() {
 		animations[1].keyFrames[3].modelInfo.subLeftLeg.rotation.z = 30.0f;
 		animations[1].keyFrames[3].stepsToFrame = 250;
 
-		animations[1].keyFrames[4].modelInfo.torso.position = glm::vec3(0.0f, -4.028f, -0.059f);
+		animations[1].keyFrames[4].modelInfo.torso.position = glm::vec3(1.722f, -4.028f, -0.059f);
 		animations[1].keyFrames[4].modelInfo.torso.rotation.y = -90.0f;
 		animations[1].keyFrames[4].modelInfo.torso.rotation.z = 15.0f;
 		animations[1].keyFrames[4].modelInfo.leftArm.rotation.x = 30.0f;
