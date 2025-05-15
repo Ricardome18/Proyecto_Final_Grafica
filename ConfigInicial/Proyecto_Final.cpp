@@ -570,7 +570,7 @@ int main() {
 
 	// ---------------- REPRODUCCION DE MUSICA ----------------------------------------
 	std::cout << "Playing music \n";
-	PlaySound(TEXT("background-music.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	PlaySound(TEXT("../ConfigInicial/Sound/background-music.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 	// std::cout << "mUSIC OVER \n";
 	// --------------------------------------------------------------------------------
 
