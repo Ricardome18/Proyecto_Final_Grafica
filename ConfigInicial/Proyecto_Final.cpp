@@ -186,6 +186,8 @@ int playIndex = 0;
 
 //Animacion 0 
 
+bool renderExtraLeg = false;
+
 float caminarTime = 0.0f;
 
 const int caminarAnimationMaxKeyFrame = 8;
@@ -1463,13 +1465,13 @@ int main() {
 				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 				Alumno1SubLeftLeg.Draw(lightingShader);
 				//Alumno1 Left Leg
-				model = modelLabNuevo;
-				model = glm::translate(modelTemp, glm::vec3(9.817f, 87.906f, -9.521f) + personas[0].leftLeg.position);
-				modelTemp1 = model = glm::rotate(model, glm::radians(personas[0].leftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				modelTemp1 = model = glm::rotate(model, glm::radians(personas[0].leftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				modelTemp1 = model = glm::rotate(model, glm::radians(personas[0].leftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-				Alumno1LeftLeg2.Draw(lightingShader);
+				if (renderExtraLeg) {
+					model = modelLabNuevo;
+					model = glm::translate(modelTemp, glm::vec3(9.817f, 87.906f, -9.521f));
+
+					glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+					Alumno1LeftLeg2.Draw(lightingShader);
+				}
 
 				//Alumno1 Sub Left Leg
 
@@ -3375,6 +3377,7 @@ void resetCaminarAnimation() {
 	caminarAnimationMaxStep = -1;
 	caminarAnimationCurrentStep = -1;
 	playCaminar = false;
+	renderExtraLeg = false;
 	caminarTime = 0.0f;
 }
 
@@ -3742,6 +3745,13 @@ void Animation() {
 				if (caminarAnimationMaxStep == -1) {
 
 					caminarAnimationCurrentStep = 0;
+
+					if (caminarAnimationKeyIndex == 0 || caminarAnimationKeyIndex == 1) {
+						renderExtraLeg = false;
+					}
+					if (caminarAnimationKeyIndex == 6) {
+						renderExtraLeg = true;
+					}
 
 					if (caminarAnimationKeyIndex == 4) {
 
