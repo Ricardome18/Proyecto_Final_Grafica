@@ -1467,21 +1467,13 @@ int main() {
 				//Alumno1 Left Leg
 				if (renderExtraLeg) {
 					model = modelLabNuevo;
-					model = glm::translate(modelTemp, glm::vec3(9.817f, 87.906f, -9.521f));
+					
 
 					glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 					Alumno1LeftLeg2.Draw(lightingShader);
 				}
 
-				//Alumno1 Sub Left Leg
-
-				model = modelLabNuevo;
-				model = glm::translate(modelTemp1, glm::vec3(0.272f, -36.701f, 17.087f) + personas[0].subLeftLeg.position);
-				model = glm::rotate(model, glm::radians(personas[0].subLeftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(personas[0].subLeftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				model = glm::rotate(model, glm::radians(personas[0].subLeftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-				Alumno1SubLeftLeg2.Draw(lightingShader);
+				
 
 
 			}
