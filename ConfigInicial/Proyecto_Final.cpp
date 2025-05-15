@@ -642,6 +642,8 @@ int main() {
 	Model Alumno1SubRightLeg((char*)"Models/Alumno1/ProfesorSubRightLeg.obj");
 	Model Alumno1LeftLeg((char*)"Models/Alumno1/ProfesorLeftLeg.obj");
 	Model Alumno1SubLeftLeg((char*)"Models/Alumno1/ProfesorSubLeftLeg.obj");
+	Model Alumno1LeftLeg2((char*)"Models/Alumno1/ProfesorLeftLeg2.obj");
+	Model Alumno1SubLeftLeg2((char*)"Models/Alumno1/ProfesorSubLeftLeg2.obj");
 
 	// ------------------- MODELO ALUMNO 2 -------------------------------------------
 	Model Alumno2Torso((char*)"Models/Alumno2/Alumno2Torso.obj");
@@ -1460,6 +1462,25 @@ int main() {
 				model = glm::rotate(model, glm::radians(personas[0].subLeftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 				Alumno1SubLeftLeg.Draw(lightingShader);
+				//Alumno1 Left Leg
+				model = modelLabNuevo;
+				model = glm::translate(modelTemp, glm::vec3(9.817f, 87.906f, -9.521f) + personas[0].leftLeg.position);
+				modelTemp1 = model = glm::rotate(model, glm::radians(personas[0].leftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(personas[0].leftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				modelTemp1 = model = glm::rotate(model, glm::radians(personas[0].leftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				Alumno1LeftLeg2.Draw(lightingShader);
+
+				//Alumno1 Sub Left Leg
+
+				model = modelLabNuevo;
+				model = glm::translate(modelTemp1, glm::vec3(0.272f, -36.701f, 17.087f) + personas[0].subLeftLeg.position);
+				model = glm::rotate(model, glm::radians(personas[0].subLeftLeg.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(personas[0].subLeftLeg.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+				model = glm::rotate(model, glm::radians(personas[0].subLeftLeg.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+				Alumno1SubLeftLeg2.Draw(lightingShader);
+
 
 			}
 
@@ -3692,6 +3713,14 @@ void Animation() {
 	float maxBounce = 270.0 * 2.0f;
 	//--------------------Animacion 0
 	//printf("El valor es: %f\n", playAnimationIndex);
+
+	if (caminarAnimationKeyIndex == 1 && personas[1].torso.position.x < 10.0f) {
+		personas[0].torso.position.x += 5.0f * deltaTime;
+	}
+
+	if (caminarAnimationKeyIndex == 3 && personas[1].torso.position.x > 0.0f) {
+		personas[0].torso.position.x -= 5.0f * deltaTime;
+	}
 
 	int steps = int(floor(500.0 * deltaTime));
 
