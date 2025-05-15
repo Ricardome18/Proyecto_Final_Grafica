@@ -1465,13 +1465,13 @@ int main() {
 				glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 				Alumno1SubLeftLeg.Draw(lightingShader);
 				//Alumno1 Left Leg
-				if (renderExtraLeg) {
+				/*if (renderExtraLeg) {
 					model = modelLabNuevo;
 					
 
 					glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 					Alumno1LeftLeg2.Draw(lightingShader);
-				}
+				}*/
 
 				
 
